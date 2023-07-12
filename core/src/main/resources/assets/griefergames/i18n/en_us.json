@@ -1,0 +1,189 @@
+{
+  "griefergames": {
+    "settings": {
+      "name": "GrieferGames",
+      "enabled": {
+        "name": "Addon Enabled"
+      },
+      "autoUpdate": {
+        "name": "Auto Update"
+      },
+
+      "chatConfig": {
+        "name": "Chat & Tablist",
+        "header": {
+          "highlightMessages": {
+            "name": "Highlight messages"
+          },
+          "blockMessages": {
+            "name": "Block messages"
+          },
+          "magicPrefix": {
+            "name": "Magic prefix"
+          },
+          "chatTime": {
+            "name": "Chat time"
+          }
+        },
+
+        "clickToReply": {
+          "name": "Click to reply"
+        },
+        "preventCommandFailure": {
+          "name": "Block incorrect commands"
+        },
+        "betterIgnoreList": {
+          "name": "Better ignore list"
+        },
+        "showPrefixInDisplayName": {
+          "name": "Show prefix color above player"
+        },
+        "plotChatRight": {
+          "name": "Plot chat in 2nd chat"
+        },
+        "privateChatRight": {
+          "name": "Private messages in 2nd chat"
+        },
+        "privateChatSound": {
+          "name": "Private message sound"
+        },
+        "realnamePosition": {
+          "name": "Show realname"
+        },
+        "highlightMentions": {
+          "name": "Highlight mentions"
+        },
+        "mentionColor": {
+          "name": "Mention Color"
+        },
+        "mentionSound": {
+          "name": "Mention sound"
+        },
+        "highlightTPA": {
+          "name": "Highlight TPA messages"
+        },
+        "itemRemoverChatRight": {
+          "name": "ItemRemover 2nd chat"
+        },
+        "itemRemoverLastTimeHover": {
+          "name": "ItemRemover timestamp hover"
+        },
+        "itemRemoverNotification": {
+          "name": "ItemRemover notification"
+        },
+        "mobRemoverChatRight": {
+          "name": "MobRemover 2nd chat"
+        },
+        "mobRemoverLastTimeHover": {
+          "name": "MobRemover timestamp hover"
+        },
+        "mobRemoverNotification": {
+          "name": "MobRemover notification"
+        },
+        "hideVoteMessages": {
+          "name": "Hide vote messages"
+        },
+        "hideNewsMessages": {
+          "name": "Hide news"
+        },
+        "hideBlankLines": {
+          "name": "Remove blank lines"
+        },
+        "hideSupremeBlankLines": {
+          "name": "Remove Supreme blank lines"
+        },
+        "filterDuplicateMessages": {
+          "name": "Remove duplicate messages"
+        },
+        "filterDuplicateMessagesTime": {
+          "name": "Duplicate messages time"
+        },
+        "ampClantagEnabled": {
+          "name": "Replace magic clan tags"
+        },
+        "ampEnabled": {
+          "name": "Replace magic prefix"
+        },
+        "ampReplacement": {
+          "name": "New chat prefix"
+        },
+        "showChatTime": {
+          "name": "Display chat time"
+        },
+        "chatTimeAfterMessage": {
+          "name": "Chat time after message"
+        },
+        "chatTimeFormat": {
+          "name": "Chat time format"
+        }
+      },
+
+      "payment": {
+        "name": "Payments",
+        "header": {
+          "payments": {
+            "name": "Payments"
+          },
+          "bank": {
+            "name": "Bank"
+          }
+        },
+
+        "logTransactions": {
+          "name": "Log transactions"
+        },
+        "payChatRight": {
+          "name": "Payments 2nd chat"
+        },
+        "payAchievement": {
+          "name": "Payment achievements"
+        },
+        "payHighlight": {
+          "name": "Highlight payments"
+        },
+        "fakeMoneyWarning": {
+          "name": "Warn about fake money"
+        },
+        "showBalance": {
+          "name": "Display balance"
+        },
+        "bankChatRight": {
+          "name": "Bank 2nd chat"
+        },
+        "bankAchievement": {
+          "name": "Bank achievement"
+        },
+        "showBankBallance": {
+          "name": "Display Bank Balance"
+        }
+      }
+    },
+
+    "messages": {
+      "warning": "WARNING!",
+      "advancedChatWarning": "Advanced Chat is currently disabled. This feature is required by the addon to work properly. Please go to LabyMod Settings --> Ingame and enable Advanced Chat.",
+      "hoverIgnoreListEntry": "Click to unignore",
+      "fakeMoney": "The payment from {player} of {amount} has been detected as fake money.",
+      "verifiedPayment": "Verified payment",
+      "clickToReply": "Click to reply"
+    },
+
+    "notifications": {
+      "generalError": "An error occoured, please check the chat",
+      "addonLoaded": "GrieferGames Addon loaded",
+      "bank": {
+        "title": "Bank",
+        "deposit": "You deposited {amount} into your bank account.",
+        "withdraw": "You have withdrawn {amount} from your bank account."
+      },
+      "payment": {
+        "title": "Payment",
+        "receive": "You received {amount} from {player}.",
+        "pay": "You paid {amount} to {player}.",
+        "earn": "You earned {amount}"
+      },
+      "itemRemover": "in {time} seconds",
+      "mobRemover": "in {time} minutes"
+    }
+  }
+}
