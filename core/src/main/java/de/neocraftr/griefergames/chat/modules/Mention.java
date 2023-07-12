@@ -2,7 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
-import de.neocraftr.griefergames.enums.EnumSounds;
+import de.neocraftr.griefergames.enums.Sounds;
 import net.labymod.api.Laby;
 import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.event.Subscribe;
@@ -20,7 +20,7 @@ public class Mention extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if(!griefergames.configuration().chatConfig().highlightMentions().get() && griefergames.configuration().chatConfig().mentionSound().get() == EnumSounds.NONE) return;
+    if(!griefergames.configuration().chatConfig().highlightMentions().get() && griefergames.configuration().chatConfig().mentionSound().get() == Sounds.NONE) return;
     if(event.getMessage().getPlainText().isBlank()) return;
 
     Matcher matcher = globalChatregex.matcher(event.getMessage().getPlainText());
@@ -30,7 +30,7 @@ public class Mention extends ChatModule {
           event.getMessage().metadata().set("gg_custom_background", griefergames.configuration().chatConfig().mentionColor().get().get());
         }
 
-        if(griefergames.configuration().chatConfig().mentionSound().get() != EnumSounds.NONE) {
+        if(griefergames.configuration().chatConfig().mentionSound().get() != Sounds.NONE) {
           ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().mentionSound().get().path());
           Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
         }

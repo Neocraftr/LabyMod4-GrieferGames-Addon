@@ -2,7 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
-import de.neocraftr.griefergames.enums.EnumSounds;
+import de.neocraftr.griefergames.enums.Sounds;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.event.ClickEvent;
@@ -39,7 +39,7 @@ public class PrivateMessage extends ChatModule {
         event.setSecondChat(true);
       }
 
-      if(griefergames.configuration().chatConfig().privateChatSound().get() != EnumSounds.NONE) {
+      if(griefergames.configuration().chatConfig().privateChatSound().get() != Sounds.NONE) {
         ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().privateChatSound().get().path());
         Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
       }

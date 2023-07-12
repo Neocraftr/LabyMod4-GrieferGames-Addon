@@ -1,5 +1,5 @@
 package de.neocraftr.griefergames.enums;
 
-public enum EnumRealnamePosition {
+public enum RealnamePosition {
   DEFAULT, SECONDCHAT, BOTH;
 }

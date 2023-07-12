@@ -1,6 +1,6 @@
 package de.neocraftr.griefergames.enums;
 
-public enum EnumSounds {
+public enum Sounds {
   NONE(""),
   BASS("note.bass"),
   BASSDRUM("note.bd"),
@@ -12,7 +12,7 @@ public enum EnumSounds {
 
   private String path;
 
-  EnumSounds(String path) {
+  Sounds(String path) {
     this.path = path;
   }
 

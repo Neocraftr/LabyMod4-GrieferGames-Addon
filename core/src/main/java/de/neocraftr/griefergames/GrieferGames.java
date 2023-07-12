@@ -23,6 +23,7 @@ import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
+import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.Helper;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
@@ -43,6 +44,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   private static GrieferGames griefergames;
   private Helper helper;
+  private FileManager fileManager;
 
   private boolean onGrieferGames = false;
   private IngameChatTab secondChat = null;
@@ -53,6 +55,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   protected void enable() {
     griefergames = this;
     helper = new Helper(this);
+    fileManager = new FileManager(this);
 
     this.registerSettingCategory();
     this.registerListener(new GGServerJoinListener(this));
@@ -111,6 +114,11 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   public Helper helper() {
     return helper;
   }
+
+  public FileManager fileManager() {
+    return fileManager;
+  }
+
 
   public boolean isOnGrieferGames() {
     return onGrieferGames;

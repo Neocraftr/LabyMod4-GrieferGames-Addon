@@ -132,6 +132,10 @@
         "logTransactions": {
           "name": "Log transactions"
         },
+        "openTransactionsFile": {
+          "name": "Transactions File",
+          "text": "Open"
+        },
         "payChatRight": {
           "name": "Payments 2nd chat"
         },
@@ -180,7 +184,7 @@
         "title": "Payment",
         "receive": "You received {amount} from {player}.",
         "pay": "You paid {amount} to {player}.",
-        "earn": "You earned {amount}"
+        "moneydrop": "You received a {amount} moneydrop"
       },
       "itemRemover": "in {time} seconds",
       "mobRemover": "in {time} minutes"

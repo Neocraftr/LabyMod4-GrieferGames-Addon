@@ -1,7 +1,7 @@
 package de.neocraftr.griefergames.settings;
 
-import de.neocraftr.griefergames.enums.EnumRealnamePosition;
-import de.neocraftr.griefergames.enums.EnumSounds;
+import de.neocraftr.griefergames.enums.RealnamePosition;
+import de.neocraftr.griefergames.enums.Sounds;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SliderWidget.SliderSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
@@ -35,10 +35,11 @@ public class GrieferGamesChatConfig extends Config {
   private final ConfigProperty<Boolean> privateChatRight = new ConfigProperty<>(true);
 
   @DropdownSetting
-  private final ConfigProperty<EnumSounds> privateChatSound = new ConfigProperty<>(EnumSounds.POP);
+  private final ConfigProperty<Sounds> privateChatSound = new ConfigProperty<>(Sounds.POP);
 
   @DropdownSetting
-  private final ConfigProperty<EnumRealnamePosition> realnamePosition = new ConfigProperty<>(EnumRealnamePosition.DEFAULT);
+  private final ConfigProperty<RealnamePosition> realnamePosition = new ConfigProperty<>(
+      RealnamePosition.DEFAULT);
 
   @SwitchSetting
   private final ConfigProperty<Boolean> highlightMentions = new ConfigProperty<>(true);
@@ -47,7 +48,7 @@ public class GrieferGamesChatConfig extends Config {
   private final ConfigProperty<Color> mentionColor = new ConfigProperty<>(Color.ofRGB(121, 178, 255));
 
   @DropdownSetting
-  private final ConfigProperty<EnumSounds> mentionSound = new ConfigProperty<>(EnumSounds.NONE);
+  private final ConfigProperty<Sounds> mentionSound = new ConfigProperty<>(Sounds.NONE);
 
   @SwitchSetting
   private final ConfigProperty<Boolean> highlightTPA = new ConfigProperty<>(true);
@@ -137,11 +138,11 @@ public class GrieferGamesChatConfig extends Config {
     return privateChatRight;
   }
 
-  public ConfigProperty<EnumSounds> privateChatSound() {
+  public ConfigProperty<Sounds> privateChatSound() {
     return privateChatSound;
   }
 
-  public ConfigProperty<EnumRealnamePosition> realnamePosition() {
+  public ConfigProperty<RealnamePosition> realnamePosition() {
     return realnamePosition;
   }
 
@@ -153,7 +154,7 @@ public class GrieferGamesChatConfig extends Config {
     return mentionColor;
   }
 
-  public ConfigProperty<EnumSounds> mentionSound() {
+  public ConfigProperty<Sounds> mentionSound() {
     return mentionSound;
   }
 

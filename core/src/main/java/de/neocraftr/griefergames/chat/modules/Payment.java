@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.TransactionType;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.event.HoverEvent;
@@ -39,14 +40,17 @@ public class Payment extends ChatModule {
 
       if(!event.getMessage().getFormattedText().contains("§f §ahat dir $")) {
         griefergames.addIncome(amount);
-        // TODO: Log transaction
+
+        if(griefergames.configuration().payment().logTransactions().get()) {
+          griefergames.fileManager().logTransaction(rank+" ┃ "+name, amount, TransactionType.RECEIVE);
+        }
 
         if(griefergames.configuration().payment().payChatRight().get()) {
           event.setSecondChat(true);
         }
 
         if(griefergames.configuration().payment().payAchievement().get()) {
-          sendPaymentNotification("receive", rank, name, amount);
+          sendPaymentNotification(TransactionType.RECEIVE, rank, name, amount);
         }
 
         if(griefergames.configuration().payment().payHighlight().get()) {
@@ -74,16 +78,24 @@ public class Payment extends ChatModule {
       String name = payMoneyMatcher.group(2);
       double amount = getAmount(payMoneyMatcher.group(3));
 
-      sendPaymentNotification("pay", rank, name, amount);
+      sendPaymentNotification(TransactionType.PAY, rank, name, amount);
       griefergames.addIncome(amount * -1);
+
+      if(griefergames.configuration().payment().logTransactions().get()) {
+        griefergames.fileManager().logTransaction(rank+" ┃ "+name, amount, TransactionType.PAY);
+      }
     }
 
     Matcher earnMoneyMatcher = earnMoneyRegex.matcher(event.getMessage().getPlainText());
     if(earnMoneyMatcher.find()) {
       double amount = getAmount(earnMoneyMatcher.group(1));
 
-      sendPaymentNotification("earn", amount);
+      sendPaymentNotification(TransactionType.MONEYDROP, amount);
       griefergames.addIncome(amount);
+
+      if(griefergames.configuration().payment().logTransactions().get()) {
+        griefergames.fileManager().logTransaction(null, amount, TransactionType.MONEYDROP);
+      }
     }
   }
 
@@ -97,8 +109,8 @@ public class Payment extends ChatModule {
     }
   }
 
-  public void sendPaymentNotification(String event, String rank, String name, double amount) {
-    String message = I18n.translate("griefergames.notifications.payment."+event);
+  public void sendPaymentNotification(TransactionType type, String rank, String name, double amount) {
+    String message = I18n.translate("griefergames.notifications.payment."+type.name().toLowerCase());
     message = message.replace("{amount}", "$"+moneyFormat.format(amount)).replace("{player}", rank+" | "+name);
 
     Laby.labyAPI().notificationController().push(Notification.builder()
@@ -107,8 +119,8 @@ public class Payment extends ChatModule {
         .icon(Icon.head(name)).build());
   }
 
-  public void sendPaymentNotification(String event, double amount) {
-    String message = I18n.translate("griefergames.notifications.payment."+event);
+  public void sendPaymentNotification(TransactionType type, double amount) {
+    String message = I18n.translate("griefergames.notifications.payment."+type.name().toLowerCase());
     message = message.replace("{amount}", "$"+moneyFormat.format(amount));
 
     Laby.labyAPI().notificationController().push(Notification.builder()
