@@ -18,6 +18,7 @@ import de.neocraftr.griefergames.chat.modules.Realname;
 import de.neocraftr.griefergames.chat.modules.Teleport;
 import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
+import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
@@ -57,6 +58,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     this.registerListener(new GGServerJoinListener(this));
     this.registerListener(new GGServerQuitListener(this));
     this.registerListener(new GGMessageReceiveListener(this));
+    this.registerListener(new GGKeyListener(this));
 
     // Chat modules
     this.registerListener(new Blanks(this));
@@ -106,7 +108,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     return griefergames;
   }
 
-  public Helper getHelper() {
+  public Helper helper() {
     return helper;
   }
 

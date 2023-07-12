@@ -1,7 +1,9 @@
 package de.neocraftr.griefergames.utils;
 
 import de.neocraftr.griefergames.GrieferGames;
+import net.labymod.api.Laby;
 import net.labymod.api.client.chat.filter.ChatFilter;
+import net.labymod.api.client.component.Component;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.Bounds;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.PositionedBounds;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
@@ -71,5 +73,15 @@ public class Helper {
       griefergames.getSecondChat().getMessages().remove(i - 1);
     }
     griefergames.getSecondChat().getMessages().add(0, message);
+  }
+
+  public String componentToPlainText(Component component) {
+    StringBuilder builder = new StringBuilder();
+    Laby.references().componentRenderer().getColorStrippingFlattener().flatten(component, builder::append);
+    return builder.toString();
+  }
+
+  public String componentToFormattedText(Component component) {
+    return Laby.references().componentRenderer().legacySectionSerializer().serialize(component);
   }
 }

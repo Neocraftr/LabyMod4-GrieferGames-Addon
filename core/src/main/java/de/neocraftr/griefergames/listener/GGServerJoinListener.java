@@ -25,7 +25,7 @@ public class GGServerJoinListener {
     if(event.serverData().address().getHost().endsWith("griefergames.net") ||
         event.serverData().address().getHost().endsWith("griefergames.de")) {
       griefergames.setOnGrieferGames(true);
-      griefergames.getHelper().findSecondChat("2nd Chat");
+      griefergames.helper().findSecondChat("2nd Chat");
 
       Laby.labyAPI().notificationController().push(Notification.builder()
           .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))

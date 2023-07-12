@@ -25,7 +25,7 @@ public class GGMessageReceiveListener {
     if(processEvent.isCancelled()) {
       event.setCancelled(true);
     } else if(processEvent.isSecondChat()) {
-      griefergames.getHelper().displayInSecondChat(AdvancedChatMessage.chat(processEvent.getMessage()));
+      griefergames.helper().displayInSecondChat(AdvancedChatMessage.chat(processEvent.getMessage()));
       if(!processEvent.isKeepInRegularChat()) event.setCancelled(true);
     }
   }
