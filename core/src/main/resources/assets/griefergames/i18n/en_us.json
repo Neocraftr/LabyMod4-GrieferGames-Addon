@@ -165,11 +165,14 @@
 
     "messages": {
       "warning": "WARNING!",
+      "on": "ON",
+      "off": "OFF",
       "advancedChatWarning": "Advanced Chat is currently disabled. This feature is required by the addon to work properly. Please go to LabyMod Settings --> Ingame and enable Advanced Chat.",
       "hoverIgnoreListEntry": "Click to unignore",
       "fakeMoney": "The payment from {player} of {amount} has been detected as fake money.",
       "verifiedPayment": "Verified payment",
-      "clickToReply": "Click to reply"
+      "clickToReply": "Click to reply",
+      "citybuildJoin": "You are now on {citybuild}."
     },
 
     "notifications": {
@@ -188,6 +191,31 @@
       },
       "itemRemover": "in {time} seconds",
       "mobRemover": "in {time} minutes"
+    },
+
+    "hudWidgetCategory": {
+      "griefergames": {
+        "name": "GrieferGames",
+        "description": "Display GrieferGames related information directly on your screen"
+      }
+    },
+    "hudWidget": {
+      "gg_income": {
+        "name": "Income"
+      },
+      "gg_nickname": {
+        "name": "Nickname",
+        "defaultValue": "No nickname"
+      },
+      "gg_redstone": {
+        "name": "Redstone"
+      },
+      "gg_fly": {
+        "name": "Fly"
+      },
+      "gg_delay": {
+        "name": "Delay"
+      }
     }
   }
 }

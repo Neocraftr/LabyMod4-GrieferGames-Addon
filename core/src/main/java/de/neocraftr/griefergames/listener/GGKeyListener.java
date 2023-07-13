@@ -27,25 +27,24 @@ public class GGKeyListener {
     if(event.state() == State.PRESS &&
         griefergames.configuration().chatConfig().ampEnabled().get() &&
         event.key().getId() == Laby.labyAPI().minecraft().options().getInputMapping("key.playerlist").getKeyCode()) {
-      System.out.println("Tablist");
 
       for(NetworkPlayerInfo playerInfo : Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos()) {
         if(playerInfo == null) continue;
         if(!griefergames.helper().componentToFormattedText(playerInfo.displayName()).contains("§k")) continue;
-        System.out.println(1);
+
         Matcher matcher = antiMagicPrefixRegex.matcher(griefergames.helper().componentToPlainText(playerInfo.displayName()));
         if(!matcher.find()) continue;
-        System.out.println(2);
+
         String ampReplacement = griefergames.configuration().chatConfig().ampReplacement().get();
         if(ampReplacement.isBlank()) {
           ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
         }
-        System.out.println(3);
+
         List<Component> children = new ArrayList<>(playerInfo.displayName().getChildren());
         for(int i=0; i<children.size(); i++) {
           Component component = children.get(i);
           String plain = griefergames.helper().componentToPlainText(component);
-          System.out.println(plain);
+
           if(plain.equals(matcher.group(1))) {
             component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
             Component ampPrefix = Component.text(ampReplacement+" ", component.style());

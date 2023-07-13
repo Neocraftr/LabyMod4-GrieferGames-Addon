@@ -18,10 +18,17 @@ import de.neocraftr.griefergames.chat.modules.Realname;
 import de.neocraftr.griefergames.chat.modules.Teleport;
 import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
+import de.neocraftr.griefergames.hud.DelayModule;
+import de.neocraftr.griefergames.hud.IncomeHudWidget;
+import de.neocraftr.griefergames.hud.NicknameHudWidget;
+import de.neocraftr.griefergames.hud.RedstoneHudWidget;
 import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
+import de.neocraftr.griefergames.listener.GGScoreboardListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
+import de.neocraftr.griefergames.listener.GGServerMessageListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
+import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.Helper;
@@ -29,6 +36,7 @@ import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
+import net.labymod.api.client.gui.hud.binding.category.HudWidgetCategory;
 import net.labymod.api.client.options.ChatVisibility;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.models.addon.annotation.AddonMain;
@@ -48,8 +56,13 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   private boolean onGrieferGames = false;
   private IngameChatTab secondChat = null;
+  private HudWidgetCategory hudWidgetCategory = null;
   private String nickname = null;
   private double income = 0;
+  private boolean redstoneActive = false;
+  private long waitTime = 0;
+  private boolean citybuildDelay = false;
+  private String subServer = "";
 
   @Override
   protected void enable() {
@@ -57,33 +70,45 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     helper = new Helper(this);
     fileManager = new FileManager(this);
 
-    this.registerSettingCategory();
-    this.registerListener(new GGServerJoinListener(this));
-    this.registerListener(new GGServerQuitListener(this));
-    this.registerListener(new GGMessageReceiveListener(this));
-    this.registerListener(new GGKeyListener(this));
+    registerSettingCategory();
+    registerListener(new GGServerJoinListener(this));
+    registerListener(new GGServerQuitListener(this));
+    registerListener(new GGMessageReceiveListener(this));
+    registerListener(new GGKeyListener(this));
+    registerListener(new GGServerMessageListener(this));
+    registerListener(new GGScoreboardListener(this));
+    registerListener(new GGSubServerChangeListener(this));
 
     // Chat modules
-    this.registerListener(new Blanks(this));
-    this.registerListener(new PrivateMessage(this));
-    this.registerListener(new Payment(this));
-    this.registerListener(new Bank(this));
-    this.registerListener(new AntiMagicClanTag(this));
-    this.registerListener(new AntiMagicPrefix(this));
-    this.registerListener(new News(this));
-    this.registerListener(new PlotChat(this));
-    this.registerListener(new Vote(this));
-    this.registerListener(new Realname(this));
-    this.registerListener(new ItemRemover(this));
-    this.registerListener(new MobRemover(this));
-    this.registerListener(new BetterIgnoreList(this));
-    this.registerListener(new Mention(this));
-    this.registerListener(new Nickname(this));
-    this.registerListener(new Teleport(this));
-    this.registerListener(new ChatTime(this));
+    registerListener(new Blanks(this));
+    registerListener(new PrivateMessage(this));
+    registerListener(new Payment(this));
+    registerListener(new Bank(this));
+    registerListener(new AntiMagicClanTag(this));
+    registerListener(new AntiMagicPrefix(this));
+    registerListener(new News(this));
+    registerListener(new PlotChat(this));
+    registerListener(new Vote(this));
+    registerListener(new Realname(this));
+    registerListener(new ItemRemover(this));
+    registerListener(new MobRemover(this));
+    registerListener(new BetterIgnoreList(this));
+    registerListener(new Mention(this));
+    registerListener(new Nickname(this));
+    registerListener(new Teleport(this));
+    registerListener(new ChatTime(this));
 
-    if(this.labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
-      this.registerCommand(new GGMessageCommand(this));
+    // Hud widgets
+    hudWidgetCategory = new HudWidgetCategory(this, "griefergames");
+    labyAPI().hudWidgetRegistry().categoryRegistry().register(hudWidgetCategory);
+    labyAPI().hudWidgetRegistry().register(new IncomeHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new NicknameHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new RedstoneHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new DelayModule(this));
+    //labyAPI().hudWidgetRegistry().register(new FlyHudModule(this));
+
+    if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
+      registerCommand(new GGMessageCommand(this));
     }
   }
 
@@ -99,7 +124,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     displayAddonMessage(Component.text(message));
   }
   public void displayAddonMessage(Component message) {
-    this.displayMessage(Component.empty().append(PREFIX).append(message));
+    displayMessage(Component.empty().append(PREFIX).append(message));
   }
 
   @Override
@@ -134,6 +159,10 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     this.secondChat = secondChat;
   }
 
+  public HudWidgetCategory getHudWidgetCategory() {
+    return hudWidgetCategory;
+  }
+
   public String getNickname() {
     return nickname;
   }
@@ -149,5 +178,33 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   }
   public void addIncome(double income) {
     this.income += income;
+  }
+
+  public boolean isRedstoneActive() {
+    return redstoneActive;
+  }
+  public void setRedstoneActive(boolean redstoneActive) {
+    this.redstoneActive = redstoneActive;
+  }
+
+  public long getWaitTime() {
+    return waitTime;
+  }
+  public void setWaitTime(long waitTime) {
+    this.waitTime = waitTime;
+  }
+
+  public boolean isCitybuildDelay() {
+    return citybuildDelay;
+  }
+  public void setCitybuildDelay(boolean citybuildDelay) {
+    this.citybuildDelay = citybuildDelay;
+  }
+
+  public String getSubServer() {
+    return subServer;
+  }
+  public void setSubServer(String subServer) {
+    this.subServer = subServer;
   }
 }
