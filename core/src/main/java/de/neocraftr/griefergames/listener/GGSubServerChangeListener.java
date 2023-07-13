@@ -2,10 +2,16 @@ package de.neocraftr.griefergames.listener;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGSubServerChangeEvent;
+import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
+import net.labymod.api.client.network.server.ServerData;
 import net.labymod.api.event.Subscribe;
+import net.labymod.api.thirdparty.discord.DiscordActivity;
 import net.labymod.api.util.I18n;
+import net.labymod.core.labyconnect.DefaultLabyConnect;
+import net.labymod.core.labyconnect.protocol.packets.PacketPlayServerStatusUpdate;
+import net.labymod.core.thirdparty.discord.DefaultDiscordApp;
 import java.util.concurrent.TimeUnit;
 
 public class GGSubServerChangeListener {
@@ -17,14 +23,36 @@ public class GGSubServerChangeListener {
 
   @Subscribe
   public void onSubServerChange(GGSubServerChangeEvent event) {
+    String formattedServerName = griefergames.helper().formatServerName(event.subServerName());
+
     griefergames.boosterController().resetBoosters();
+
+    // Discord RPC
+    if(griefergames.configuration().friends().discordShowSubServerEnabled().get()) {
+      DiscordActivity previousActivety = Laby.references().discordApp().getDisplayedActivity();
+      if(previousActivety != null) {
+        DiscordActivity activety = DiscordActivity.builder(griefergames, previousActivety).state("GrieferGames "+formattedServerName).start().build();
+        DefaultDiscordApp discordApp = (DefaultDiscordApp) Laby.references().discordApp();
+        discordApp.displayServerActivity(Laby.labyAPI().serverController().getCurrentServerData(), activety);
+      }
+    }
+
+    // LabyChat Status
+    if(griefergames.configuration().friends().labyChatShowSubServerEnabled().get() &&
+        Laby.references().labyConnect().isConnected()) {
+      ServerData serverData = Laby.labyAPI().serverController().getCurrentServerData();
+      PacketPlayServerStatusUpdate packet = new PacketPlayServerStatusUpdate(serverData.address().getHost(), serverData.address().getPort(), "GrieferGames "+formattedServerName, false);
+      DefaultLabyConnect labyConnect = (DefaultLabyConnect) Laby.references().labyConnect();
+      labyConnect.sendPacket(packet);
+    }
+
 
     if(griefergames.helper().isCityBuild(event.subServerName())) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
       griefergames.setCitybuildDelay(false);
 
       griefergames.displayAddonMessage(Component.text(
-              I18n.translate("griefergames.messages.citybuildJoin").replace("{citybuild}", griefergames.helper().formatServerName(event.subServerName())),
+              I18n.translate("griefergames.messages.citybuildJoin").replace("{citybuild}", formattedServerName),
               NamedTextColor.GRAY
           ));
     } else if(event.subServerName().equals("portal")) {
