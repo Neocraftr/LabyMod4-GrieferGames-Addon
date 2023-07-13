@@ -7,4 +7,6 @@ import org.jetbrains.annotations.Nullable;
 @Referenceable
 public abstract class GrieferGamesController {
   public abstract boolean playerAllowedFlying();
+
+  public abstract boolean hideBoosterMenu();
 }

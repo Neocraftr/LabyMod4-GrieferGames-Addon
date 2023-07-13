@@ -24,9 +24,14 @@ public class GGKeyListener {
 
   @Subscribe
   public void onKeyInput(KeyEvent event) {
+    if(!griefergames.isOnGrieferGames()) return;
+
     if(event.state() == State.PRESS) {
       griefergames.setLastActivety(System.currentTimeMillis());
-      if(griefergames.isAfk()) griefergames.setAfk(false);
+      if(griefergames.isAfk()) {
+        griefergames.setAfk(false);
+        griefergames.helper().performAfkActions(false);
+      }
 
       if(griefergames.configuration().chatConfig().ampEnabled().get() &&
           event.key().getId() == Laby.labyAPI().minecraft().options().getInputMapping("key.playerlist").getKeyCode()) {

@@ -17,6 +17,8 @@ public class GGSubServerChangeListener {
 
   @Subscribe
   public void onSubServerChange(GGSubServerChangeEvent event) {
+    griefergames.boosterController().resetBoosters();
+
     if(griefergames.helper().isCityBuild(event.subServerName())) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
       griefergames.setCitybuildDelay(false);

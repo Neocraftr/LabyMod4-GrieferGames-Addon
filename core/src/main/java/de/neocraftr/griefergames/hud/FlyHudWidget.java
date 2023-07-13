@@ -9,11 +9,11 @@ import net.labymod.api.client.gui.icon.Icon;
 import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.util.I18n;
 
-public class FlyHudModule extends TextHudWidget<TextHudWidgetConfig> {
+public class FlyHudWidget extends TextHudWidget<TextHudWidgetConfig> {
   private GrieferGames griefergames;
   private TextLine line;
 
-  public FlyHudModule(GrieferGames griefergames) {
+  public FlyHudWidget(GrieferGames griefergames) {
     super("gg_fly");
     this.griefergames = griefergames;
 

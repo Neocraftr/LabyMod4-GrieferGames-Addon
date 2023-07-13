@@ -218,6 +218,23 @@
       },
       "gg_delay": {
         "name": "Delay"
+      },
+      "gg_booster": {
+        "name": "Booster",
+        "break": "Break",
+        "drop": "Drop",
+        "experience": "XP",
+        "fly": "Fly",
+        "mob": "Mob",
+        "nameColor": {
+          "name": "Name color"
+        },
+        "durationColor": {
+          "name": "Duration color"
+        },
+        "amplifierColor": {
+          "name": "Amplifier color"
+        }
       }
     }
   }

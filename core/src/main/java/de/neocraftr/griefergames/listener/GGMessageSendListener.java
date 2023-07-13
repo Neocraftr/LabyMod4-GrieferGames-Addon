@@ -17,6 +17,8 @@ public class GGMessageSendListener {
 
   @Subscribe
   public void onSend(ChatMessageSendEvent event) {
+    if(!griefergames.isOnGrieferGames()) return;
+
     if(griefergames.configuration().chatConfig().preventCommandFailure().get()) {
       if(event.getMessage().startsWith("7") && !event.getMessage().equalsIgnoreCase(lastMessage)) {
         griefergames.displayAddonMessage(Component.text(I18n.translate("griefergames.messages.commandFailure"), NamedTextColor.RED));

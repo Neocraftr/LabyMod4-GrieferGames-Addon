@@ -28,6 +28,11 @@ public class GGMessageReceiveListener {
       griefergames.helper().displayInSecondChat(AdvancedChatMessage.chat(processEvent.getMessage()));
       if(!processEvent.isKeepInRegularChat()) event.setCancelled(true);
     }
+
+    if(event.chatMessage().getPlainText().equals("[Switcher] Daten heruntergeladen!")) {
+      griefergames.setHideBoosterMenu(true);
+      griefergames.sendMessage("/booster");
+    }
   }
 
   @Subscribe

@@ -15,6 +15,8 @@ public class GGScoreboardListener {
 
   @Subscribe
   public void onScoreboardTeams(ScoreboardTeamUpdateEvent event) {
+    if(!griefergames.isOnGrieferGames()) return;
+
     if(event.team().getTeamName().equals("server_value")) {
       String subServerName = griefergames.helper().componentToPlainText(event.team().getPrefix()).toLowerCase();
       if(subServerName.isBlank() || subServerName.contains("lade")) return;

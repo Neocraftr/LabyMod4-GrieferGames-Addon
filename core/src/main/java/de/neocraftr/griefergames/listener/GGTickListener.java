@@ -15,6 +15,8 @@ public class GGTickListener {
 
   @Subscribe
   public void onTick(GameTickEvent event) {
+    if(!griefergames.isOnGrieferGames()) return;
+
     if(event.phase() == Phase.POST) {
       long currentTime = System.currentTimeMillis();
 
@@ -25,6 +27,13 @@ public class GGTickListener {
 
       if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
         griefergames.setAfk(true);
+        griefergames.helper().performAfkActions(true);
+      }
+
+      if(griefergames.isHideBoosterMenu() || griefergames.configuration().automations().hideBoosterMenu().get()) {
+        if(griefergames.controller().hideBoosterMenu()) {
+          griefergames.setHideBoosterMenu(false);
+        }
       }
     }
   }

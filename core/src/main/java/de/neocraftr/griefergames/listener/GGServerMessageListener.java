@@ -18,6 +18,8 @@ public class GGServerMessageListener {
 
   @Subscribe
   public void onServerMessage(NetworkPayloadEvent event) {
+    if(!griefergames.isOnGrieferGames()) return;
+
     if(event.side() == Side.RECEIVE &&
         event.identifier().getNamespace().equals("mysterymod") &&
         event.identifier().getPath().equals("mm")) {

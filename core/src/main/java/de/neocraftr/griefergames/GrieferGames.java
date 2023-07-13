@@ -1,5 +1,6 @@
 package de.neocraftr.griefergames;
 
+import de.neocraftr.griefergames.booster.BoosterController;
 import de.neocraftr.griefergames.chat.modules.AntiMagicClanTag;
 import de.neocraftr.griefergames.chat.modules.AntiMagicPrefix;
 import de.neocraftr.griefergames.chat.modules.Bank;
@@ -20,8 +21,9 @@ import de.neocraftr.griefergames.chat.modules.Teleport;
 import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
 import de.neocraftr.griefergames.core.generated.DefaultReferenceStorage;
-import de.neocraftr.griefergames.hud.DelayModule;
-import de.neocraftr.griefergames.hud.FlyHudModule;
+import de.neocraftr.griefergames.hud.BoosterHudWidget;
+import de.neocraftr.griefergames.hud.DelayHudWidget;
+import de.neocraftr.griefergames.hud.FlyHudWidget;
 import de.neocraftr.griefergames.hud.IncomeHudWidget;
 import de.neocraftr.griefergames.hud.NicknameHudWidget;
 import de.neocraftr.griefergames.hud.RedstoneHudWidget;
@@ -60,6 +62,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private Helper helper;
   private GrieferGamesController controller;
   private FileManager fileManager;
+  private BoosterController boosterController;
 
   private boolean onGrieferGames = false;
   private IngameChatTab secondChat = null;
@@ -72,6 +75,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private String subServer = "";
   private long lastActivety = 0;
   private boolean afk = false;
+  private boolean hideBoosterMenu = false;
 
   @Override
   protected void enable() {
@@ -80,6 +84,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     fileManager = new FileManager(this);
     helper = new Helper(this);
     controller = reference.getGrieferGamesController();
+    boosterController = new BoosterController(this);
 
     registerSettingCategory();
     registerListener(new GGServerJoinListener(this));
@@ -118,8 +123,9 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     labyAPI().hudWidgetRegistry().register(new IncomeHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new NicknameHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new RedstoneHudWidget(this));
-    labyAPI().hudWidgetRegistry().register(new DelayModule(this));
-    labyAPI().hudWidgetRegistry().register(new FlyHudModule(this));
+    labyAPI().hudWidgetRegistry().register(new DelayHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new FlyHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new BoosterHudWidget(this));
 
     if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
       registerCommand(new GGMessageCommand(this));
@@ -160,6 +166,10 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   public GrieferGamesController controller() {
     return controller;
+  }
+
+  public BoosterController boosterController() {
+    return boosterController;
   }
 
   public boolean isOnGrieferGames() {
@@ -237,6 +247,12 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   }
   public void setAfk(boolean afk) {
     this.afk = afk;
-    helper.performAfkActions(afk);
+  }
+
+  public boolean isHideBoosterMenu() {
+    return hideBoosterMenu;
+  }
+  public void setHideBoosterMenu(boolean hideBoosterMenu) {
+    this.hideBoosterMenu = hideBoosterMenu;
   }
 }

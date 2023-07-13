@@ -9,11 +9,11 @@ import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.util.I18n;
 import java.util.concurrent.TimeUnit;
 
-public class DelayModule extends TextHudWidget<TextHudWidgetConfig> {
+public class DelayHudWidget extends TextHudWidget<TextHudWidgetConfig> {
   private GrieferGames griefergames;
   private TextLine line;
 
-  public DelayModule(GrieferGames griefergames) {
+  public DelayHudWidget(GrieferGames griefergames) {
     super("gg_delay");
     this.griefergames = griefergames;
 

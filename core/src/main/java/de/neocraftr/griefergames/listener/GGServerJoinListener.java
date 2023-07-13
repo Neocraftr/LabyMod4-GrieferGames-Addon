@@ -27,6 +27,12 @@ public class GGServerJoinListener {
     if(event.serverData().address().getHost().endsWith("griefergames.net") ||
         event.serverData().address().getHost().endsWith("griefergames.de")) {
       griefergames.setOnGrieferGames(true);
+      griefergames.setLastActivety(System.currentTimeMillis());
+      griefergames.setAfk(false);
+      griefergames.setWaitTime(0);
+      griefergames.setCitybuildDelay(false);
+      griefergames.setNickname(null);
+      griefergames.setHideBoosterMenu(false);
       griefergames.helper().findSecondChat("2nd Chat");
 
       Laby.labyAPI().notificationController().push(Notification.builder()
