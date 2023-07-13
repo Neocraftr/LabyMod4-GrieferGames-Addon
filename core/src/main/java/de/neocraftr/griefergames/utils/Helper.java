@@ -142,7 +142,6 @@ public class Helper {
 
       for(NetworkPlayerInfo player : players) {
         if(player.profile().getUsername().equals(name)) {
-          System.out.println(name);
           if(player.displayName() != null) {
             // TODO: Change team prefix
           }

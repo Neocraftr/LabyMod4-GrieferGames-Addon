@@ -174,7 +174,8 @@
       "clickToReply": "Click to reply",
       "citybuildJoin": "You are now on {citybuild}.",
       "afkMessage": "You are marked as AFK now.",
-      "afkBackMessage": "You are marked as back now."
+      "afkBackMessage": "You are marked as back now.",
+      "commandFailure": "Did you make a mistake? If not, send the message again."
     },
 
     "notifications": {

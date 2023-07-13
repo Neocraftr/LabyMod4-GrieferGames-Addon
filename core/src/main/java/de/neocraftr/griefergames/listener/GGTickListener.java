@@ -23,7 +23,7 @@ public class GGTickListener {
         griefergames.helper().colorizePlayerNames();
       }*/
 
-      if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 1000) < System.currentTimeMillis()) {
+      if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
         griefergames.setAfk(true);
       }
     }

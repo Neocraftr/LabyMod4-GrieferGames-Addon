@@ -29,7 +29,7 @@ public class FlyHudModule extends TextHudWidget<TextHudWidgetConfig> {
 
   @Override
   public void onTick(boolean isEditorContext) {
-    boolean isFly = Laby.labyAPI().minecraft().getClientPlayer() != null && Laby.labyAPI().minecraft().getClientPlayer().isAbilitiesFlying(); // TODO: Get ability ALLOW flying
+    boolean isFly = Laby.labyAPI().minecraft().getClientPlayer() != null && griefergames.controller().playerAllowedFlying();
     line.updateAndFlush(isFly ? I18n.translate("griefergames.messages.on") : I18n.translate("griefergames.messages.off"));
   }
 

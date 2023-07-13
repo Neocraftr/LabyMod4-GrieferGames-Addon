@@ -5,6 +5,7 @@ import de.neocraftr.griefergames.chat.modules.AntiMagicPrefix;
 import de.neocraftr.griefergames.chat.modules.Bank;
 import de.neocraftr.griefergames.chat.modules.BetterIgnoreList;
 import de.neocraftr.griefergames.chat.modules.Blanks;
+import de.neocraftr.griefergames.chat.modules.Booster;
 import de.neocraftr.griefergames.chat.modules.ChatTime;
 import de.neocraftr.griefergames.chat.modules.ItemRemover;
 import de.neocraftr.griefergames.chat.modules.Mention;
@@ -18,12 +19,15 @@ import de.neocraftr.griefergames.chat.modules.Realname;
 import de.neocraftr.griefergames.chat.modules.Teleport;
 import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
+import de.neocraftr.griefergames.core.generated.DefaultReferenceStorage;
 import de.neocraftr.griefergames.hud.DelayModule;
+import de.neocraftr.griefergames.hud.FlyHudModule;
 import de.neocraftr.griefergames.hud.IncomeHudWidget;
 import de.neocraftr.griefergames.hud.NicknameHudWidget;
 import de.neocraftr.griefergames.hud.RedstoneHudWidget;
 import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
+import de.neocraftr.griefergames.listener.GGMessageSendListener;
 import de.neocraftr.griefergames.listener.GGScoreboardListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
@@ -32,6 +36,7 @@ import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
 import de.neocraftr.griefergames.listener.GGTickListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
+import de.neocraftr.griefergames.utils.GrieferGamesController;
 import de.neocraftr.griefergames.utils.Helper;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
@@ -53,6 +58,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   private static GrieferGames griefergames;
   private Helper helper;
+  private GrieferGamesController controller;
   private FileManager fileManager;
 
   private boolean onGrieferGames = false;
@@ -69,13 +75,16 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   @Override
   protected void enable() {
+    DefaultReferenceStorage reference = referenceStorageAccessor();
     griefergames = this;
-    helper = new Helper(this);
     fileManager = new FileManager(this);
+    helper = new Helper(this);
+    controller = reference.getGrieferGamesController();
 
     registerSettingCategory();
     registerListener(new GGServerJoinListener(this));
     registerListener(new GGServerQuitListener(this));
+    registerListener(new GGMessageSendListener(this));
     registerListener(new GGMessageReceiveListener(this));
     registerListener(new GGKeyListener(this));
     registerListener(new GGServerMessageListener(this));
@@ -100,6 +109,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new Mention(this));
     registerListener(new Nickname(this));
     registerListener(new Teleport(this));
+    registerListener(new Booster(this));
     registerListener(new ChatTime(this));
 
     // Hud widgets
@@ -109,7 +119,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     labyAPI().hudWidgetRegistry().register(new NicknameHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new RedstoneHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new DelayModule(this));
-    //labyAPI().hudWidgetRegistry().register(new FlyHudModule(this));
+    labyAPI().hudWidgetRegistry().register(new FlyHudModule(this));
 
     if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
       registerCommand(new GGMessageCommand(this));
@@ -140,14 +150,17 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     return griefergames;
   }
 
-  public Helper helper() {
-    return helper;
-  }
-
   public FileManager fileManager() {
     return fileManager;
   }
 
+  public Helper helper() {
+    return helper;
+  }
+
+  public GrieferGamesController controller() {
+    return controller;
+  }
 
   public boolean isOnGrieferGames() {
     return onGrieferGames;
