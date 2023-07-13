@@ -18,6 +18,7 @@ public class PrivateMessage extends ChatModule {
   private final GrieferGames griefergames;
   private final Pattern privateMessageRegex = Pattern.compile("\\[([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16}) -> mir\\] (.*)$");
   private final Pattern privateMessageSentRegex = Pattern.compile("\\[mir -> ([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16})\\] (.*)$");
+  private long lastAfkMessage = 0;
 
   public PrivateMessage(GrieferGames griefergames) {
     this.griefergames = griefergames;
@@ -31,8 +32,10 @@ public class PrivateMessage extends ChatModule {
     Matcher privateMessageSent = privateMessageSentRegex.matcher(event.getMessage().getPlainText());
 
     if(privateMessage.find()) {
+      String playerName = privateMessage.group(2);
+
       if(griefergames.configuration().chatConfig().clickToReply().get()) {
-        addReplyAction(event.getMessage().component(), "§6[", "§6 -> ", privateMessage.group(2));
+        addReplyAction(event.getMessage().component(), "§6[", "§6 -> ", playerName);
       }
 
       if(griefergames.configuration().chatConfig().privateChatRight().get()) {
@@ -42,6 +45,14 @@ public class PrivateMessage extends ChatModule {
       if(griefergames.configuration().chatConfig().privateChatSound().get() != Sounds.NONE) {
         ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().privateChatSound().get().path());
         Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
+      }
+
+      if(griefergames.configuration().automations().afkMsgReply().get() && griefergames.isAfk() && lastAfkMessage + 1000 <= System.currentTimeMillis()) {
+        String message = griefergames.configuration().automations().afkMsgText().get();
+        if(!message.isBlank()) {
+          griefergames.sendMessage("/msg "+playerName+" "+message);
+          lastAfkMessage = System.currentTimeMillis();
+        }
       }
     }
 

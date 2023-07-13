@@ -29,6 +29,7 @@ import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
 import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
+import de.neocraftr.griefergames.listener.GGTickListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.Helper;
@@ -63,6 +64,8 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private long waitTime = 0;
   private boolean citybuildDelay = false;
   private String subServer = "";
+  private long lastActivety = 0;
+  private boolean afk = false;
 
   @Override
   protected void enable() {
@@ -78,6 +81,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new GGServerMessageListener(this));
     registerListener(new GGScoreboardListener(this));
     registerListener(new GGSubServerChangeListener(this));
+    registerListener(new GGTickListener(this));
 
     // Chat modules
     registerListener(new Blanks(this));
@@ -206,5 +210,20 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   }
   public void setSubServer(String subServer) {
     this.subServer = subServer;
+  }
+
+  public long getLastActivety() {
+    return lastActivety;
+  }
+  public void setLastActivety(long lastActivety) {
+    this.lastActivety = lastActivety;
+  }
+
+  public boolean isAfk() {
+    return afk;
+  }
+  public void setAfk(boolean afk) {
+    this.afk = afk;
+    helper.performAfkActions(afk);
   }
 }

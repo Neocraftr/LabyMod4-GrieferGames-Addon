@@ -23,8 +23,8 @@ public class GrieferGamesConfig extends AddonConfig {
 
   private GrieferGamesChatConfig chatConfig = new GrieferGamesChatConfig();
   private GrieferGamesPaymentsConfig payment = new GrieferGamesPaymentsConfig();
-  private GrieferGamesPaymentsConfig automations = new GrieferGamesPaymentsConfig();
-  private GrieferGamesPaymentsConfig friends = new GrieferGamesPaymentsConfig();
+  private GrieferGamesAutomationsConfig automations = new GrieferGamesAutomationsConfig();
+  private GrieferGamesFriendsConfig friends = new GrieferGamesFriendsConfig();
 
 
   @Override
@@ -44,11 +44,11 @@ public class GrieferGamesConfig extends AddonConfig {
     return payment;
   }
 
-  public GrieferGamesPaymentsConfig automations() {
+  public GrieferGamesAutomationsConfig automations() {
     return automations;
   }
 
-  public GrieferGamesPaymentsConfig friends() {
+  public GrieferGamesFriendsConfig friends() {
     return friends;
   }
 }

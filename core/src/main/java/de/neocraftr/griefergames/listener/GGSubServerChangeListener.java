@@ -2,6 +2,8 @@ package de.neocraftr.griefergames.listener;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGSubServerChangeEvent;
+import net.labymod.api.client.component.Component;
+import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.util.I18n;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +21,10 @@ public class GGSubServerChangeListener {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
       griefergames.setCitybuildDelay(false);
 
-      griefergames.displayAddonMessage("§7"+ I18n.translate("griefergames.messages.citybuildJoin").replace("{citybuild}", griefergames.helper().formatServerName(event.subServerName())));
+      griefergames.displayAddonMessage(Component.text(
+              I18n.translate("griefergames.messages.citybuildJoin").replace("{citybuild}", griefergames.helper().formatServerName(event.subServerName())),
+              NamedTextColor.GRAY
+          ));
     } else if(event.subServerName().equals("portal")) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(12));
     } else if(event.subServerName().equals("skyblock")) {

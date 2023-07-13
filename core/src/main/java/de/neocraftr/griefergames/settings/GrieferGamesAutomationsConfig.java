@@ -15,12 +15,6 @@ public class GrieferGamesAutomationsConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(true);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> vanishOnJoin = new ConfigProperty<>(false);
-
-  @SwitchSetting
-  private final ConfigProperty<Boolean> flyOnJoin = new ConfigProperty<>(false);
-
   @SettingSection("afk")
 
   @SliderSetting(min = 0, max = 60)
@@ -36,5 +30,33 @@ public class GrieferGamesAutomationsConfig extends Config {
   private final ConfigProperty<Boolean> afkMsgReply = new ConfigProperty<>(true);
 
   @TextFieldSetting
-  private final ConfigProperty<String> afkMsgText = new ConfigProperty<>(GrieferGamesConfig.DEFAULT_AFK_NICKNAME);
+  private final ConfigProperty<String> afkMsgText = new ConfigProperty<>("Ich bin momentan AFK ;)");
+
+  public ConfigProperty<Boolean> hideBoosterMenu() {
+    return hideBoosterMenu;
+  }
+
+  public ConfigProperty<Boolean> autoPortal() {
+    return autoPortal;
+  }
+
+  public ConfigProperty<Integer> afkTime() {
+    return afkTime;
+  }
+
+  public ConfigProperty<Boolean> afkNick() {
+    return afkNick;
+  }
+
+  public ConfigProperty<String> afkNickname() {
+    return afkNickname;
+  }
+
+  public ConfigProperty<Boolean> afkMsgReply() {
+    return afkMsgReply;
+  }
+
+  public ConfigProperty<String> afkMsgText() {
+    return afkMsgText;
+  }
 }

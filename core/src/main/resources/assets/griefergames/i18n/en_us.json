@@ -172,7 +172,9 @@
       "fakeMoney": "The payment from {player} of {amount} has been detected as fake money.",
       "verifiedPayment": "Verified payment",
       "clickToReply": "Click to reply",
-      "citybuildJoin": "You are now on {citybuild}."
+      "citybuildJoin": "You are now on {citybuild}.",
+      "afkMessage": "You are marked as AFK now.",
+      "afkBackMessage": "You are marked as back now."
     },
 
     "notifications": {
