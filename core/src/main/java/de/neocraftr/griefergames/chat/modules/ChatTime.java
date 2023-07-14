@@ -7,6 +7,8 @@ import net.labymod.api.client.component.Component;
 import net.labymod.api.event.Subscribe;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatTime extends ChatModule {
   private final GrieferGames griefergames;
@@ -35,8 +37,9 @@ public class ChatTime extends ChatModule {
     if(griefergames.configuration().chatConfig().chatTimeAfterMessage().get()) {
       event.getMessage().component().append(Component.text("§r "+timeMsg));
     } else {
-      // TODO: Properly prepend time to existing message
-      event.getMessage().edit(Component.empty().append(Component.text(timeMsg+" ")).append(event.getMessage().component()));
+      List<Component> children = new ArrayList<>(event.getMessage().component().getChildren());
+      children.add(0, Component.text(timeMsg+" "));
+      event.getMessage().component().setChildren(children);
     }
   }
 }
