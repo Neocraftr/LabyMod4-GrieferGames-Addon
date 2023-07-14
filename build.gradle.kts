@@ -5,19 +5,19 @@ plugins {
 }
 
 group = "de.neocraftr.griefergames"
-version = "0.0.1"
+version = "1.0.0"
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
 labyMod {
-    defaultPackageName = "de.neocraftr.griefergames" //change this to your main package name (used by all modules)
+    defaultPackageName = "de.neocraftr.griefergames"
     addonInfo {
         namespace = "griefergames"
         displayName = "GrieferGames"
         author = "Neocraftr"
         description = "This add-on adds many useful features for the GrieferGames.net server."
         minecraftVersion = "1.8.9<1.12.2"
-        version = "0.0.1"
+        version = "1.0.0"
     }
 
     minecraft {
