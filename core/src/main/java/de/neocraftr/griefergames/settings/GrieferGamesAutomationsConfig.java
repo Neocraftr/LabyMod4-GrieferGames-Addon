@@ -13,11 +13,11 @@ public class GrieferGamesAutomationsConfig extends Config {
   private final ConfigProperty<Boolean> hideBoosterMenu = new ConfigProperty<>(false);
 
   @SwitchSetting
-  private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(true);
+  private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(false);
 
   @SettingSection("afk")
 
-  @SliderSetting(min = 0, max = 60)
+  @SliderSetting(min = 1, max = 60)
   private final ConfigProperty<Integer> afkTime = new ConfigProperty<>(15);
 
   @SwitchSetting
