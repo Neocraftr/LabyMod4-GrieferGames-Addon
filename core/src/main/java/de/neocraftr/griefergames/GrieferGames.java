@@ -40,6 +40,7 @@ import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.GrieferGamesController;
 import de.neocraftr.griefergames.utils.Helper;
+import de.neocraftr.griefergames.utils.Updater;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
 import net.labymod.api.client.component.Component;
@@ -57,12 +58,14 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
       .append(Component.text("[", NamedTextColor.DARK_GRAY))
       .append(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
       .append(Component.text("] ", NamedTextColor.DARK_GRAY));
+  public static final String LOG_PREFIX = "[GrieferGames-Addon] ";
 
   private static GrieferGames griefergames;
   private Helper helper;
   private GrieferGamesController controller;
   private FileManager fileManager;
   private BoosterController boosterController;
+  private Updater updater;
 
   private boolean onGrieferGames = false;
   private IngameChatTab secondChat = null;
@@ -79,6 +82,10 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   @Override
   protected void enable() {
+    updater = new Updater(this);
+    updater.checkForUpdates();
+    registerListener(updater);
+
     DefaultReferenceStorage reference = referenceStorageAccessor();
     griefergames = this;
     fileManager = new FileManager(this);
@@ -130,6 +137,8 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
       registerCommand(new GGMessageCommand(this));
     }
+
+    logger().info(LOG_PREFIX+"Addon successfully enabled. old");
   }
 
   public void sendToSecondChat(String msg) {
@@ -171,6 +180,11 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   public BoosterController boosterController() {
     return boosterController;
   }
+
+  public Updater updater() {
+    return updater;
+  }
+
 
   public boolean isOnGrieferGames() {
     return onGrieferGames;

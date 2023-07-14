@@ -3,7 +3,7 @@ package de.neocraftr.griefergames.utils;
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.enums.TransactionType;
 import net.labymod.api.Constants;
-import java.awt.*;
+import net.labymod.api.models.OperatingSystem;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -51,14 +51,6 @@ public class FileManager {
   }
 
   public void openTransactionsFile() {
-    if(!Desktop.isDesktopSupported()) {
-      System.out.println("Cannot open file, operation not supported.");
-      return;
-    }
-    try {
-      Desktop.getDesktop().open(transactionsLogFile);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    OperatingSystem.getPlatform().openFile(transactionsLogFile);
   }
 }

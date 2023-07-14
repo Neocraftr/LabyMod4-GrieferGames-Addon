@@ -37,7 +37,7 @@ public class GGServerJoinListener {
 
       Laby.labyAPI().notificationController().push(Notification.builder()
           .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
-          .text(Component.text(I18n.translate("griefergames.notifications.addonLoaded")))
+          .text(Component.text(I18n.translate("griefergames.notifications.addonLoaded").replace("{version}", "v"+griefergames.addonInfo().getVersion())))
           .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/icon.png"))).build());
 
       // Warn user when advanced chat is disabled.
@@ -47,7 +47,21 @@ public class GGServerJoinListener {
         Laby.labyAPI().notificationController().push(Notification.builder()
             .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
             .text(Component.text(I18n.translate("griefergames.notifications.generalError"), NamedTextColor.RED))
-            .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/icon.png"))).build());
+            .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/error.png"))).build());
+      }
+
+      if(griefergames.updater().isUpdateAvailable()) {
+        if(griefergames.configuration().autoUpdate().get()) {
+          Laby.labyAPI().notificationController().push(Notification.builder()
+              .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
+              .text(Component.text(I18n.translate("griefergames.notifications.update.ready").replace("{version}", "v"+griefergames.updater().getNewVersion())))
+              .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/update.png"))).build());
+        } else {
+          Laby.labyAPI().notificationController().push(Notification.builder()
+              .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
+              .text(Component.text(I18n.translate("griefergames.notifications.update.available").replace("{version}", "v"+griefergames.updater().getNewVersion())))
+              .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/update.png"))).build());
+        }
       }
 
       if(griefergames.configuration().automations().autoPortal().get()) {

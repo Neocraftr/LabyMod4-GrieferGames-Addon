@@ -1,10 +1,13 @@
 package de.neocraftr.griefergames.settings;
 
 import net.labymod.api.addon.AddonConfig;
+import net.labymod.api.client.gui.screen.widget.widgets.input.ButtonWidget.ButtonSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.configuration.loader.annotation.ConfigName;
 import net.labymod.api.configuration.loader.annotation.SpriteTexture;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
+import net.labymod.api.models.OperatingSystem;
+import net.labymod.api.util.MethodOrder;
 
 @ConfigName("settings")
 @SpriteTexture("icon.png")
@@ -25,6 +28,18 @@ public class GrieferGamesConfig extends AddonConfig {
   private GrieferGamesPaymentsConfig payment = new GrieferGamesPaymentsConfig();
   private GrieferGamesAutomationsConfig automations = new GrieferGamesAutomationsConfig();
   private GrieferGamesFriendsConfig friends = new GrieferGamesFriendsConfig();
+
+  @MethodOrder(after = "friends")
+  @ButtonSetting
+  public void openWebsite() {
+    OperatingSystem.getPlatform().openUrl("https://mc.im1random.org/?addon=GrieferGames");
+  }
+
+  @MethodOrder(after = "openWebsite")
+  @ButtonSetting
+  public void openGithub() {
+    OperatingSystem.getPlatform().openUrl("https://github.com/Neocraftr/LabyMod4-GrieferGames-Addon");
+  }
 
 
   @Override
