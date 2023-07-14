@@ -27,94 +27,116 @@
         },
 
         "clickToReply": {
-          "name": "Click to reply"
+          "name": "Click to reply",
+          "description": "Click on the name in any private message to quickly reply."
         },
         "preventCommandFailure": {
-          "name": "Block incorrect commands"
+          "name": "Block incorrect commands",
+          "description": "Block mistyped commands. e.g. 7p h or 7msg"
         },
         "betterIgnoreList": {
-          "name": "Better ignore list"
+          "name": "Better ignore list",
+          "description": "Show ignore list in a easier to read format."
         },
         "showPrefixInDisplayName": {
-          "name": "Show prefix color above player"
+          "name": "Prefix colors above player",
+          "description": "Show the names above players in their correct prefix colors."
         },
         "plotChatRight": {
-          "name": "Plot chat in 2nd chat"
+          "name": "Plot chat right",
+          "description": "Display plot chat messages in the 2nd chat."
         },
         "privateChatRight": {
-          "name": "Private messages in 2nd chat"
+          "name": "Private messages right",
+          "description": "Display private messages in the 2nd chat."
         },
         "privateChatSound": {
-          "name": "Private message sound"
+          "name": "Private message sound",
+          "description": "Play sound when you receive a private message."
         },
         "realnamePosition": {
-          "name": "Show realname"
+          "name": "Show realname",
+          "description": "Show /realname in the 2nd or in both chats."
         },
         "highlightMentions": {
-          "name": "Highlight mentions"
+          "name": "Highlight mentions",
+          "description": "Highlight messages where your name is mentioned in color."
         },
         "mentionColor": {
-          "name": "Mention Color"
+          "name": "Mention color",
+          "description": "Color in which messages where your name is mentioned are highlighted."
         },
         "mentionSound": {
-          "name": "Mention sound"
+          "name": "Mention sound",
+          "description": "Sound which is played when somebody mentions your name in the chat."
         },
         "highlightTPA": {
-          "name": "Highlight TPA messages"
+          "name": "Highlight TPA messages",
+          "description": "Hicghlight TPA and TPAHERE messages in different colors."
         },
         "itemRemoverChatRight": {
-          "name": "ItemRemover 2nd chat"
+          "name": "ItemRemover right",
+          "description": "Display ItemRemover messages in the 2nd chat."
         },
         "itemRemoverLastTimeHover": {
-          "name": "ItemRemover timestamp hover"
+          "name": "ItemRemover timestamp",
+          "description": "Show timestamp when hovering a ItemRemover message."
         },
         "itemRemoverNotification": {
-          "name": "ItemRemover notification"
+          "name": "ItemRemover notification",
+          "description": "Show ItemRemover notifications on the upper right part of the screen."
         },
         "mobRemoverChatRight": {
-          "name": "MobRemover 2nd chat"
+          "name": "MobRemover right",
+          "description": "Display MobRemover messages in the 2nd chat."
         },
         "mobRemoverLastTimeHover": {
-          "name": "MobRemover timestamp hover"
+          "name": "MobRemover timestamp",
+          "description": "Show timestamp when hovering a MobRemover message."
         },
         "mobRemoverNotification": {
-          "name": "MobRemover notification"
+          "name": "MobRemover notification",
+          "description": "Show MobRemover notifications on the upper right part of the screen."
         },
         "hideVoteMessages": {
-          "name": "Hide vote messages"
+          "name": "Hide vote messages",
+          "description": "Hide vote messages from other players in the chat."
         },
         "hideNewsMessages": {
-          "name": "Hide news"
+          "name": "Hide news",
+          "description": "Hide GrieferGames News in the chat."
         },
         "hideBlankLines": {
-          "name": "Remove blank lines"
+          "name": "Remove blank lines",
+          "description": "Remove blank lines in the chat and prevent /clearchat."
         },
         "hideSupremeBlankLines": {
-          "name": "Remove Supreme blank lines"
-        },
-        "filterDuplicateMessages": {
-          "name": "Remove duplicate messages"
-        },
-        "filterDuplicateMessagesTime": {
-          "name": "Duplicate messages time"
+          "name": "Remove Supreme blank lines",
+          "description": "Remove blank lines from Supreme players. e.g. »"
         },
         "ampClantagEnabled": {
-          "name": "Replace magic clan tags"
+          "name": "Replace magic clan tags",
+          "description": "Replace magic letters in clan tags with a readable font."
         },
         "ampEnabled": {
-          "name": "Replace magic prefix"
+          "name": "Replace magic prefix",
+          "description": "Make names of players with magic prefix readable and mark them."
         },
         "ampReplacement": {
-          "name": "New chat prefix"
+          "name": "New chat prefix",
+          "description": "Prefix that is used to mark players with a magic prefix."
         },
         "showChatTime": {
-          "name": "Display chat time"
+          "name": "Display chat time",
+          "description": "Add the current time to all chat messages."
         },
         "chatTimeAfterMessage": {
-          "name": "Chat time after message"
+          "name": "Chat time after message",
+          "description": "Add the chat time after the message."
         },
         "chatTimeFormat": {
-          "name": "Chat time format"
+          "name": "Chat time format",
+          "description": "Format used for the chat time."
         }
       },
 
@@ -130,36 +152,96 @@
         },
 
         "logTransactions": {
-          "name": "Log transactions"
+          "name": "Log transactions",
+          "description": "Log all transactions in a log file."
         },
         "openTransactionsFile": {
-          "name": "Transactions File",
-          "text": "Open"
+          "name": "Transactions file",
+          "text": "Open",
+          "description": "Open the transactions log file in your text editor."
         },
         "payChatRight": {
-          "name": "Payments 2nd chat"
+          "name": "Payments right",
+          "description": "Display payments in the 2nd chat."
         },
         "payAchievement": {
-          "name": "Payment achievements"
+          "name": "Payment notification",
+          "description": "Show notifications for incoming payments on the upper right part of the screen."
         },
         "payHighlight": {
-          "name": "Highlight payments"
+          "name": "Highlight payments",
+          "description": "Mark verified payments in the chat."
         },
         "fakeMoneyWarning": {
-          "name": "Warn about fake money"
-        },
-        "showBalance": {
-          "name": "Display balance"
+          "name": "Warn about fake money",
+          "description": "Warn against fake payments with a Supreme status."
         },
         "bankChatRight": {
-          "name": "Bank 2nd chat"
+          "name": "Bank right",
+          "description": "Display payments in the 2nd chat."
         },
         "bankAchievement": {
-          "name": "Bank achievement"
-        },
-        "showBankBallance": {
-          "name": "Display Bank Balance"
+          "name": "Bank notification",
+          "description": "Show notifications for bank transactions on the upper right part of the screen."
         }
+      },
+
+      "automations": {
+        "name": "Automations",
+        "header": {
+          "afk": {
+            "name": "AFK"
+          }
+        },
+        "hideBoosterMenu": {
+          "name": "Hide booster menu",
+          "description": "Hide the manu of the /booster command. Only show overview in the chat."
+        },
+        "autoPortal": {
+          "name": "Auto portal",
+          "description": "Directly join to the portal room."
+        },
+        "afkTime": {
+          "name": "AFK after (in min)",
+          "description": "Timer after which you will be marked as AFK."
+        },
+        "afkNick": {
+          "name": "Nick when AFK",
+          "description": "Automatically set a nickname, when you ware detected as AFK and remove after you are back."
+        },
+        "afkNickname": {
+          "name": "Nickname (4-16 characters)",
+          "description": "Nickname while you are AFK."
+        },
+        "afkMsgReply": {
+          "name": "Reply to private messages",
+          "description": "Automatically reply to private messages with a predefined text while you are AFK."
+        },
+        "afkMsgText": {
+          "name": "Reply text",
+          "description": "Text that should be replied to private messages, while you are AFK."
+        }
+      },
+
+      "friends": {
+        "name": "Friends",
+        "labyChatShowSubServerEnabled": {
+          "name": "Show CityBuild in LabyChat",
+          "description": "Let all your friends see your current CityBuild in the LabyChat."
+        },
+        "discordShowSubServerEnabled":{
+          "name": "Show CityBuild in Discord",
+          "description": "Let all your friends on Discord see your current CityBuild."
+        }
+      },
+
+      "openWebsite": {
+        "name": "Website",
+        "text": "Open"
+      },
+      "openGithub": {
+        "name": "GitHub",
+        "text": "Open"
       }
     },
 
@@ -179,8 +261,12 @@
     },
 
     "notifications": {
-      "generalError": "An error occoured, please check the chat",
-      "addonLoaded": "GrieferGames Addon loaded",
+      "generalError": "An error occurred, please check the chat.",
+      "addonLoaded": "GrieferGames Addon {version} loaded.",
+      "update": {
+        "available": "An update to version {version} is available",
+        "ready": "On the next restart the addon will be updated to version {version}"
+      },
       "bank": {
         "title": "Bank",
         "deposit": "You deposited {amount} into your bank account.",
@@ -199,7 +285,7 @@
     "hudWidgetCategory": {
       "griefergames": {
         "name": "GrieferGames",
-        "description": "Display GrieferGames related information directly on your screen"
+        "description": "Display GrieferGames related information directly on your screen."
       }
     },
     "hudWidget": {

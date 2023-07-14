@@ -85,12 +85,6 @@ public class GrieferGamesChatConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> hideSupremeBlankLines = new ConfigProperty<>(true);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> filterDuplicateMessages = new ConfigProperty<>(false);
-
-  @SliderSetting(min = 3, max = 60)
-  private final ConfigProperty<Integer> filterDuplicateMessagesTime = new ConfigProperty<>(5);
-
   @SettingSection("magicPrefix")
 
   @SwitchSetting
@@ -200,14 +194,6 @@ public class GrieferGamesChatConfig extends Config {
 
   public ConfigProperty<Boolean> hideSupremeBlankLines() {
     return hideSupremeBlankLines;
-  }
-
-  public ConfigProperty<Boolean> filterDuplicateMessages() {
-    return filterDuplicateMessages;
-  }
-
-  public ConfigProperty<Integer> filterDuplicateMessagesTime() {
-    return filterDuplicateMessagesTime;
   }
 
   public ConfigProperty<Boolean> ampClantagEnabled() {

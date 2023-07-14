@@ -28,9 +28,9 @@ public class ChatTime extends ChatModule {
       timeMsg = GrieferGamesConfig.DEFAULT_CHATTIME_FORMAT;
     }
     timeMsg = timeMsg.replace("&", "§");
-    timeMsg = timeMsg.replace("%h%", time[0]);
-    timeMsg = timeMsg.replace("%m%", time[1]);
-    timeMsg = timeMsg.replace("%s%", time[2]);
+    timeMsg = timeMsg.replace("{h}", time[0]);
+    timeMsg = timeMsg.replace("{m}", time[1]);
+    timeMsg = timeMsg.replace("{s}", time[2]);
 
     if(griefergames.configuration().chatConfig().chatTimeAfterMessage().get()) {
       event.getMessage().component().append(Component.text("§r "+timeMsg));

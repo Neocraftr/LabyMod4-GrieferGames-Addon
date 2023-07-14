@@ -15,7 +15,7 @@ public class GrieferGamesConfig extends AddonConfig {
 
   public static final String DEFAULT_AMP_REPLACEMENT = "[AMP]",
       DEFAULT_AFK_NICKNAME = "AFK_%name%",
-      DEFAULT_CHATTIME_FORMAT = "&8[&3%h%&7:&3%m%&7:&3%s%&8]";
+      DEFAULT_CHATTIME_FORMAT = "&8[&3{h}&7:&3{m}&7:&3{s}&8]";
 
 
   @SwitchSetting

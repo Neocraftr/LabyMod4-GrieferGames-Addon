@@ -33,9 +33,6 @@ public class GrieferGamesPaymentsConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> fakeMoneyWarning = new ConfigProperty<>(true);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> showBalance = new ConfigProperty<>(false);
-
   @SettingSection("bank")
 
   @SwitchSetting
@@ -43,9 +40,6 @@ public class GrieferGamesPaymentsConfig extends Config {
 
   @SwitchSetting
   private final ConfigProperty<Boolean> bankAchievement = new ConfigProperty<>(false);
-
-  @SwitchSetting
-  private final ConfigProperty<Boolean> showBankBallance = new ConfigProperty<>(false);
 
 
   public ConfigProperty<Boolean> logTransactions() {
@@ -68,19 +62,11 @@ public class GrieferGamesPaymentsConfig extends Config {
     return fakeMoneyWarning;
   }
 
-  public ConfigProperty<Boolean> showBalance() {
-    return showBalance;
-  }
-
   public ConfigProperty<Boolean> bankChatRight() {
     return bankChatRight;
   }
 
   public ConfigProperty<Boolean> bankAchievement() {
     return bankAchievement;
-  }
-
-  public ConfigProperty<Boolean> showBankBallance() {
-    return showBankBallance;
   }
 }

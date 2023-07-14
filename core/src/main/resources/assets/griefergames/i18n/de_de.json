@@ -1,0 +1,327 @@
+{
+  "griefergames": {
+    "settings": {
+      "name": "GrieferGames",
+      "enabled": {
+        "name": "Addon aktiviert"
+      },
+      "autoUpdate": {
+        "name": "Automatisch aktualisieren"
+      },
+
+      "chatConfig": {
+        "name": "Chat & Tablist",
+        "header": {
+          "highlightMessages": {
+            "name": "Nachrichten hervorheben"
+          },
+          "blockMessages": {
+            "name": "Nachrichten blockieren"
+          },
+          "magicPrefix": {
+            "name": "Magische Effekte"
+          },
+          "chatTime": {
+            "name": "Chatzeit"
+          }
+        },
+
+        "clickToReply": {
+          "name": "Klicken zum antworten",
+          "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
+        },
+        "preventCommandFailure": {
+          "name": "Fehlerhafte Befehle blockieren",
+          "description": "z.B. 7p h oder 7msg"
+        },
+        "betterIgnoreList": {
+          "name": "Verbesserte Ignorierliste",
+          "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."
+        },
+        "showPrefixInDisplayName": {
+          "name": "Farbigen Prefix über Spielern anzeigen",
+          "description": "Name über Spielern in korrekten Prefix Farben anzeigen."
+        },
+        "plotChatRight": {
+          "name": "Plot Chat rechts",
+          "description": "Plot Chat nachrichten im 2. Chat anzeigen."
+        },
+        "privateChatRight": {
+          "name": "Private Nachrichten rechts",
+          "description": "Private Nachrichten im 2. Chat anzeigen."
+        },
+        "privateChatSound": {
+          "name": "Private Nachricht Sound",
+          "description": "Sound abspielen wenn du eine Private nachricht erhältst."
+        },
+        "realnamePosition": {
+          "name": "Realname anzeigen",
+          "description": "/realname im 2. oder in beiden Chats anzeigen."
+        },
+        "highlightMentions": {
+          "name": "Erwähnungen markieren",
+          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben."
+        },
+        "mentionColor": {
+          "name": "Erwähnungen Farbe",
+          "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
+        },
+        "mentionSound": {
+          "name": "Erwähnungen Sound",
+          "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+        },
+        "highlightTPA": {
+          "name": "TPA Nachrichten markieren",
+          "description": "TPA und TPAHERE nachrichten in unterschiedlichen Farben markieren."
+        },
+        "itemRemoverChatRight": {
+          "name": "ItemRemover rechts",
+          "description": "ItemRemover Nachrichten im 2. Chat anzeigen."
+        },
+        "itemRemoverLastTimeHover": {
+          "name": "ItemRemover Zeitstempel",
+          "description": "Zeitstempel beim darüberfahren bei ItemRemover Nachrichten anzeigen."
+        },
+        "itemRemoverNotification": {
+          "name": "ItemRemover Benachrichtigung",
+          "description": "Benachrichtigung für ItemRemover am oberen rechten Bildschirmrand anzeigen."
+        },
+        "mobRemoverChatRight": {
+          "name": "MobRemover rechts",
+          "description": "MobRemover Nachrichten im 2. Chat anzeigen."
+        },
+        "mobRemoverLastTimeHover": {
+          "name": "MobRemover Zeitstempel",
+          "description": "Zeitstempel beim darüberfahren bei MobRemover Nachrichten anzeigen."
+        },
+        "mobRemoverNotification": {
+          "name": "MobRemover Benachrichtigung",
+          "description": "Benachrichtigung für MobRemover am oberen rechten Bildschirmrand anzeigen."
+        },
+        "hideVoteMessages": {
+          "name": "Vote Nachrichten verstecken",
+          "description": "Versteckt Vote Nachrichten im Chat."
+        },
+        "hideNewsMessages": {
+          "name": "News Nachrichten verstecken",
+          "description": "Versteckt GrieferGames News im Chat."
+        },
+        "hideBlankLines": {
+          "name": "Leerzeilen löschen",
+          "description": "Entfernt Leerzeilen im Chat und verhindert /clearchat."
+        },
+        "hideSupremeBlankLines": {
+          "name": "Supreme Leerzeilen löschen",
+          "description": "Löscht leerzeilen von Supreme Spielern. z.B. »"
+        },
+        "ampClantagEnabled": {
+          "name": "Magische Clan Tags ersetzen",
+          "description": "Magische Zeichen Clant Tags werden durch lesbare Schrift ersetzt."
+        },
+        "ampEnabled": {
+          "name": "Magische Prefixe ersetzen",
+          "description": "Namen von Spielern mit magischem Prefix lesbar machen und markieren."
+        },
+        "ampReplacement": {
+          "name": "Neuer Chat Prefix",
+          "description": "Prefix, mit welchem Namen mit magischem Prefix markiert werden sollen."
+        },
+        "showChatTime": {
+          "name": "Chatzeit anzeigen",
+          "description": "Aktuelle Uhrzeit allen Chatnachrichten anfügen."
+        },
+        "chatTimeAfterMessage": {
+          "name": "Chatzeit hinter der Nachricht",
+          "description": "Chatzeit hinter der Nachricht einfügen."
+        },
+        "chatTimeFormat": {
+          "name": "Chatzeit format",
+          "description": "Format in welchem die Chatzeit angezeigt wird."
+        }
+      },
+
+      "payment": {
+        "name": "Bezahlungen",
+        "header": {
+          "payments": {
+            "name": "Bezahlungen"
+          },
+          "bank": {
+            "name": "Bank"
+          }
+        },
+
+        "logTransactions": {
+          "name": "Transaktionen protokollieren",
+          "description": "Alle Transaktionen in einer Log Datei protokollieren."
+        },
+        "openTransactionsFile": {
+          "name": "Transaktions Log",
+          "text": "Öffnen",
+          "description": "Transaktions Logdatei im Texteditor öffnen."
+        },
+        "payChatRight": {
+          "name": "Bezahlungen rechts",
+          "description": "Bezahlungen im 2. Chat anzeigen."
+        },
+        "payAchievement": {
+          "name": "Bezahlungen Benachrichtigung",
+          "description": "Benachrichtigung für eingehende Zahlungen anzeigen."
+        },
+        "payHighlight": {
+          "name": "Bezahlungen markieren",
+          "description": "Verifizierte Zahlungen im Chat markieren."
+        },
+        "fakeMoneyWarning": {
+          "name": "Vor fake Money warnen",
+          "description": "Vor Fake Zahlungen durch Supreme Status warnen."
+        },
+        "bankChatRight": {
+          "name": "Bank Nachrichten rechts",
+          "description": "Bank Nachrichten im 2. Chat anzeigen."
+        },
+        "bankAchievement": {
+          "name": "Bank Benachrichtigung",
+          "description": "Benachrichtigung für Bank Transaktionen anzeigen."
+        }
+      },
+
+      "automations": {
+        "name": "Automatisierungen",
+        "header": {
+          "afk": {
+            "name": "AFK"
+          }
+        },
+        "hideBoosterMenu": {
+          "name": "Booster Menü ausblenden",
+          "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
+        },
+        "autoPortal": {
+          "name": "Auto Portal",
+          "description": "Direkt in den Portalraum joinen."
+        },
+        "afkTime": {
+          "name": "AFK nach (in min)",
+          "description": "Zeit, nach der dich das Addon als AFK erkennt."
+        },
+        "afkNick": {
+          "name": "Nicken wenn AFK",
+          "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+        },
+        "afkNickname": {
+          "name": "AFK Nickname (4-16 Zeichen)",
+          "description": "Dein Nickname während du AFK bist."
+        },
+        "afkMsgReply": {
+          "name": "Private Nachrichten beantworten",
+          "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
+        },
+        "afkMsgText": {
+          "name": "AFK Nachrichten Text",
+          "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+        }
+      },
+
+      "friends": {
+        "name": "Freunde",
+        "labyChatShowSubServerEnabled": {
+          "name": "CityBuild im LabyChat anzeigen",
+          "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
+        },
+        "discordShowSubServerEnabled":{
+          "name": "CityBuild in Discord anzeigen",
+          "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
+        }
+      },
+
+      "openWebsite": {
+        "name": "Website",
+        "text": "Öffnen"
+      },
+      "openGithub": {
+        "name": "GitHub",
+        "text": "Öffnen"
+      }
+    },
+
+    "messages": {
+      "warning": "ACHTUNG!",
+      "on": "AN",
+      "off": "AUS",
+      "advancedChatWarning": "Erweiterter Chat ist aktuell deaktiviert. Diese Funktion ist notwendig, damit das Addon ordnungsgemäß funktionieren kann. Gehe bitte in den LabyMod Einstellungen --> Ingame und aktiviere dort Erweiterter Chat.",
+      "hoverIgnoreListEntry": "Klicken zum nicht mehr ignorieren",
+      "fakeMoney": "Die Zahlung von {player} in höhe von {amount} wurde als fake Money erkannt.",
+      "verifiedPayment": "Verifizierte Zahlung",
+      "clickToReply": "Klicken zum antworten",
+      "citybuildJoin": "Du bist nun auf {citybuild}.",
+      "afkMessage": "Du wurdest als AFk erkannt.",
+      "afkBackMessage": "Du wurdest als wieder zurück erkannt.",
+      "commandFailure": "Hast du dich vertippt? Wenn nicht, sende die Nachricht nochmal."
+    },
+
+    "notifications": {
+      "generalError": "Ein Fehler ist aufgetreten, weitere Informationen im Chat.",
+      "addonLoaded": "GrieferGames Addon {version} geladen.",
+      "update": {
+        "available": "Ein Update auf Version {version} ist verfügbar",
+        "ready": "Beim nächsten Neustart wird das Addon auf Version {version} aktuellisiert."
+      },
+      "bank": {
+        "title": "Bank",
+        "deposit": "Du hast {amount} auf dein Bankkonto eingezahlt",
+        "withdraw": "Du hast {amount} von deinem Bankkonto abgehoben."
+      },
+      "payment": {
+        "title": "Payment",
+        "receive": "Du hast {amount} von {player} erhalten.",
+        "pay": "Du hast {amount} an {player} bezahlt.",
+        "moneydrop": "Du hast einen MoneyDrop von {amount} erhalten"
+      },
+      "itemRemover": "in {time} Sekunden",
+      "mobRemover": "in {time} Minuten"
+    },
+
+    "hudWidgetCategory": {
+      "griefergames": {
+        "name": "GrieferGames",
+        "description": "Zeige wichtige GrieferGames Informationen direkt im Spiel an."
+      }
+    },
+    "hudWidget": {
+      "gg_income": {
+        "name": "Einnahmen"
+      },
+      "gg_nickname": {
+        "name": "Nickname",
+        "defaultValue": "Kein Nickname"
+      },
+      "gg_redstone": {
+        "name": "Redstone"
+      },
+      "gg_fly": {
+        "name": "Fliegen"
+      },
+      "gg_delay": {
+        "name": "Wartezeit"
+      },
+      "gg_booster": {
+        "name": "Booster",
+        "break": "Break",
+        "drop": "Drop",
+        "experience": "Erfahrung",
+        "fly": "Fliegen",
+        "mob": "Mob",
+        "nameColor": {
+          "name": "Namen Farbe"
+        },
+        "durationColor": {
+          "name": "Dauer Farbe"
+        },
+        "amplifierColor": {
+          "name": "Anzahl Farber"
+        }
+      }
+    }
+  }
+}
