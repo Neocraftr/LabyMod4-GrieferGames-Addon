@@ -6,6 +6,8 @@ import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.event.HoverEvent;
 import net.labymod.api.client.component.format.NamedTextColor;
+import net.labymod.api.client.gui.icon.Icon;
+import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.notification.Notification;
 import net.labymod.api.util.I18n;
@@ -49,6 +51,7 @@ public class ItemRemover extends ChatModule {
         Laby.labyAPI().notificationController().push(Notification.builder()
           .title(Component.text("ItemRemover", NamedTextColor.RED))
           .text(Component.text(I18n.translate("griefergames.notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))
+          .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/itemremover.png")))
           .build());
       }
     }

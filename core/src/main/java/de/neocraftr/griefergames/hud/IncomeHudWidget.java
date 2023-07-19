@@ -17,7 +17,7 @@ public class IncomeHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/economy_cash.png")));
+    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/cash.png")));
   }
 
   @Override

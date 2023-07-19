@@ -43,7 +43,7 @@ public class Bank extends ChatModule {
           Laby.labyAPI().notificationController().push(Notification.builder()
               .title(Component.text(I18n.translate("griefergames.notifications.bank.title"), NamedTextColor.DARK_GREEN))
               .text(Component.text(message))
-              .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/icon.png"))).build());
+              .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/bank.png"))).build());
         }
       }
     }
