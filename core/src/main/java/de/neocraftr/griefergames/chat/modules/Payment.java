@@ -9,6 +9,7 @@ import net.labymod.api.client.component.event.HoverEvent;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.client.component.format.Style;
 import net.labymod.api.client.gui.icon.Icon;
+import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.notification.Notification;
 import net.labymod.api.util.I18n;
@@ -31,8 +32,9 @@ public class Payment extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.getMessage().getPlainText().isBlank()) return;
+    String plain = event.getMessage().getPlainText();
 
-    Matcher receiveMoneyMatcher = receiveMoneyRegex.matcher(event.getMessage().getPlainText());
+    Matcher receiveMoneyMatcher = receiveMoneyRegex.matcher(plain);
     if (receiveMoneyMatcher.find()) {
       String rank = receiveMoneyMatcher.group(1);
       String name = receiveMoneyMatcher.group(2);
@@ -72,30 +74,44 @@ public class Payment extends ChatModule {
       }
     }
 
-    Matcher payMoneyMatcher = payMoneyRegex.matcher(event.getMessage().getPlainText());
+    Matcher payMoneyMatcher = payMoneyRegex.matcher(plain);
     if(payMoneyMatcher.find()) {
       String rank = payMoneyMatcher.group(1);
       String name = payMoneyMatcher.group(2);
       double amount = getAmount(payMoneyMatcher.group(3));
 
-      sendPaymentNotification(TransactionType.PAY, rank, name, amount);
       griefergames.addIncome(amount * -1);
 
       if(griefergames.configuration().payment().logTransactions().get()) {
         griefergames.fileManager().logTransaction(rank+" ┃ "+name, amount, TransactionType.PAY);
       }
+      if(griefergames.configuration().payment().payChatRight().get()) {
+        event.setSecondChat(true);
+      }
+      if(griefergames.configuration().payment().payAchievement().get()) {
+        sendPaymentNotification(TransactionType.PAY, rank, name, amount);
+      }
     }
 
-    Matcher earnMoneyMatcher = earnMoneyRegex.matcher(event.getMessage().getPlainText());
+    Matcher earnMoneyMatcher = earnMoneyRegex.matcher(plain);
     if(earnMoneyMatcher.find()) {
       double amount = getAmount(earnMoneyMatcher.group(1));
 
-      sendPaymentNotification(TransactionType.MONEYDROP, amount);
       griefergames.addIncome(amount);
 
       if(griefergames.configuration().payment().logTransactions().get()) {
         griefergames.fileManager().logTransaction(null, amount, TransactionType.MONEYDROP);
       }
+      if(griefergames.configuration().payment().payChatRight().get()) {
+        event.setSecondChat(true);
+      }
+      if(griefergames.configuration().payment().payAchievement().get()) {
+        sendPaymentNotification(TransactionType.MONEYDROP, amount);
+      }
+    }
+
+    if(plain.startsWith("Kontostand: ") && griefergames.configuration().payment().payChatRight().get()) {
+      event.setSecondChat(true);
     }
   }
 
@@ -125,6 +141,7 @@ public class Payment extends ChatModule {
 
     Laby.labyAPI().notificationController().push(Notification.builder()
         .title(Component.text(I18n.translate("griefergames.notifications.payment.title"), NamedTextColor.GREEN))
-        .text(Component.text(message)).build());
+        .text(Component.text(message))
+        .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/cash.png"))).build());
   }
 }
