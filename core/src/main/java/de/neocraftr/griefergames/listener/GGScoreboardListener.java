@@ -21,9 +21,11 @@ public class GGScoreboardListener {
       String subServerName = griefergames.helper().componentToPlainText(event.team().getPrefix()).toLowerCase();
       if(subServerName.isBlank() || subServerName.contains("lade")) return;
 
-      griefergames.setSubServer(subServerName);
-      GGSubServerChangeEvent changeEvent = new GGSubServerChangeEvent(subServerName);
-      Laby.labyAPI().eventBus().fire(changeEvent);
+      if(!griefergames.getSubServer().equals(subServerName)) {
+        griefergames.setSubServer(subServerName);
+        GGSubServerChangeEvent changeEvent = new GGSubServerChangeEvent(subServerName);
+        Laby.labyAPI().eventBus().fire(changeEvent);
+      }
     }
   }
 }

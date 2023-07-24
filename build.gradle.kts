@@ -16,7 +16,7 @@ labyMod {
         displayName = "GrieferGames"
         author = "Neocraftr"
         description = "This add-on adds many useful features for the GrieferGames.net server."
-        minecraftVersion = "1.8.9<1.12.2"
+        minecraftVersion = "*"
         version = "1.0.0"
     }
 
