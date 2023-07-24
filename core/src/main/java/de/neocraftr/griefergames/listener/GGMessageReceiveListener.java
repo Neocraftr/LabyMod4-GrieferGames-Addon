@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.listener;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.Laby;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.event.Subscribe;
@@ -20,18 +21,20 @@ public class GGMessageReceiveListener {
     if(!griefergames.isOnGrieferGames()) return;
     //System.out.println(GsonComponentSerializer.gson().serialize(event.message()));
 
-    GGChatProcessEvent processEvent = new GGChatProcessEvent(event.chatMessage());
-    Laby.labyAPI().eventBus().fire(processEvent);
-    if(processEvent.isCancelled()) {
-      event.setCancelled(true);
-    } else if(processEvent.isSecondChat()) {
-      griefergames.helper().displayInSecondChat(AdvancedChatMessage.chat(processEvent.getMessage()));
-      if(!processEvent.isKeepInRegularChat()) event.setCancelled(true);
-    }
+    if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+      GGChatProcessEvent processEvent = new GGChatProcessEvent(event.chatMessage());
+      Laby.labyAPI().eventBus().fire(processEvent);
+      if(processEvent.isCancelled()) {
+        event.setCancelled(true);
+      } else if(processEvent.isSecondChat()) {
+        griefergames.helper().displayInSecondChat(AdvancedChatMessage.chat(processEvent.getMessage()));
+        if(!processEvent.isKeepInRegularChat()) event.setCancelled(true);
+      }
 
-    if(event.chatMessage().getPlainText().equals("[Switcher] Daten heruntergeladen!")) {
-      griefergames.setHideBoosterMenu(true);
-      griefergames.sendMessage("/booster");
+      if(event.chatMessage().getPlainText().equals("[Switcher] Daten heruntergeladen!")) {
+        griefergames.setHideBoosterMenu(true);
+        griefergames.sendMessage("/booster");
+      }
     }
   }
 

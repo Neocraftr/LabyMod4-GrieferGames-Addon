@@ -21,6 +21,7 @@ import de.neocraftr.griefergames.chat.modules.Teleport;
 import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
 import de.neocraftr.griefergames.core.generated.DefaultReferenceStorage;
+import de.neocraftr.griefergames.enums.SubServerType;
 import de.neocraftr.griefergames.hud.BoosterHudWidget;
 import de.neocraftr.griefergames.hud.DelayHudWidget;
 import de.neocraftr.griefergames.hud.FlyHudWidget;
@@ -35,6 +36,7 @@ import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
 import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
+import de.neocraftr.griefergames.listener.GGTablistListener;
 import de.neocraftr.griefergames.listener.GGTickListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
@@ -76,6 +78,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private long waitTime = 0;
   private boolean citybuildDelay = false;
   private String subServer = "";
+  private SubServerType subServerType = SubServerType.REGULAR;
   private long lastActivety = 0;
   private boolean afk = false;
   private boolean hideBoosterMenu = false;
@@ -101,6 +104,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new GGKeyListener(this));
     registerListener(new GGServerMessageListener(this));
     registerListener(new GGScoreboardListener(this));
+    registerListener(new GGTablistListener(this));
     registerListener(new GGSubServerChangeListener(this));
     registerListener(new GGTickListener(this));
 
@@ -251,6 +255,13 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   }
   public void setSubServer(String subServer) {
     this.subServer = subServer;
+  }
+
+  public SubServerType getSubServerType() {
+    return subServerType;
+  }
+  public void setSubServerType(SubServerType subServerType) {
+    this.subServerType = subServerType;
   }
 
   public long getLastActivety() {

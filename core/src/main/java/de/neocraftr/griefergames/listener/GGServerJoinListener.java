@@ -12,8 +12,6 @@ import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.network.server.ServerJoinEvent;
 import net.labymod.api.notification.Notification;
 import net.labymod.api.util.I18n;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GGServerJoinListener {
   private final GrieferGames griefergames;
@@ -62,15 +60,6 @@ public class GGServerJoinListener {
               .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.update.available").replace("{version}", "v"+griefergames.updater().getNewVersion())))
               .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/update.png"))).build());
         }
-      }
-
-      if(griefergames.configuration().automations().autoPortal().get()) {
-        new Timer().schedule(new TimerTask() {
-          @Override
-          public void run() {
-            griefergames.sendMessage("/portal");
-          }
-        }, 500);
       }
     }
   }

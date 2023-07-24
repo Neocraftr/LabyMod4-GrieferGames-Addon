@@ -117,6 +117,10 @@ public class Helper {
       return "CityBuild " + capitalize(serverName);
     } else if (serverName.equals("lava") || serverName.equals("wasser")) {
       return "Farmserver " + capitalize(serverName);
+    } else if(serverName.startsWith("cloud_")) {
+      String cloudServerName = serverName.replace("cloud_", "");
+      cloudServerName = cloudServerName.startsWith("cb") ? cloudServerName.toUpperCase() : capitalize(cloudServerName);
+      return "Cloud "+cloudServerName;
     } else {
       Matcher matcher = serverCityBuildRegex.matcher(serverName.toLowerCase());
       if (matcher.find()) {

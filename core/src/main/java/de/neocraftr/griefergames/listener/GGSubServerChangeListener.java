@@ -12,6 +12,8 @@ import net.labymod.api.util.I18n;
 import net.labymod.core.labyconnect.DefaultLabyConnect;
 import net.labymod.core.labyconnect.protocol.packets.PacketPlayServerStatusUpdate;
 import net.labymod.core.thirdparty.discord.DefaultDiscordApp;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class GGSubServerChangeListener {
@@ -46,7 +48,6 @@ public class GGSubServerChangeListener {
       labyConnect.sendPacket(packet);
     }
 
-
     if(griefergames.helper().isCityBuild(event.subServerName())) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
       griefergames.setCitybuildDelay(false);
@@ -59,6 +60,15 @@ public class GGSubServerChangeListener {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(12));
     } else if(event.subServerName().equals("skyblock")) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
+    } else if(event.subServerName().equals("lobby")) {
+      if(griefergames.configuration().automations().autoPortal().get()) {
+        new Timer().schedule(new TimerTask() {
+          @Override
+          public void run() {
+            griefergames.sendMessage("/portal");
+          }
+        }, 500);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 package de.neocraftr.griefergames.listener;
 
 import de.neocraftr.griefergames.GrieferGames;
+import de.neocraftr.griefergames.enums.SubServerType;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
@@ -26,43 +27,45 @@ public class GGKeyListener {
   public void onKeyInput(KeyEvent event) {
     if(!griefergames.isOnGrieferGames()) return;
 
-    if(event.state() == State.PRESS) {
-      griefergames.setLastActivety(System.currentTimeMillis());
-      if(griefergames.isAfk()) {
-        griefergames.setAfk(false);
-        griefergames.helper().performAfkActions(false);
-      }
+    if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if(event.state() == State.PRESS) {
+        griefergames.setLastActivety(System.currentTimeMillis());
+        if(griefergames.isAfk()) {
+          griefergames.setAfk(false);
+          griefergames.helper().performAfkActions(false);
+        }
 
-      if(griefergames.configuration().chatConfig().ampEnabled().get() &&
-          event.key().getId() == Laby.labyAPI().minecraft().options().getInputMapping("key.playerlist").getKeyCode()) {
+        if(griefergames.configuration().chatConfig().ampEnabled().get() &&
+            event.key().getId() == Laby.labyAPI().minecraft().options().getInputMapping("key.playerlist").getKeyCode()) {
 
-        for(NetworkPlayerInfo playerInfo : Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos()) {
-          if(playerInfo == null) continue;
-          if(!griefergames.helper().componentToFormattedText(playerInfo.displayName()).contains("§k")) continue;
+          for(NetworkPlayerInfo playerInfo : Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos()) {
+            if(playerInfo == null) continue;
+            if(!griefergames.helper().componentToFormattedText(playerInfo.displayName()).contains("§k")) continue;
 
-          Matcher matcher = antiMagicPrefixRegex.matcher(griefergames.helper().componentToPlainText(playerInfo.displayName()));
-          if(!matcher.find()) continue;
+            Matcher matcher = antiMagicPrefixRegex.matcher(griefergames.helper().componentToPlainText(playerInfo.displayName()));
+            if(!matcher.find()) continue;
 
-          String ampReplacement = griefergames.configuration().chatConfig().ampReplacement().get();
-          if(ampReplacement.isBlank()) {
-            ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
-          }
-
-          List<Component> children = new ArrayList<>(playerInfo.displayName().getChildren());
-          for(int i=0; i<children.size(); i++) {
-            Component component = children.get(i);
-            String plain = griefergames.helper().componentToPlainText(component);
-
-            if(plain.equals(matcher.group(1))) {
-              component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
-              Component ampPrefix = Component.text(ampReplacement+" ", component.style());
-              children.add(i, ampPrefix);
-              i++;
-            } else if(plain.equals(matcher.group(2))) {
-              component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
+            String ampReplacement = griefergames.configuration().chatConfig().ampReplacement().get();
+            if(ampReplacement.isBlank()) {
+              ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
             }
+
+            List<Component> children = new ArrayList<>(playerInfo.displayName().getChildren());
+            for(int i=0; i<children.size(); i++) {
+              Component component = children.get(i);
+              String plain = griefergames.helper().componentToPlainText(component);
+
+              if(plain.equals(matcher.group(1))) {
+                component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
+                Component ampPrefix = Component.text(ampReplacement+" ", component.style());
+                children.add(i, ampPrefix);
+                i++;
+              } else if(plain.equals(matcher.group(2))) {
+                component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
+              }
+            }
+            playerInfo.displayName().setChildren(children);
           }
-          playerInfo.displayName().setChildren(children);
         }
       }
     }
