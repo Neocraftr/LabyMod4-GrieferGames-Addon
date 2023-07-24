@@ -201,6 +201,10 @@
           "name": "Auto Portal",
           "description": "Direkt in den Portalraum joinen."
         },
+        "autoColor": {
+          "name": "Automatische Chatfarbe",
+          "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
+        },
         "afkTime": {
           "name": "AFK nach (in min)",
           "description": "Zeit, nach der dich das Addon als AFK erkennt."

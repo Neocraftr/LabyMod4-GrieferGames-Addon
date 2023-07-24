@@ -1,6 +1,7 @@
 package de.neocraftr.griefergames.listener;
 
 import de.neocraftr.griefergames.GrieferGames;
+import de.neocraftr.griefergames.enums.ChatColor;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.event.Subscribe;
@@ -18,15 +19,21 @@ public class GGMessageSendListener {
   @Subscribe
   public void onSend(ChatMessageSendEvent event) {
     if(!griefergames.isOnGrieferGames()) return;
+    String msg = event.getMessage();
 
     if(griefergames.configuration().chatConfig().preventCommandFailure().get()) {
-      if(event.getMessage().startsWith("7") && !event.getMessage().equalsIgnoreCase(lastMessage)) {
-        griefergames.displayAddonMessage(Component.text(I18n.translate("griefergames.messages.commandFailure"), NamedTextColor.RED));
-        lastMessage = event.getMessage();
+      if(msg.startsWith("7") && !msg.equalsIgnoreCase(lastMessage)) {
+        griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace()+".messages.commandFailure"), NamedTextColor.RED));
+        lastMessage = msg;
         event.setCancelled(true);
       } else {
         lastMessage = "";
       }
+    }
+
+    if(griefergames.configuration().automations().autoColor().get() != ChatColor.NONE &&
+        !msg.startsWith("/") && !msg.startsWith(".") && !msg.startsWith("-")) {
+      event.changeMessage("&"+griefergames.configuration().automations().autoColor().get().getColorCode()+msg);
     }
   }
 }

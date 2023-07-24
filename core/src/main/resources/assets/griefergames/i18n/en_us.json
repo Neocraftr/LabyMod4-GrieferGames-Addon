@@ -201,6 +201,10 @@
           "name": "Auto portal",
           "description": "Directly join to the portal room."
         },
+        "autoColor": {
+          "name": "Auto chatcolor",
+          "description": "Automatically adds the set colorcode before every message that you send. (Can cause problems with commands of other addons or mods.)"
+        },
         "afkTime": {
           "name": "AFK after (in min)",
           "description": "Timer after which you will be marked as AFK."
