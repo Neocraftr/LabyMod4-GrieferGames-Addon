@@ -2,10 +2,12 @@
 
 Erweitert LabyMod um viele nützliche Funktionen für den grieferGames.net Server.
 
-### Installation
-Download: https://mc.im1random.org/?addon=GrieferGames
+**Dies ist die LabyMod Store Version des Addons, die aktuelle Version mit eigenem updater ist im [master](https://github.com/Neocraftr/LabyMod4-GrieferGames-Addon/tree/master) Branch zu finden.**
 
-Verschiebe die GrieferGames.jar in den LabyMod Addons Ordner:
+### Installation
+Download im Spiel über den LabyMod Store oder manuell von [FlintMC](https://flintmc.net/modification/98.griefergames).
+
+Ordner für manuellen Download:
 |Betriebssystem         |Ordner                                                    |
 |-----------------------|----------------------------------------------------------|
 |Windows                |%APPDATA%\\.minecraft\\labymod-neo\\addons                |
