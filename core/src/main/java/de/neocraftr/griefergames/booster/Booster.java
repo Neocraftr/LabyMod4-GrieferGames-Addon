@@ -1,5 +1,6 @@
 package de.neocraftr.griefergames.booster;
 
+import de.neocraftr.griefergames.GrieferGames;
 import net.labymod.api.client.gui.icon.Icon;
 import net.labymod.api.client.resources.texture.ThemeTextureLocation;
 import net.labymod.api.util.I18n;
@@ -24,13 +25,13 @@ public abstract class Booster {
 		this.type = type;
 		this.count = 0;
 		this.stackable = stackable;
-    this.icon = Icon.sprite(ThemeTextureLocation.of("griefergames", "hud/booster_widget", 512, 64), iconIndex, 0, 64);
+    this.icon = Icon.sprite(ThemeTextureLocation.of(GrieferGames.get().namespace(), "hud/booster_widget", 512, 64), iconIndex, 0, 64);
   }
 
 	public String getDurationString() {
     if(dummy) return "20:00";
 
-		if(this.endTimes.size() == 0) return I18n.translate("griefergames.messages.on");
+		if(this.endTimes.size() == 0) return I18n.translate(GrieferGames.get().namespace()+".messages.on");
 
 		long remainingTime = this.endTimes.get(0) - System.currentTimeMillis();
 		long displayTime = Math.abs(remainingTime);

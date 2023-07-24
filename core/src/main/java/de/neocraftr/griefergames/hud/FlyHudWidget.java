@@ -18,19 +18,19 @@ public class FlyHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/fly.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/fly.png")));
   }
 
   @Override
   public void load(TextHudWidgetConfig config) {
     super.load(config);
-    line = createLine(I18n.translate("griefergames.hudWidget.gg_fly.name"), I18n.translate("griefergames.messages.off"));
+    line = createLine(I18n.translate(griefergames.namespace()+".hudWidget.gg_fly.name"), I18n.translate(griefergames.namespace()+".messages.off"));
   }
 
   @Override
   public void onTick(boolean isEditorContext) {
     boolean isFly = Laby.labyAPI().minecraft().getClientPlayer() != null && griefergames.controller().playerAllowedFlying();
-    line.updateAndFlush(isFly ? I18n.translate("griefergames.messages.on") : I18n.translate("griefergames.messages.off"));
+    line.updateAndFlush(isFly ? I18n.translate(griefergames.namespace()+".messages.on") : I18n.translate(griefergames.namespace()+".messages.off"));
   }
 
   @Override

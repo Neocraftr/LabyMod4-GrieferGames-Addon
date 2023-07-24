@@ -17,13 +17,13 @@ public class NicknameHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/nickname.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/nickname.png")));
   }
 
   @Override
   public void load(TextHudWidgetConfig config) {
     super.load(config);
-    line = createLine(I18n.translate("griefergames.hudWidget.gg_nickname.name"), I18n.translate("griefergames.hudWidget.gg_nickname.defaultValue"));
+    line = createLine(I18n.translate(griefergames.namespace()+".hudWidget.gg_nickname.name"), I18n.translate(griefergames.namespace()+".hudWidget.gg_nickname.defaultValue"));
   }
 
   @Override
@@ -31,7 +31,7 @@ public class NicknameHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     if(griefergames.getNickname() != null) {
       line.updateAndFlush(griefergames.getNickname());
     } else {
-      line.updateAndFlush(I18n.translate("griefergames.hudWidget.gg_nickname.defaultValue"));
+      line.updateAndFlush(I18n.translate(griefergames.namespace()+".hudWidget.gg_nickname.defaultValue"));
     }
   }
 

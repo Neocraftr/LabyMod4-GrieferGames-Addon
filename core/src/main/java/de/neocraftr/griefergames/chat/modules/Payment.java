@@ -58,13 +58,13 @@ public class Payment extends ChatModule {
         if(griefergames.configuration().payment().payHighlight().get()) {
           event.getMessage().component().append(Component.text(" \u2714", Style.builder()
               .color(NamedTextColor.GREEN)
-              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate("griefergames.messages.verifiedPayment"), NamedTextColor.GREEN)))
+              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate(griefergames.namespace()+".messages.verifiedPayment"), NamedTextColor.GREEN)))
               .build()));
         }
       } else {
         if(griefergames.configuration().payment().fakeMoneyWarning().get()) {
-          String warningMessage = "§e§l"+I18n.translate("griefergames.messages.warning")+" §c"
-              +I18n.translate("griefergames.messages.fakeMoney")
+          String warningMessage = "§e§l"+I18n.translate(griefergames.namespace()+".messages.warning")+" §c"
+              +I18n.translate(griefergames.namespace()+".messages.fakeMoney")
               .replace("{player}", "§e"+rank+" ┃ "+name+"§c")
               .replace("{amount}", "§e$"+receiveMoneyMatcher.group(3)+"§c");
 
@@ -126,22 +126,22 @@ public class Payment extends ChatModule {
   }
 
   public void sendPaymentNotification(TransactionType type, String rank, String name, double amount) {
-    String message = I18n.translate("griefergames.notifications.payment."+type.name().toLowerCase());
+    String message = I18n.translate(griefergames.namespace()+".notifications.payment."+type.name().toLowerCase());
     message = message.replace("{amount}", "$"+moneyFormat.format(amount)).replace("{player}", rank+" | "+name);
 
     Laby.labyAPI().notificationController().push(Notification.builder()
-        .title(Component.text(I18n.translate("griefergames.notifications.payment.title"), NamedTextColor.GREEN))
+        .title(Component.text(I18n.translate(griefergames.namespace()+".notifications.payment.title"), NamedTextColor.GREEN))
         .text(Component.text(message))
         .icon(Icon.head(name)).build());
   }
 
   public void sendPaymentNotification(TransactionType type, double amount) {
-    String message = I18n.translate("griefergames.notifications.payment."+type.name().toLowerCase());
+    String message = I18n.translate(griefergames.namespace()+".notifications.payment."+type.name().toLowerCase());
     message = message.replace("{amount}", "$"+moneyFormat.format(amount));
 
     Laby.labyAPI().notificationController().push(Notification.builder()
-        .title(Component.text(I18n.translate("griefergames.notifications.payment.title"), NamedTextColor.GREEN))
+        .title(Component.text(I18n.translate(griefergames.namespace()+".notifications.payment.title"), NamedTextColor.GREEN))
         .text(Component.text(message))
-        .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/cash.png"))).build());
+        .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/cash.png"))).build());
   }
 }

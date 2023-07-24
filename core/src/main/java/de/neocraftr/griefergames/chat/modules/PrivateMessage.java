@@ -85,7 +85,7 @@ public class PrivateMessage extends ChatModule {
     for(int i=startIndex; i <= endIndex; i++) {
       Component component = message.getChildren().get(i);
       component.style(component.style()
-          .hoverEvent(HoverEvent.showText(Component.text(I18n.translate("griefergames.messages.clickToReply"), NamedTextColor.GREEN)))
+          .hoverEvent(HoverEvent.showText(Component.text(I18n.translate(griefergames.namespace()+".messages.clickToReply"), NamedTextColor.GREEN)))
           .clickEvent(ClickEvent.suggestCommand("/msg "+name+" ")));
     }
   }

@@ -50,8 +50,8 @@ public class ItemRemover extends ChatModule {
       if(griefergames.configuration().chatConfig().itemRemoverNotification().get() && !done) {
         Laby.labyAPI().notificationController().push(Notification.builder()
           .title(Component.text("ItemRemover", NamedTextColor.RED))
-          .text(Component.text(I18n.translate("griefergames.notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))
-          .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/itemremover.png")))
+          .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))
+          .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/itemremover.png")))
           .build());
       }
     }

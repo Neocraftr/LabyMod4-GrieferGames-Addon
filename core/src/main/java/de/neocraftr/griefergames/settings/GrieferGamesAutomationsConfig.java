@@ -1,8 +1,10 @@
 package de.neocraftr.griefergames.settings;
 
+import de.neocraftr.griefergames.enums.ChatColor;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SliderWidget.SliderSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
+import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget.DropdownSetting;
 import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
@@ -14,6 +16,9 @@ public class GrieferGamesAutomationsConfig extends Config {
 
   @SwitchSetting
   private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(false);
+
+  @DropdownSetting
+  private final ConfigProperty<ChatColor> autoColor = new ConfigProperty<>(ChatColor.NONE);
 
   @SettingSection("afk")
 
@@ -38,6 +43,10 @@ public class GrieferGamesAutomationsConfig extends Config {
 
   public ConfigProperty<Boolean> autoPortal() {
     return autoPortal;
+  }
+
+  public ConfigProperty<ChatColor> autoColor() {
+    return autoColor;
   }
 
   public ConfigProperty<Integer> afkTime() {

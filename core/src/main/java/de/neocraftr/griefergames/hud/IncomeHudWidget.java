@@ -17,13 +17,13 @@ public class IncomeHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/cash.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/cash.png")));
   }
 
   @Override
   public void load(TextHudWidgetConfig config) {
     super.load(config);
-    line = createLine(I18n.translate("griefergames.hudWidget.gg_income.name"), "$0");
+    line = createLine(I18n.translate(griefergames.namespace()+".hudWidget.gg_income.name"), "$0");
   }
 
   @Override

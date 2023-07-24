@@ -46,11 +46,6 @@ public class GGServerMessageListener {
         return;
       }
 
-      /*if(messageKey.equals("mysterymod_user_check")) {
-        // Activate MysteryMod perks
-        Laby.labyAPI().serverController().sendPayload(event.identifier(), event.getPayload());
-      }*/
-
       if(messageKey.equals("redstone")) {
         String redstoneState = message.getAsJsonObject().get("status").getAsString();
         griefergames.setRedstoneActive(redstoneState.equals("0"));

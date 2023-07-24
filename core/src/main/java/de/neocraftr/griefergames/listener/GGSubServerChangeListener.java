@@ -52,7 +52,7 @@ public class GGSubServerChangeListener {
       griefergames.setCitybuildDelay(false);
 
       griefergames.displayAddonMessage(Component.text(
-              I18n.translate("griefergames.messages.citybuildJoin").replace("{citybuild}", formattedServerName),
+              I18n.translate(griefergames.namespace()+".messages.citybuildJoin").replace("{citybuild}", formattedServerName),
               NamedTextColor.GRAY
           ));
     } else if(event.subServerName().equals("portal")) {

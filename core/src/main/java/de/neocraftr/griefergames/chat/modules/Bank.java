@@ -37,13 +37,13 @@ public class Bank extends ChatModule {
       boolean deposit;
       if((deposit = plain.endsWith("auf dein Bankkonto eingezahlt.")) || plain.endsWith("von deinem Bankkonto abgehoben.")) {
         if(griefergames.configuration().payment().bankAchievement().get()) {
-          String message = I18n.translate("griefergames.notifications.bank."+(deposit ? "deposit" : "withdraw"));
+          String message = I18n.translate(griefergames.namespace()+".notifications.bank."+(deposit ? "deposit" : "withdraw"));
           message = message.replace("{amount}", "$"+moneyFormat.format(getMoneyBank(plain)));
 
           Laby.labyAPI().notificationController().push(Notification.builder()
-              .title(Component.text(I18n.translate("griefergames.notifications.bank.title"), NamedTextColor.DARK_GREEN))
+              .title(Component.text(I18n.translate(griefergames.namespace()+".notifications.bank.title"), NamedTextColor.DARK_GREEN))
               .text(Component.text(message))
-              .icon(Icon.texture(ResourceLocation.create("griefergames", "textures/bank.png"))).build());
+              .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/bank.png"))).build());
         }
       }
     }

@@ -44,7 +44,7 @@ public class GlobalMessage extends ChatModule {
 
     if(!playername.equals(Laby.labyAPI().getName())) {
       String command = "/msg "+playername+" ";
-      Component hoverText = Component.text(I18n.translate("griefergames.messages.globalMessageHoverText"), NamedTextColor.GREEN);
+      Component hoverText = Component.text(I18n.translate(griefergames.namespace()+".messages.globalMessageHoverText"), NamedTextColor.GREEN);
 
       for(Component component : message.getChildren()) {
         String plain = this.getPlainText(component);

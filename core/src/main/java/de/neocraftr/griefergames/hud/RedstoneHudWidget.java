@@ -17,18 +17,18 @@ public class RedstoneHudWidget extends TextHudWidget<TextHudWidgetConfig>  {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/redstone.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/redstone.png")));
   }
 
   @Override
   public void load(TextHudWidgetConfig config) {
     super.load(config);
-    line = createLine(I18n.translate("griefergames.hudWidget.gg_redstone.name"), I18n.translate("griefergames.messages.off"));
+    line = createLine(I18n.translate(griefergames.namespace()+".hudWidget.gg_redstone.name"), I18n.translate(griefergames.namespace()+".messages.off"));
   }
 
   @Override
   public void onTick(boolean isEditorContext) {
-    line.updateAndFlush(griefergames.isRedstoneActive() ? I18n.translate("griefergames.messages.on") : I18n.translate("griefergames.messages.off"));
+    line.updateAndFlush(griefergames.isRedstoneActive() ? I18n.translate(griefergames.namespace()+".messages.on") : I18n.translate(griefergames.namespace()+".messages.off"));
   }
 
   @Override

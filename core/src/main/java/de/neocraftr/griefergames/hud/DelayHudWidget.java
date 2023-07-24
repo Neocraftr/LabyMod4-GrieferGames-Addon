@@ -18,13 +18,13 @@ public class DelayHudWidget extends TextHudWidget<TextHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/clock.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/clock.png")));
   }
 
   @Override
   public void load(TextHudWidgetConfig config) {
     super.load(config);
-    line = createLine(I18n.translate("griefergames.hudWidget.gg_delay.name"), "0s");
+    line = createLine(I18n.translate(griefergames.namespace()+".hudWidget.gg_delay.name"), "0s");
   }
 
   @Override

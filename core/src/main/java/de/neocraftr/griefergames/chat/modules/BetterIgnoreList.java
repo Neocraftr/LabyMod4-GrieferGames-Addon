@@ -32,7 +32,7 @@ public class BetterIgnoreList extends ChatModule {
         for(String name : names) {
           children.add(Component.empty().append(Component.text("\n- "+name, Style.builder()
               .clickEvent(ClickEvent.runCommand("/unignore "+name))
-              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate("griefergames.messages.hoverIgnoreListEntry"))))
+              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate(griefergames.namespace()+".messages.hoverIgnoreListEntry"))))
               .build())));
         }
 

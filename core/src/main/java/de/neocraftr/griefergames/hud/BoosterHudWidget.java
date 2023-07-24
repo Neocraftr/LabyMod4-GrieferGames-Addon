@@ -28,7 +28,7 @@ public class BoosterHudWidget extends SimpleHudWidget<BoosterHudWidgetConfig> {
     this.griefergames = griefergames;
 
     bindCategory(griefergames.getHudWidgetCategory());
-    setIcon(Icon.texture(ResourceLocation.create("griefergames", "textures/hud/booster.png")));
+    setIcon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/hud/booster.png")));
   }
 
   @Override

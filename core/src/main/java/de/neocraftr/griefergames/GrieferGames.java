@@ -125,7 +125,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new ChatTime(this));
 
     // Hud widgets
-    hudWidgetCategory = new HudWidgetCategory(this, "griefergames");
+    hudWidgetCategory = new HudWidgetCategory(this, namespace());
     labyAPI().hudWidgetRegistry().categoryRegistry().register(hudWidgetCategory);
     labyAPI().hudWidgetRegistry().register(new IncomeHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new NicknameHudWidget(this));
@@ -138,7 +138,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
       registerCommand(new GGMessageCommand(this));
     }
 
-    logger().info(LOG_PREFIX+"Addon successfully enabled. old");
+    logger().info(LOG_PREFIX+"Addon successfully enabled.");
   }
 
   public void sendToSecondChat(String msg) {
@@ -185,6 +185,10 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     return updater;
   }
 
+
+  public String namespace() {
+    return this.addonInfo().getNamespace();
+  }
 
   public boolean isOnGrieferGames() {
     return onGrieferGames;
