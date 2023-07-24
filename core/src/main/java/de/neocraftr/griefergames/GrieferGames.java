@@ -42,7 +42,6 @@ import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.GrieferGamesController;
 import de.neocraftr.griefergames.utils.Helper;
-import de.neocraftr.griefergames.utils.Updater;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
 import net.labymod.api.client.component.Component;
@@ -67,7 +66,6 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private GrieferGamesController controller;
   private FileManager fileManager;
   private BoosterController boosterController;
-  private Updater updater;
 
   private boolean onGrieferGames = false;
   private IngameChatTab secondChat = null;
@@ -85,10 +83,6 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   @Override
   protected void enable() {
-    updater = new Updater(this);
-    updater.checkForUpdates();
-    registerListener(updater);
-
     DefaultReferenceStorage reference = referenceStorageAccessor();
     griefergames = this;
     fileManager = new FileManager(this);
@@ -183,10 +177,6 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
 
   public BoosterController boosterController() {
     return boosterController;
-  }
-
-  public Updater updater() {
-    return updater;
   }
 
 

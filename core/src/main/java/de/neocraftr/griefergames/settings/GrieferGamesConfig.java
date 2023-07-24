@@ -23,10 +23,6 @@ public class GrieferGamesConfig extends AddonConfig {
   @SwitchSetting
   private final ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
 
-  @SpriteSlot(x = 1, y = 0)
-  @SwitchSetting
-  private final ConfigProperty<Boolean> autoUpdate = new ConfigProperty<>(true);
-
   @SpriteSlot(x = 2, y = 0)
   private GrieferGamesChatConfig chatConfig = new GrieferGamesChatConfig();
 
@@ -57,10 +53,6 @@ public class GrieferGamesConfig extends AddonConfig {
   @Override
   public ConfigProperty<Boolean> enabled() {
     return this.enabled;
-  }
-
-  public ConfigProperty<Boolean> autoUpdate() {
-    return autoUpdate;
   }
 
   public GrieferGamesChatConfig chatConfig() {

@@ -47,20 +47,6 @@ public class GGServerJoinListener {
             .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.generalError"), NamedTextColor.RED))
             .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/error.png"))).build());
       }
-
-      if(griefergames.updater().isUpdateAvailable()) {
-        if(griefergames.configuration().autoUpdate().get()) {
-          Laby.labyAPI().notificationController().push(Notification.builder()
-              .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
-              .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.update.ready").replace("{version}", "v"+griefergames.updater().getNewVersion())))
-              .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/update.png"))).build());
-        } else {
-          Laby.labyAPI().notificationController().push(Notification.builder()
-              .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
-              .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.update.available").replace("{version}", "v"+griefergames.updater().getNewVersion())))
-              .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/update.png"))).build());
-        }
-      }
     }
   }
 }
