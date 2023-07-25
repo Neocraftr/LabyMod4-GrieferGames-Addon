@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class GGTablistListener {
   private final GrieferGames griefergames;
-  private final Pattern tabListServerRegex = Pattern.compile("Current Server: (.+) ", Pattern.MULTILINE);
+  private final Pattern tabListServerRegex = Pattern.compile("Current Server: (.+?)-", Pattern.MULTILINE);
 
   public GGTablistListener(GrieferGames griefergames) {
     this.griefergames = griefergames;
@@ -28,7 +28,7 @@ public class GGTablistListener {
       String headerText = griefergames.helper().componentToPlainText(header);
       Matcher matcher = tabListServerRegex.matcher(headerText);
       if(matcher.find()) {
-        String subServerName = "cloud_"+matcher.group(1).toLowerCase().split("-")[0];
+        String subServerName = "cloud_"+matcher.group(1).toLowerCase();
         griefergames.setSubServerType(SubServerType.CLOUD);
         if(!griefergames.getSubServer().equals(subServerName)) {
           griefergames.setSubServer(subServerName);

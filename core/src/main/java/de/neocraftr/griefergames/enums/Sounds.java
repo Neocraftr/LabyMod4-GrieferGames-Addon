@@ -1,14 +1,16 @@
 package de.neocraftr.griefergames.enums;
 
+import net.labymod.api.Laby;
+
 public enum Sounds {
   NONE(""),
-  BASS("note.bass"),
-  BASSDRUM("note.bd"),
-  HARP("note.harp"),
-  HAT("note.hat"),
-  PLING("note.pling"),
-  SNARE("note.snare"),
-  POP("random.pop");
+  BASS("bass"),
+  BASSDRUM("bd"),
+  HARP("harp"),
+  HAT("hat"),
+  PLING("pling"),
+  SNARE("snare"),
+  POP("pop");
 
   private String path;
 
@@ -17,6 +19,16 @@ public enum Sounds {
   }
 
   public String path() {
-    return path;
+    if(path.isEmpty()) return path;
+
+    return getVersionedPrefix()+path;
+  }
+
+  public String getVersionedPrefix() {
+    return switch (Laby.labyAPI().minecraft().getVersion()) {
+      case "1.8.9" -> "note.";
+      case "1.12.2" -> "block.note.";
+      default -> "block.note_block.";
+    };
   }
 }
