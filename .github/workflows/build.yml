@@ -1,4 +1,4 @@
-name: Build for LabyMod Store
+name: LabyAddon Build
 
 on:
   push:
