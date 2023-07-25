@@ -29,6 +29,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Rename output JAR
+        run: mv ./build/libs/GrieferGames-Addon-release.jar ./build/libs/griefergames-release.jar
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
