@@ -82,6 +82,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   private long lastActivety = 0;
   private boolean afk = false;
   private boolean hideBoosterMenu = false;
+  private boolean firstTimeInLobby = false;
 
   @Override
   protected void enable() {
@@ -283,5 +284,12 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   }
   public void setHideBoosterMenu(boolean hideBoosterMenu) {
     this.hideBoosterMenu = hideBoosterMenu;
+  }
+
+  public boolean isFirstTimeInLobby() {
+    return firstTimeInLobby;
+  }
+  public void setFirstTimeInLobby(boolean firstTimeInLobby) {
+    this.firstTimeInLobby = firstTimeInLobby;
   }
 }

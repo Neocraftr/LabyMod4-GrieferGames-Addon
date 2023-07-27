@@ -31,6 +31,7 @@ public class GGServerJoinListener {
       griefergames.setCitybuildDelay(false);
       griefergames.setNickname(null);
       griefergames.setHideBoosterMenu(false);
+      griefergames.setFirstTimeInLobby(true);
       griefergames.helper().findSecondChat("2nd Chat");
 
       Laby.labyAPI().notificationController().push(Notification.builder()
