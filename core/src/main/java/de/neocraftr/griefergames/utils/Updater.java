@@ -1,7 +1,5 @@
 package de.neocraftr.griefergames.utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.neocraftr.griefergames.GrieferGames;
 import net.labymod.api.Laby;
@@ -28,31 +26,25 @@ public class Updater {
       return;
     }
 
-    Request.ofGson(JsonArray.class).url("https://mc.im1random.org/api/addons/addons-laby4.json", "test").async().execute(response ->{
+    Request.ofGson(JsonObject.class).url("https://mc.im1random.org/api/addons/checkupdate.php?namespace=%s&currentVersion=%s&minecraftVersion=%s", addonInfo.getNamespace(), addonInfo.getVersion(), Laby.labyAPI().minecraft().getVersion()).async().execute(response ->{
       if(response.hasException()) {
         griefergames.logger().error(GrieferGames.LOG_PREFIX+"Update check failed: "+response.exception().getMessage());
         return;
       }
+      JsonObject versionInfo = response.get();
+      if(versionInfo.has("error")) {
+        griefergames.logger().error(GrieferGames.LOG_PREFIX+"Update check failed: "+versionInfo.get("error").getAsString());
+        return;
+      }
 
-      for(JsonElement entry : response.get()) {
-        JsonObject addon = entry.getAsJsonObject();
+      if(versionInfo.get("available").getAsBoolean()) {
+        updateAvailable = true;
+        newVersion = versionInfo.get("version").getAsString();
+        updateUrl = versionInfo.get("download").getAsString();
 
-        if(addon.has("namespace") && addon.get("namespace").getAsString().equals(addonInfo.getNamespace())) {
-          newVersion = addon.get("version").getAsString();
-          if(!newVersion.equals(addonInfo.getVersion())) {
-            JsonElement versionLinks = addon.get("versions").getAsJsonObject().get(Laby.labyAPI().minecraft().getVersion());
-            if(versionLinks != null) {
-              updateAvailable = true;
-              updateUrl = versionLinks.getAsJsonObject().get("download").getAsString();
-              griefergames.logger().info(GrieferGames.LOG_PREFIX+"Update to version v"+newVersion+" available.");
-            } else {
-              griefergames.logger().error(GrieferGames.LOG_PREFIX+"Update check failed: No version available for Minecraft "+Laby.labyAPI().minecraft().getVersion());
-            }
-          } else {
-            griefergames.logger().info(GrieferGames.LOG_PREFIX+"Addon is up to date.");
-          }
-          break;
-        }
+        griefergames.logger().info(GrieferGames.LOG_PREFIX+"Update to version v"+newVersion+" available.");
+      } else {
+        griefergames.logger().info(GrieferGames.LOG_PREFIX+"Addon is up to date.");
       }
     });
   }
