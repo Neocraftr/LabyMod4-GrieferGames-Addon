@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.neocraftr.griefergames"
-version = "1.1.1"
+version = "1.1.2"
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
@@ -17,7 +17,7 @@ labyMod {
         author = "Neocraftr"
         description = "This add-on adds many useful features for the GrieferGames.net server."
         minecraftVersion = "*"
-        version = "1.1.1"
+        version = "1.1.2"
     }
 
     minecraft {
