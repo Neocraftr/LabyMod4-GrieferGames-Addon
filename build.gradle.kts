@@ -17,7 +17,7 @@ labyMod {
         author = "Neocraftr"
         description = "This add-on adds many useful features for the GrieferGames.net server."
         minecraftVersion = "*"
-        version = "1.1.2"
+        version = "1.1.3"
     }
 
     minecraft {
