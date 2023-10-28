@@ -45,13 +45,13 @@ import de.neocraftr.griefergames.utils.Helper;
 import de.neocraftr.griefergames.utils.Updater;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
+import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.client.gui.hud.binding.category.HudWidgetCategory;
 import net.labymod.api.client.options.ChatVisibility;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.models.addon.annotation.AddonMain;
-import net.labymod.core.configuration.labymod.chat.IngameChatTab;
 
 @AddonMain
 public class GrieferGames extends LabyAddon<GrieferGamesConfig> {

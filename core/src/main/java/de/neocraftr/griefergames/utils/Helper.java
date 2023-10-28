@@ -3,6 +3,7 @@ package de.neocraftr.griefergames.utils;
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import net.labymod.api.Laby;
+import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.client.chat.filter.ChatFilter;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
@@ -20,8 +21,8 @@ import net.labymod.api.configuration.labymod.chat.config.RootChatTabConfig.Type;
 import net.labymod.api.util.I18n;
 import net.labymod.api.util.bounds.DefaultRectangle;
 import net.labymod.api.util.bounds.MutableRectangle;
+import net.labymod.core.client.chat.advanced.DefaultAdvancedChatController;
 import net.labymod.core.client.chat.advanced.DefaultChatWindow;
-import net.labymod.core.configuration.labymod.chat.IngameChatTab;
 import net.labymod.core.main.LabyMod;
 import java.util.Arrays;
 import java.util.Collection;
@@ -76,7 +77,7 @@ public class Helper {
     config.setPosition(bounds, rectangle);
 
     DefaultChatWindow window = new DefaultChatWindow(config);
-    LabyMod.references().advancedChatController().addWindow(window);
+    ((DefaultAdvancedChatController)LabyMod.references().advancedChatController()).addWindow(window);
     return (IngameChatTab)window.initializeTab(tabConfig, null, false);
   }
 
