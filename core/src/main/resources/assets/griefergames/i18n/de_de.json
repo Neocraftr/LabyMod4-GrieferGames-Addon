@@ -326,6 +326,20 @@
           "name": "Anzahl Farber"
         }
       }
+    },
+    "region_type": {
+      "citybuild": "Citybuild",
+      "farm": "Farmwelt",
+      "jail": "Gefängnis",
+      "event": "Event",
+      "minigame": "Minigames",
+      "with_name": {
+        "citybuild": "Citybuild %s",
+        "farm": "Farmwelt %s",
+        "jail": "Gefängnis %s",
+        "event": "Event %s",
+        "minigame": "Minigames"
+      }
     }
   }
 }

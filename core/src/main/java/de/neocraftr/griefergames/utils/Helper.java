@@ -21,7 +21,6 @@ import net.labymod.api.configuration.labymod.chat.config.RootChatTabConfig.Type;
 import net.labymod.api.util.I18n;
 import net.labymod.api.util.bounds.DefaultRectangle;
 import net.labymod.api.util.bounds.MutableRectangle;
-import net.labymod.core.client.chat.advanced.DefaultChatWindow;
 import net.labymod.core.main.LabyMod;
 import java.util.Arrays;
 import java.util.Collection;
@@ -73,11 +72,11 @@ public class Helper {
     MutableRectangle rectangle = new DefaultRectangle();
     rectangle.setRight(300);
     rectangle.setBottom(160);
-    config.setPosition(bounds, rectangle);
 
-    DefaultChatWindow window = new DefaultChatWindow(config);
-    LabyMod.references().advancedChatController().getOrCreateSecondaryWindow(() -> tabConfig);
-    return (IngameChatTab)window.initializeTab(tabConfig, null, false);
+    //DefaultChatWindow window = new DefaultChatWindow(config);
+    ChatWindow chatWindow = LabyMod.references().advancedChatController().getOrCreateSecondaryWindow(() -> tabConfig);
+    chatWindow.config().setPosition(bounds, rectangle);
+    return (IngameChatTab)chatWindow.initializeTab(tabConfig, null, false);
   }
 
   public void displayInSecondChat(AdvancedChatMessage message) {

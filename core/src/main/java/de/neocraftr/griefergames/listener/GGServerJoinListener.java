@@ -23,7 +23,8 @@ public class GGServerJoinListener {
   @Subscribe
   public void onServerJoin(ServerJoinEvent event) {
     if(event.serverData().address().getHost().endsWith("griefergames.net") ||
-        event.serverData().address().getHost().endsWith("griefergames.de")) {
+        event.serverData().address().getHost().endsWith("griefergames.de") ||
+        event.serverData().address().getHost().endsWith("griefergames.live")) {
       griefergames.setOnGrieferGames(true);
       griefergames.setLastActivety(System.currentTimeMillis());
       griefergames.setAfk(false);

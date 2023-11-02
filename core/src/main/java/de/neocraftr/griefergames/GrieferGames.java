@@ -36,7 +36,6 @@ import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
 import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
-import de.neocraftr.griefergames.listener.GGTablistListener;
 import de.neocraftr.griefergames.listener.GGTickListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
@@ -98,7 +97,6 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new GGKeyListener(this));
     registerListener(new GGServerMessageListener(this));
     registerListener(new GGScoreboardListener(this));
-    registerListener(new GGTablistListener(this));
     registerListener(new GGSubServerChangeListener(this));
     registerListener(new GGTickListener(this));
 
