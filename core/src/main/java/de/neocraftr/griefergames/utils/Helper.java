@@ -136,22 +136,28 @@ public class Helper {
   }
 
   public void colorizePlayerNames() {
-    Collection<NetworkPlayerInfo> players = Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos();
-
-    for(ScoreboardTeam team : Laby.labyAPI().minecraft().getScoreboard().getTeams()) {
-      if(team.getEntries().size() == 0) continue;
-      String name = team.getEntries().iterator().next();
-      if(name.startsWith("§")) continue;
-
-      for(NetworkPlayerInfo player : players) {
-        if(player.profile().getUsername().equals(name)) {
-          if(player.displayName() != null) {
-            // TODO: Change team prefix
-          }
-          break;
-        }
-      }
-    }
+    return;
+//    Collection<NetworkPlayerInfo> players = Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos();
+//
+//    for(ScoreboardTeam team : Laby.labyAPI().minecraft().getScoreboard().getTeams()) {
+//      if(team.getEntries().isEmpty()) continue;
+//      String name = team.getEntries().iterator().next();
+//      if(name.startsWith("§")) continue;
+//
+//      for(NetworkPlayerInfo player : players) {
+//        if(player.profile().getUsername().equals(name)) {
+//          if(player.displayName() != null) {
+//            // TODO: Change team prefix
+//            String displayName = Laby.references().componentRenderer().legacySectionSerializer().serialize(player.displayName());
+//            Matcher matcher = tablistColoredPrefixRegex.matcher(displayName);
+//            if(matcher.find()) {
+//              System.out.println("Found colored prefix: "+matcher.group(1));
+//            }
+//          }
+//          break;
+//        }
+//      }
+//    }
   }
 
   public void performAfkActions(boolean afk) {

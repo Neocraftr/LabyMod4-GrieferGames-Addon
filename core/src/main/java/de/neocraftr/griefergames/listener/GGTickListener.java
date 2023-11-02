@@ -20,12 +20,11 @@ public class GGTickListener {
 
     if(event.phase() == Phase.POST) {
       if(griefergames.getSubServerType() == SubServerType.REGULAR) {
-        //long currentTime = System.currentTimeMillis();
+        long now = System.currentTimeMillis();
 
-      /*if(currentTime > nextNameColorize) {
-        nextNameColorize = currentTime + 20000L;
-        griefergames.helper().colorizePlayerNames();
-      }*/
+        if(griefergames.configuration().chatConfig().showPrefixInDisplayName().get() && now > nextNameColorize) {
+          griefergames.helper().colorizePlayerNames();
+        }
 
         if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
           griefergames.setAfk(true);
