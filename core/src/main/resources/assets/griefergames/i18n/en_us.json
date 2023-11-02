@@ -326,6 +326,20 @@
           "name": "Amplifier color"
         }
       }
+    },
+    "region_type": {
+      "citybuild": "Citybuild",
+      "farm": "Farmworld",
+      "jail": "Jail",
+      "event": "Event",
+      "minigame": "Minigames",
+      "with_name": {
+        "citybuild": "Citybuild %s",
+        "farm": "Farmworld %s",
+        "jail": "Jail %s",
+        "event": "Event %s",
+        "minigame": "Minigames"
+      }
     }
   }
 }
