@@ -2,6 +2,10 @@ package de.neocraftr.griefergames.utils;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import net.labymod.api.Laby;
 import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.client.chat.filter.ChatFilter;
@@ -9,8 +13,6 @@ import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.Bounds;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.PositionedBounds;
-import net.labymod.api.client.network.NetworkPlayerInfo;
-import net.labymod.api.client.scoreboard.ScoreboardTeam;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.configuration.labymod.chat.ChatTab;
 import net.labymod.api.configuration.labymod.chat.ChatWindow;
@@ -22,11 +24,6 @@ import net.labymod.api.util.I18n;
 import net.labymod.api.util.bounds.DefaultRectangle;
 import net.labymod.api.util.bounds.MutableRectangle;
 import net.labymod.core.main.LabyMod;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Helper {
   private final GrieferGames griefergames;
@@ -133,31 +130,6 @@ public class Helper {
 
   public String capitalize(String str) {
     return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
-  }
-
-  public void colorizePlayerNames() {
-    return;
-//    Collection<NetworkPlayerInfo> players = Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos();
-//
-//    for(ScoreboardTeam team : Laby.labyAPI().minecraft().getScoreboard().getTeams()) {
-//      if(team.getEntries().isEmpty()) continue;
-//      String name = team.getEntries().iterator().next();
-//      if(name.startsWith("§")) continue;
-//
-//      for(NetworkPlayerInfo player : players) {
-//        if(player.profile().getUsername().equals(name)) {
-//          if(player.displayName() != null) {
-//            // TODO: Change team prefix
-//            String displayName = Laby.references().componentRenderer().legacySectionSerializer().serialize(player.displayName());
-//            Matcher matcher = tablistColoredPrefixRegex.matcher(displayName);
-//            if(matcher.find()) {
-//              System.out.println("Found colored prefix: "+matcher.group(1));
-//            }
-//          }
-//          break;
-//        }
-//      }
-//    }
   }
 
   public void performAfkActions(boolean afk) {

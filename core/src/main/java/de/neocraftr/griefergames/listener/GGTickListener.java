@@ -22,10 +22,6 @@ public class GGTickListener {
       if(griefergames.getSubServerType() == SubServerType.REGULAR) {
         long now = System.currentTimeMillis();
 
-        if(griefergames.configuration().chatConfig().showPrefixInDisplayName().get() && now > nextNameColorize) {
-          griefergames.helper().colorizePlayerNames();
-        }
-
         if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
           griefergames.setAfk(true);
           griefergames.helper().performAfkActions(true);

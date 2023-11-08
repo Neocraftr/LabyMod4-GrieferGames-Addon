@@ -31,6 +31,7 @@ import de.neocraftr.griefergames.hud.RedstoneHudWidget;
 import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
 import de.neocraftr.griefergames.listener.GGMessageSendListener;
+import de.neocraftr.griefergames.listener.GGNameTagListener;
 import de.neocraftr.griefergames.listener.GGScoreboardListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
@@ -99,6 +100,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new GGScoreboardListener(this));
     registerListener(new GGSubServerChangeListener(this));
     registerListener(new GGTickListener(this));
+    registerListener(new GGNameTagListener(this));
 
     // Chat modules
     registerListener(new Blanks(this));
