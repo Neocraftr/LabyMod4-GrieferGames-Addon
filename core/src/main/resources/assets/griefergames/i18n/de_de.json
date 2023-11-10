@@ -209,6 +209,14 @@
           "name": "Automatische Chatfarbe",
           "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
+        "autoColorCloud": {
+          "name": "Automatische Chatfarbe (Cloud)",
+          "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
+        },
+        "autoColorCloudColor": {
+          "name": "Chatfarbe (Cloud)",
+          "description": "Farbe, in welcher die Chatnachicht erscheinen wird."
+        },
         "afkTime": {
           "name": "AFK nach (in min)",
           "description": "Zeit, nach der dich das Addon als AFK erkennt."

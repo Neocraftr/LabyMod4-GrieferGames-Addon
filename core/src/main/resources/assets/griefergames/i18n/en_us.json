@@ -209,6 +209,14 @@
           "name": "Auto chatcolor",
           "description": "Automatically adds the set colorcode before every message that you send. (Can cause problems with commands of other addons or mods.)"
         },
+        "autoColorCloud": {
+          "name": "Auto chatcolor (Cloud)",
+          "description": "Automatically adds the set colorcode before every message that you send. (Can cause problems with commands of other addons or mods.)"
+        },
+        "autoColorCloudColor": {
+          "name": "Chatcolor (Cloud)",
+          "description": "Color, in that you will be writing on the Cloud."
+        },
         "afkTime": {
           "name": "AFK after (in min)",
           "description": "Timer after which you will be marked as AFK."

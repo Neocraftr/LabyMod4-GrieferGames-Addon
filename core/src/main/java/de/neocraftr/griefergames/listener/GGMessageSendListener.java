@@ -8,6 +8,7 @@ import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatMessageSendEvent;
 import net.labymod.api.util.I18n;
+import java.awt.*;
 
 public class GGMessageSendListener {
   private final GrieferGames griefergames;
@@ -45,6 +46,15 @@ public class GGMessageSendListener {
           String[] parts = msg.split(" ");
           String newMsg = parts[0].toLowerCase() + msg.replace(parts[0], "");
           event.changeMessage(newMsg, newMsg);
+        }
+      }
+
+      if (griefergames.configuration().automations().autoColorCloud().get()) {
+        if (!msg.startsWith("/")) {
+          Color color = new Color(griefergames.configuration().automations().autoColorCloudColor().get());
+          String hexFormat = String.format("&#%02x%02x%02x", color.getRed(), color.getGreen(),
+              color.getBlue());
+          event.changeMessage(hexFormat + event.getMessage());
         }
       }
     }
