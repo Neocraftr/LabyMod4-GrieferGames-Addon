@@ -34,6 +34,10 @@
           "name": "Fehlerhafte Befehle blockieren",
           "description": "z.B. 7p h oder 7msg"
         },
+        "correctCommandCapitalisation": {
+          "name": "Großschreibung bei Befehlen korrigieren",
+          "description": "z.B. '/P h' -> '/p h'"
+        },
         "betterIgnoreList": {
           "name": "Verbesserte Ignorierliste",
           "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."

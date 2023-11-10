@@ -2,7 +2,6 @@ package de.neocraftr.griefergames.settings;
 
 import de.neocraftr.griefergames.enums.RealnamePosition;
 import de.neocraftr.griefergames.enums.Sounds;
-import net.labymod.api.client.gui.screen.widget.widgets.input.SliderWidget.SliderSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerWidget.ColorPickerSetting;
@@ -19,6 +18,9 @@ public class GrieferGamesChatConfig extends Config {
 
   @SwitchSetting
   private final ConfigProperty<Boolean> preventCommandFailure = new ConfigProperty<>(true);
+
+  @SwitchSetting
+  private final ConfigProperty<Boolean> correctCommandCapitalisation = new ConfigProperty<>(true);
 
   @SwitchSetting
   private final ConfigProperty<Boolean> betterIgnoreList = new ConfigProperty<>(true);
@@ -110,6 +112,10 @@ public class GrieferGamesChatConfig extends Config {
 
   public ConfigProperty<Boolean> preventCommandFailure() {
     return preventCommandFailure;
+  }
+
+  public ConfigProperty<Boolean> correctCommandCapitalisation() {
+    return correctCommandCapitalisation;
   }
 
   public ConfigProperty<Boolean> betterIgnoreList() {

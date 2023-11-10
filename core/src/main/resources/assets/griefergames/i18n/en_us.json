@@ -34,6 +34,10 @@
           "name": "Block incorrect commands",
           "description": "Block mistyped commands. e.g. 7p h or 7msg"
         },
+        "correctCommandCapitalisation": {
+          "name": "Correct capitalisation in commands",
+          "description": "e.g. '/P h' -> '/p h'"
+        },
         "betterIgnoreList": {
           "name": "Better ignore list",
           "description": "Show ignore list in a easier to read format."

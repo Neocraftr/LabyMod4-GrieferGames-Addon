@@ -38,5 +38,15 @@ public class GGMessageSendListener {
         event.changeMessage("&"+griefergames.configuration().automations().autoColor().get().getColorCode()+msg);
       }
     }
+
+    if (griefergames.getSubServerType() == SubServerType.CLOUD) {
+      if (griefergames.configuration().chatConfig().correctCommandCapitalisation().get()) {
+        if (msg.startsWith("/")) {
+          String[] parts = msg.split(" ");
+          String newMsg = parts[0].toLowerCase() + msg.replace(parts[0], "");
+          event.changeMessage(newMsg, newMsg);
+        }
+      }
+    }
   }
 }
