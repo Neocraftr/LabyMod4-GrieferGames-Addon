@@ -18,16 +18,10 @@ public class GGNameTagListener {
 
   @Subscribe
   public void onRender(PlayerNameTagRenderEvent event) {
-    if (!griefergames.configuration().chatConfig().showPrefixInDisplayName().get()) {
-      return;
-    }
+    if (!griefergames.configuration().chatConfig().showPrefixInDisplayName().get()) return;
     NetworkPlayerInfo playerInfo = event.playerInfo();
-    if (playerInfo == null) {
-      return;
-    }
-    if (event.tagType() != TagType.MAIN_TAG) {
-      return;
-    }
+    if (playerInfo == null) return;
+    if (event.tagType() != TagType.MAIN_TAG) return;
     if (playerInfo.displayName() instanceof TextComponent) {
       event.setNameTag(removeMarker((TextComponent) event.playerInfo().displayName()));
     }
