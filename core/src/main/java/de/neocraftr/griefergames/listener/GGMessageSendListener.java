@@ -57,6 +57,11 @@ public class GGMessageSendListener {
           event.changeMessage(hexFormat + event.getMessage());
         }
       }
+
+      if (griefergames.configuration().automations().colorGradiantCloud().get()) {
+        String colorized = griefergames.helper().addGradiant(msg, "#");
+        if (!colorized.equals(msg)) event.changeMessage(colorized, msg);
+      }
     }
   }
 }

@@ -28,6 +28,9 @@ public class GrieferGamesAutomationsConfig extends Config {
   @ColorPickerSetting
   private final ConfigProperty<Integer> autoColorCloudColor = new ConfigProperty<>(new Color(255,255,255).getRGB());
 
+  @SwitchSetting
+  private final ConfigProperty<Boolean> colorGradiantCloud = new ConfigProperty<>(true);
+
 
   @SettingSection("afk")
 
@@ -64,6 +67,10 @@ public class GrieferGamesAutomationsConfig extends Config {
 
   public ConfigProperty<Integer> autoColorCloudColor() {
     return autoColorCloudColor;
+  }
+
+  public ConfigProperty<Boolean> colorGradiantCloud() {
+    return colorGradiantCloud;
   }
 
   public ConfigProperty<Integer> afkTime() {

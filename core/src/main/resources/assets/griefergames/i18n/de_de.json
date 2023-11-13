@@ -8,7 +8,6 @@
       "autoUpdate": {
         "name": "Automatisch aktualisieren"
       },
-
       "chatConfig": {
         "name": "Chat & Tablist",
         "header": {
@@ -25,7 +24,6 @@
             "name": "Chatzeit"
           }
         },
-
         "clickToReply": {
           "name": "Klicken zum antworten",
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
@@ -143,7 +141,6 @@
           "description": "Format in welchem die Chatzeit angezeigt wird."
         }
       },
-
       "payment": {
         "name": "Bezahlungen",
         "header": {
@@ -154,7 +151,6 @@
             "name": "Bank"
           }
         },
-
         "logTransactions": {
           "name": "Transaktionen protokollieren",
           "description": "Alle Transaktionen in einer Log Datei protokollieren."
@@ -189,7 +185,6 @@
           "description": "Benachrichtigung für Bank Transaktionen anzeigen."
         }
       },
-
       "automations": {
         "name": "Automatisierungen",
         "header": {
@@ -217,6 +212,10 @@
           "name": "Chatfarbe (Cloud)",
           "description": "Farbe, in welcher die Chatnachicht erscheinen wird."
         },
+        "colorGradiantCloud": {
+          "name": "Chatfarbverlauf (Cloud)",
+          "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
+        },
         "afkTime": {
           "name": "AFK nach (in min)",
           "description": "Zeit, nach der dich das Addon als AFK erkennt."
@@ -238,19 +237,17 @@
           "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
         }
       },
-
       "friends": {
         "name": "Freunde",
         "labyChatShowSubServerEnabled": {
           "name": "CityBuild im LabyChat anzeigen",
           "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
         },
-        "discordShowSubServerEnabled":{
+        "discordShowSubServerEnabled": {
           "name": "CityBuild in Discord anzeigen",
           "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
         }
       },
-
       "openWebsite": {
         "name": "Website",
         "text": "Öffnen"
@@ -260,7 +257,6 @@
         "text": "Öffnen"
       }
     },
-
     "messages": {
       "warning": "ACHTUNG!",
       "on": "AN",
@@ -275,7 +271,6 @@
       "afkBackMessage": "Du wurdest als wieder zurück erkannt.",
       "commandFailure": "Hast du dich vertippt? Wenn nicht, sende die Nachricht nochmal."
     },
-
     "notifications": {
       "generalError": "Ein Fehler ist aufgetreten, weitere Informationen im Chat.",
       "addonLoaded": "GrieferGames Addon {version} geladen.",
@@ -297,7 +292,6 @@
       "itemRemover": "in {time} Sekunden",
       "mobRemover": "in {time} Minuten"
     },
-
     "hudWidgetCategory": {
       "griefergames": {
         "name": "GrieferGames",

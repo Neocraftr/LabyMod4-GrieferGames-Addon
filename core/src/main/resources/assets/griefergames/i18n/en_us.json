@@ -217,6 +217,10 @@
           "name": "Chatcolor (Cloud)",
           "description": "Color, in that you will be writing on the Cloud."
         },
+        "colorGradiantCloud": {
+          "name": "Chatcolorgradiant (Cloud)",
+          "description": "Adds a color gradiant between to hexcolorcodes, like '##ff0000' and '##00ff00' in the message"
+        },
         "afkTime": {
           "name": "AFK after (in min)",
           "description": "Timer after which you will be marked as AFK."
