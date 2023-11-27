@@ -235,13 +235,21 @@ public class Helper {
       }
     }
 
+    if (correctedList.size() == 1) {
+      return correctedList.get(0);
+    }
+
     int length = 0; // all chars, that are not gradiant color codes
     int lengthGradiant = 0; //chars that get colorized
     for (int i = 0; i < correctedList.size(); i++) {
       if (!pattern.matcher(correctedList.get(i)).find()) {
-        length = length + correctedList.get(i).length() + correctedList.get(i - 1).length();
-        if (!patternGradiant.matcher(correctedList.get(i - 1)).find()) continue;
-        lengthGradiant = lengthGradiant + correctedList.get(i).length();
+        if (i > 0) {
+          length = length + correctedList.get(i).length() + correctedList.get(i - 1).length();
+          if (!patternGradiant.matcher(correctedList.get(i - 1)).find()) continue;
+          lengthGradiant = lengthGradiant + correctedList.get(i).length();
+        } else {
+          length = length + correctedList.get(i).length();
+        }
       }
     }
     int numberOfCodes = (256 - length) / 8;

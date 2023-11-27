@@ -42,6 +42,7 @@ import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
 import de.neocraftr.griefergames.utils.GrieferGamesController;
 import de.neocraftr.griefergames.utils.Helper;
+import net.labymod.api.Laby;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
 import net.labymod.api.client.chat.advanced.IngameChatTab;
