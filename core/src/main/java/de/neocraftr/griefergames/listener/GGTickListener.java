@@ -17,16 +17,15 @@ public class GGTickListener {
   @Subscribe
   public void onTick(GameTickEvent event) {
     if(!griefergames.isOnGrieferGames()) return;
-
     if(event.phase() == Phase.POST) {
-      if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if (griefergames.getSubServerType() == SubServerType.REGULAR || griefergames.getSubServerType() == SubServerType.CLOUD) {
         long now = System.currentTimeMillis();
-
         if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
           griefergames.setAfk(true);
           griefergames.helper().performAfkActions(true);
         }
-
+      }
+      if(griefergames.getSubServerType() == SubServerType.REGULAR) {
         if(griefergames.isHideBoosterMenu() || griefergames.configuration().automations().hideBoosterMenu().get()) {
           if(griefergames.controller().hideBoosterMenu()) {
             griefergames.setHideBoosterMenu(false);

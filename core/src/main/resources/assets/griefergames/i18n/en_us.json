@@ -27,23 +27,23 @@
         },
 
         "clickToReply": {
-          "name": "Click to reply",
+          "name": "Click to reply (1.8)",
           "description": "Click on the name in any private message to quickly reply."
         },
         "preventCommandFailure": {
-          "name": "Block incorrect commands",
+          "name": "Block incorrect commands (1.8 + Cloud)",
           "description": "Block mistyped commands. e.g. 7p h or 7msg"
         },
         "correctCommandCapitalisation": {
-          "name": "Correct capitalisation in commands",
+          "name": "Correct capitalisation in commands (Cloud)",
           "description": "e.g. '/P h' -> '/p h'"
         },
         "betterIgnoreList": {
-          "name": "Better ignore list",
+          "name": "Better ignore list (1.8)",
           "description": "Show ignore list in a easier to read format."
         },
         "showPrefixInDisplayName": {
-          "name": "Prefix colors above player",
+          "name": "Prefix colors above player (1.8 + Cloud)",
           "description": "Show the names above players in their correct prefix colors."
         },
         "plotChatRight": {
@@ -198,15 +198,15 @@
           }
         },
         "hideBoosterMenu": {
-          "name": "Hide booster menu",
+          "name": "Hide booster menu (1.8)",
           "description": "Hide the manu of the /booster command. Only show overview in the chat."
         },
         "autoPortal": {
-          "name": "Auto portal",
+          "name": "Auto portal (1.8)",
           "description": "Directly join to the portal room."
         },
         "autoColor": {
-          "name": "Auto chatcolor",
+          "name": "Auto chatcolor (1.8)",
           "description": "Automatically adds the set colorcode before every message that you send. (Can cause problems with commands of other addons or mods.)"
         },
         "autoColorCloud": {
@@ -222,23 +222,23 @@
           "description": "Adds a color gradiant between to hexcolorcodes, like '##ff0000' and '##00ff00' in the message"
         },
         "afkTime": {
-          "name": "AFK after (in min)",
+          "name": "AFK after (in min) (1.8 + Cloud)",
           "description": "Timer after which you will be marked as AFK."
         },
         "afkNick": {
-          "name": "Nick when AFK",
+          "name": "Nick when AFK (1.8 + Cloud)",
           "description": "Automatically set a nickname, when you ware detected as AFK and remove after you are back."
         },
         "afkNickname": {
-          "name": "Nickname (4-16 characters)",
+          "name": "Nickname (4-16 characters) (1.8 + Cloud)",
           "description": "Nickname while you are AFK."
         },
         "afkMsgReply": {
-          "name": "Reply to private messages",
+          "name": "Reply to private messages (1.8 + Cloud)",
           "description": "Automatically reply to private messages with a predefined text while you are AFK."
         },
         "afkMsgText": {
-          "name": "Reply text",
+          "name": "Reply text (1.8 + Cloud)",
           "description": "Text that should be replied to private messages, while you are AFK."
         }
       },
@@ -246,11 +246,11 @@
       "friends": {
         "name": "Friends",
         "labyChatShowSubServerEnabled": {
-          "name": "Show CityBuild in LabyChat",
+          "name": "Show CityBuild in LabyChat (1.8 + Cloud)",
           "description": "Let all your friends see your current CityBuild in the LabyChat."
         },
         "discordShowSubServerEnabled":{
-          "name": "Show CityBuild in Discord",
+          "name": "Show CityBuild in Discord (1.8 + Cloud)",
           "description": "Let all your friends on Discord see your current CityBuild."
         }
       },

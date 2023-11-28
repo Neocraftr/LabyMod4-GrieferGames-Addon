@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.event.Subscribe;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,62 +25,64 @@ public class Booster extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    String plain = event.getMessage().getPlainText();
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      String plain = event.getMessage().getPlainText();
 
-    Matcher matcher = boosterInfoRegex.matcher(plain);
-    if(matcher.find()) {
-      String type = matcher.group(1);
-      if(matcher.group(2) == null) {
-        try {
-          int count = Integer.parseInt(matcher.group(3));
-          List<Long> durations = new ArrayList<>();
+      Matcher matcher = boosterInfoRegex.matcher(plain);
+      if (matcher.find()) {
+        String type = matcher.group(1);
+        if (matcher.group(2) == null) {
+          try {
+            int count = Integer.parseInt(matcher.group(3));
+            List<Long> durations = new ArrayList<>();
 
-          for(String durationStr : matcher.group(4).split(" ")) {
-            Matcher durationMatcher = durationRegex.matcher(durationStr);
-            if(durationMatcher.find()) {
-              int seconds = Integer.parseInt(durationMatcher.group(3));
-              int minutes = Integer.parseInt(durationMatcher.group(2));
-              int hours = (durationMatcher.group(1) != null) ? Integer.parseInt(durationMatcher.group(1)) : 0;
+            for (String durationStr : matcher.group(4).split(" ")) {
+              Matcher durationMatcher = durationRegex.matcher(durationStr);
+              if (durationMatcher.find()) {
+                int seconds = Integer.parseInt(durationMatcher.group(3));
+                int minutes = Integer.parseInt(durationMatcher.group(2));
+                int hours = (durationMatcher.group(1) != null) ? Integer.parseInt(durationMatcher.group(1)) : 0;
 
-              durations.add(TimeUnit.SECONDS.toMillis(seconds) + TimeUnit.MINUTES.toMillis(minutes) + TimeUnit.HOURS.toMillis(hours));
+                durations.add(TimeUnit.SECONDS.toMillis(seconds) + TimeUnit.MINUTES.toMillis(minutes) + TimeUnit.HOURS.toMillis(hours));
+              }
             }
-          }
 
-          Collections.reverse(durations);
-          griefergames.boosterController().setBooster(type, count, durations);
-        } catch(NumberFormatException e) {
+            Collections.reverse(durations);
+            griefergames.boosterController().setBooster(type, count, durations);
+          } catch (NumberFormatException e) {
+            e.printStackTrace();
+          }
+        } else {
+          griefergames.boosterController().resetBooster(type);
+        }
+        return;
+      }
+
+      matcher = boosterStartRegex.matcher(plain);
+      if (matcher.find()) {
+        String type = matcher.group(1);
+        try {
+          int minutes = Integer.parseInt(matcher.group(2));
+
+          griefergames.boosterController().addBooster(type, TimeUnit.MINUTES.toMillis(minutes));
+        } catch (NumberFormatException e) {
           e.printStackTrace();
         }
-      } else {
+        return;
+      }
+
+      matcher = boosterEndRegex.matcher(plain);
+      if (matcher.find()) {
+        String type = matcher.group(1);
+        griefergames.boosterController().removeBooster(type);
+        return;
+      }
+
+      matcher = boosterResetRegex.matcher(plain);
+      if (matcher.find()) {
+        String type = matcher.group(1);
         griefergames.boosterController().resetBooster(type);
       }
-      return;
-    }
-
-    matcher = boosterStartRegex.matcher(plain);
-    if(matcher.find()) {
-      String type = matcher.group(1);
-      try {
-        int minutes = Integer.parseInt(matcher.group(2));
-
-        griefergames.boosterController().addBooster(type, TimeUnit.MINUTES.toMillis(minutes));
-      } catch(NumberFormatException e) {
-        e.printStackTrace();
-      }
-      return;
-    }
-
-    matcher = boosterEndRegex.matcher(plain);
-    if(matcher.find()) {
-      String type = matcher.group(1);
-      griefergames.boosterController().removeBooster(type);
-      return;
-    }
-
-    matcher = boosterResetRegex.matcher(plain);
-    if(matcher.find()) {
-      String type = matcher.group(1);
-      griefergames.boosterController().resetBooster(type);
     }
   }
 }

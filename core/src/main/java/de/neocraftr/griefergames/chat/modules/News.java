@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.event.Subscribe;
 
 public class News extends ChatModule {
@@ -15,18 +16,20 @@ public class News extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if(!griefergames.configuration().chatConfig().hideNewsMessages().get()) return;
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if (!griefergames.configuration().chatConfig().hideNewsMessages().get()) return;
 
-    String plain = event.getMessage().getPlainText();
-    boolean isNewsSeperator = event.getMessage().getFormattedText().contains("§f§m------------§8 [ §6News§8 ] §f§m------------");
+      String plain = event.getMessage().getPlainText();
+      boolean isNewsSeperator = event.getMessage().getFormattedText().contains("§f§m------------§8 [ §6News§8 ] §f§m------------");
 
-    if(plain.contains("\\u2503") && plain.contains("\\u00BB")) {
-      isNewsMessage = false;
-    } else if(isNewsSeperator) {
-      isNewsMessage = !isNewsMessage;
-      event.setCancelled(true);
-    } else if(isNewsMessage) {
-      event.setCancelled(true);
+      if (plain.contains("\\u2503") && plain.contains("\\u00BB")) {
+        isNewsMessage = false;
+      } else if (isNewsSeperator) {
+        isNewsMessage = !isNewsMessage;
+        event.setCancelled(true);
+      } else if (isNewsMessage) {
+        event.setCancelled(true);
+      }
     }
   }
 }

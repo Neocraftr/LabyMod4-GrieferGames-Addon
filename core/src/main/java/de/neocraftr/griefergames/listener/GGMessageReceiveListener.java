@@ -21,7 +21,7 @@ public class GGMessageReceiveListener {
     if(!griefergames.isOnGrieferGames()) return;
     //System.out.println(GsonComponentSerializer.gson().serialize(event.message()));
 
-    if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+    if(griefergames.getSubServerType() == SubServerType.REGULAR || griefergames.getSubServerType() == SubServerType.CLOUD) {
       GGChatProcessEvent processEvent = new GGChatProcessEvent(event.chatMessage());
       Laby.labyAPI().eventBus().fire(processEvent);
       if(processEvent.isCancelled()) {

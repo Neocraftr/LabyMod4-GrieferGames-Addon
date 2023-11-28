@@ -25,23 +25,23 @@
           }
         },
         "clickToReply": {
-          "name": "Klicken zum antworten",
+          "name": "Klicken zum antworten (1.8)",
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
         },
         "preventCommandFailure": {
-          "name": "Fehlerhafte Befehle blockieren",
+          "name": "Fehlerhafte Befehle blockieren (1.8 + Cloud)",
           "description": "z.B. 7p h oder 7msg"
         },
         "correctCommandCapitalisation": {
-          "name": "Großschreibung bei Befehlen korrigieren",
+          "name": "Großschreibung bei Befehlen korrigieren (Cloud)",
           "description": "z.B. '/P h' -> '/p h'"
         },
         "betterIgnoreList": {
-          "name": "Verbesserte Ignorierliste",
+          "name": "Verbesserte Ignorierliste (1.8)",
           "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."
         },
         "showPrefixInDisplayName": {
-          "name": "Farbigen Prefix über Spielern anzeigen",
+          "name": "Farbigen Prefix über Spielern anzeigen (1.8 + Cloud)",
           "description": "Name über Spielern in korrekten Prefix Farben anzeigen."
         },
         "plotChatRight": {
@@ -193,15 +193,15 @@
           }
         },
         "hideBoosterMenu": {
-          "name": "Booster Menü ausblenden",
+          "name": "Booster Menü ausblenden (1.8)",
           "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
         },
         "autoPortal": {
-          "name": "Auto Portal",
+          "name": "Auto Portal (1.8)",
           "description": "Direkt in den Portalraum joinen."
         },
         "autoColor": {
-          "name": "Automatische Chatfarbe",
+          "name": "Automatische Chatfarbe (1.8)",
           "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
         "autoColorCloud": {
@@ -217,34 +217,34 @@
           "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
         },
         "afkTime": {
-          "name": "AFK nach (in min)",
+          "name": "AFK nach (in min) (1.8 + Cloud)",
           "description": "Zeit, nach der dich das Addon als AFK erkennt."
         },
         "afkNick": {
-          "name": "Nicken wenn AFK",
+          "name": "Nicken wenn AFK (1.8 + Cloud)",
           "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
         },
         "afkNickname": {
-          "name": "AFK Nickname (4-16 Zeichen)",
+          "name": "AFK Nickname (4-16 Zeichen) (1.8 + Cloud)",
           "description": "Dein Nickname während du AFK bist."
         },
         "afkMsgReply": {
-          "name": "Private Nachrichten beantworten",
+          "name": "Private Nachrichten beantworten (1.8 + Cloud)",
           "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
         },
         "afkMsgText": {
-          "name": "AFK Nachrichten Text",
+          "name": "AFK Nachrichten Text (1.8 + Cloud)",
           "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
         }
       },
       "friends": {
         "name": "Freunde",
         "labyChatShowSubServerEnabled": {
-          "name": "CityBuild im LabyChat anzeigen",
+          "name": "CityBuild im LabyChat anzeigen (1.8 + Cloud)",
           "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
         },
         "discordShowSubServerEnabled": {
-          "name": "CityBuild in Discord anzeigen",
+          "name": "CityBuild in Discord anzeigen (1.8 + Cloud)",
           "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
         }
       },
