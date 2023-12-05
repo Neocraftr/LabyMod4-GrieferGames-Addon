@@ -15,11 +15,11 @@ public class Blanks extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (griefergames.configuration().chatConfig().hideBlankLines().get() && event.getMessage().getPlainText().isBlank()) {
+      if (griefergames.configuration().chatConfig().isHideBlankLines() && event.getMessage().getPlainText().isBlank()) {
         event.setCancelled(true);
       }
 
-      if (griefergames.configuration().chatConfig().hideSupremeBlankLines().get() && event.getMessage().getPlainText().trim().equals("\u00BB")) {
+      if (griefergames.configuration().chatConfig().isHideSupremeBlankLines() && event.getMessage().getPlainText().trim().equals("\u00BB")) {
         event.setCancelled(true);
       }
     }

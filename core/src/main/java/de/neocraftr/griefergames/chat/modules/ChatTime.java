@@ -23,7 +23,7 @@ public class ChatTime extends ChatModule {
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
     if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().showChatTime().get()) return;
+      if (!griefergames.configuration().chatConfig().isShowChatTime()) return;
       if (event.getMessage().getPlainText().isBlank()) return;
 
       String[] time = LocalDateTime.now().format(formatter).split(":");

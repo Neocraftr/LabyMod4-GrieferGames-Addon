@@ -25,29 +25,28 @@ public class Teleport extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().highlightTPA().get()) return;
-      if (event.getMessage().getPlainText().isBlank()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    if (!griefergames.configuration().chatConfig().isHighlightTpa()) return;
+    if (event.getMessage().getPlainText().isBlank()) return;
 
-      Matcher tpaMesssage = tpaMesssageRegexp.matcher(event.getMessage().getPlainText());
-      if (tpaMesssage.find()) {
-        List<Component> children = new ArrayList<>(event.getMessage().component().getChildren());
-        children.add(0, Component.text("[TPA] ", Style.builder()
-          .color(NamedTextColor.DARK_GREEN)
-          .decorate(TextDecoration.BOLD)
-          .build()));
-        event.getMessage().component().setChildren(children);
-      }
+    Matcher tpaMesssage = tpaMesssageRegexp.matcher(event.getMessage().getPlainText());
+    if (tpaMesssage.find()) {
+      List<Component> children = new ArrayList<>(event.getMessage().component().getChildren());
+      children.add(0, Component.text("[TPA] ", Style.builder()
+        .color(NamedTextColor.DARK_GREEN)
+        .decorate(TextDecoration.BOLD)
+        .build()));
+      event.getMessage().component().setChildren(children);
+    }
 
-      Matcher tpahereMesssage = tpahereMesssageRegexp.matcher(event.getMessage().getPlainText());
-      if (tpahereMesssage.find()) {
-        List<Component> children = new ArrayList<>(event.getMessage().component().getChildren());
-        children.add(0, Component.text("[TPAHERE] ", Style.builder()
-          .color(NamedTextColor.RED)
-          .decorate(TextDecoration.BOLD)
-          .build()));
-        event.getMessage().component().setChildren(children);
-      }
+    Matcher tpahereMesssage = tpahereMesssageRegexp.matcher(event.getMessage().getPlainText());
+    if (tpahereMesssage.find()) {
+      List<Component> children = new ArrayList<>(event.getMessage().component().getChildren());
+      children.add(0, Component.text("[TPAHERE] ", Style.builder()
+        .color(NamedTextColor.RED)
+        .decorate(TextDecoration.BOLD)
+        .build()));
+      event.getMessage().component().setChildren(children);
     }
   }
 }

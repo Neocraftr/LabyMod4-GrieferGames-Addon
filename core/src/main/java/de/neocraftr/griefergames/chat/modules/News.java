@@ -16,20 +16,19 @@ public class News extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().hideNewsMessages().get()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    if (!griefergames.configuration().chatConfig().isHideNewsMessages()) return;
 
-      String plain = event.getMessage().getPlainText();
-      boolean isNewsSeperator = event.getMessage().getFormattedText().contains("§f§m------------§8 [ §6News§8 ] §f§m------------");
+    String plain = event.getMessage().getPlainText();
+    boolean isNewsSeperator = event.getMessage().getFormattedText().contains("§f§m------------§8 [ §6News§8 ] §f§m------------");
 
-      if (plain.contains("\\u2503") && plain.contains("\\u00BB")) {
-        isNewsMessage = false;
-      } else if (isNewsSeperator) {
-        isNewsMessage = !isNewsMessage;
-        event.setCancelled(true);
-      } else if (isNewsMessage) {
-        event.setCancelled(true);
-      }
+    if (plain.contains("\\u2503") && plain.contains("\\u00BB")) {
+      isNewsMessage = false;
+    } else if (isNewsSeperator) {
+      isNewsMessage = !isNewsMessage;
+      event.setCancelled(true);
+    } else if (isNewsMessage) {
+      event.setCancelled(true);
     }
   }
 }

@@ -40,17 +40,17 @@ public class ItemRemover extends ChatModule {
 
       boolean done;
       if ((done = itemRemoverDoneMessage.find()) || itemRemoverMessage.find()) {
-        if (griefergames.configuration().chatConfig().itemRemoverLastTimeHover().get() && done) {
+        if (griefergames.configuration().chatConfig().isRemoverLastTimeHover() && done) {
           String dateNowStr = LocalDateTime.now().format(formatter);
           Component hoverText = Component.text(dateNowStr);
           event.getMessage().component().style(event.getMessage().component().style().hoverEvent(HoverEvent.showText(hoverText)));
         }
 
-        if (griefergames.configuration().chatConfig().itemRemoverChatRight().get()) {
+        if (griefergames.configuration().chatConfig().isRemoverChatRight()) {
           event.setSecondChat(true);
         }
 
-        if (griefergames.configuration().chatConfig().itemRemoverNotification().get() && !done) {
+        if (griefergames.configuration().chatConfig().isRemoverNotification() && !done) {
           Laby.labyAPI().notificationController().push(Notification.builder()
             .title(Component.text("ItemRemover", NamedTextColor.RED))
             .text(Component.text(I18n.translate(griefergames.namespace() + ".notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))

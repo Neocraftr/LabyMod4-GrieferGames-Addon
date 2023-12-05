@@ -15,14 +15,13 @@ public class Vote extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().hideVoteMessages().get()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    if (!griefergames.configuration().chatConfig().isHideVoteMessages()) return;
 
-      String plain = event.getMessage().getPlainText();
-      if (plain.startsWith("[GrieferGames]") &&
-        (plain.endsWith("hat für unseren Server gevotet! /vote") || plain.endsWith("hat gevotet und erhält ein tolles Geschenk! /vote"))) {
-        event.setCancelled(true);
-      }
+    String plain = event.getMessage().getPlainText();
+    if (plain.startsWith("[GrieferGames]") &&
+      (plain.endsWith("hat für unseren Server gevotet! /vote") || plain.endsWith("hat gevotet und erhält ein tolles Geschenk! /vote"))) {
+      event.setCancelled(true);
     }
   }
 }

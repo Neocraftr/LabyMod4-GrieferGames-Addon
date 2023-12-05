@@ -167,64 +167,65 @@ public class GrieferGamesChatConfig extends Config {
     return mentionSound.get();
   }
 
-  public ConfigProperty<Boolean> highlightTPA() {
-    return highlightTPA;
+  public boolean isHighlightTpa() {
+    return enabled.get() && highlightTPA.get();
   }
 
-  public ConfigProperty<Boolean> itemRemoverChatRight() {
-    return itemRemoverChatRight;
+  public boolean isRemoverChatRight() {
+    return enabled.get() && itemRemoverChatRight.get();
   }
 
-  public ConfigProperty<Boolean> itemRemoverLastTimeHover() {
-    return itemRemoverLastTimeHover;
+  public boolean isRemoverLastTimeHover() {
+    return enabled.get() && itemRemoverLastTimeHover.get();
   }
 
-  public ConfigProperty<Boolean> itemRemoverNotification() {
-    return itemRemoverNotification;
+  public boolean isRemoverNotification() {
+    return enabled.get() && itemRemoverNotification.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverChatRight() {
-    return mobRemoverChatRight;
+  public boolean isMobRemoverChatRight() {
+    return enabled.get() && mobRemoverChatRight.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverLastTimeHover() {
-    return mobRemoverLastTimeHover;
+  public boolean isMobRemoverLastTimeHover() {
+    return enabled.get() && mobRemoverLastTimeHover.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverNotification() {
-    return mobRemoverNotification;
+  public boolean isMobRemoverNotification() {
+    return enabled.get() && mobRemoverNotification.get();
   }
 
-  public ConfigProperty<Boolean> hideVoteMessages() {
-    return hideVoteMessages;
+  public boolean isHideVoteMessages() {
+    return enabled.get() && hideVoteMessages.get();
   }
 
-  public ConfigProperty<Boolean> hideNewsMessages() {
-    return hideNewsMessages;
+  public boolean isHideNewsMessages() {
+    return enabled.get() && hideNewsMessages.get();
   }
 
-  public ConfigProperty<Boolean> hideBlankLines() {
-    return hideBlankLines;
+  public boolean isHideBlankLines() {
+    return enabled.get() && hideBlankLines.get();
   }
 
-  public ConfigProperty<Boolean> hideSupremeBlankLines() {
-    return hideSupremeBlankLines;
+  public boolean isHideSupremeBlankLines() {
+    return enabled.get() && hideSupremeBlankLines.get();
   }
 
-  public ConfigProperty<Boolean> ampClantagEnabled() {
-    return ampClantagEnabled;
+  public boolean isAmpClantagEnabled() {
+    return enabled.get() && ampClantagEnabled.get();
   }
 
-  public ConfigProperty<Boolean> ampEnabled() {
-    return ampEnabled;
+  public boolean isAmpEnabled() {
+    return enabled.get() && ampEnabled.get();
   }
 
-  public ConfigProperty<String> ampReplacement() {
-    return ampReplacement;
+  public String getAmpReplacement() {
+    if(!enabled.get()) return "";
+    return ampReplacement.get();
   }
 
-  public ConfigProperty<Boolean> showChatTime() {
-    return showChatTime;
+  public boolean isShowChatTime() {
+    return enabled.get() && showChatTime.get();
   }
 
   public ConfigProperty<Boolean> chatTimeAfterMessage() {
