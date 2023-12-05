@@ -19,7 +19,7 @@ public class GrieferGamesAutomationsConfig extends Config {
   private final ConfigProperty<Boolean> enabled = new ConfigProperty<Boolean>(true);
 
   // 1.8
-  @SpriteSlot(x = 2, y = 0)
+  @SpriteSlot(x = 0, y = 1)
   private GrieferGamesBoosterToolsConfig boosterConfig = new GrieferGamesBoosterToolsConfig();
 
   @SwitchSetting
