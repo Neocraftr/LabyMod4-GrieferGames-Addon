@@ -19,18 +19,17 @@ public class Realname extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      RealnamePosition position = griefergames.configuration().chatConfig().realnamePosition().get();
-      if (position == RealnamePosition.DEFAULT) return;
-      if (event.getMessage().getPlainText().isBlank()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    RealnamePosition position = griefergames.configuration().chatConfig().getRealnamePosition();
+    if (position == RealnamePosition.DEFAULT) return;
+    if (event.getMessage().getPlainText().isBlank()) return;
 
-      Matcher matcher = realnameRegex.matcher(event.getMessage().getPlainText());
-      if (matcher.find()) {
-        if (position == RealnamePosition.SECONDCHAT) {
-          event.setSecondChat(true);
-        } else if (position == RealnamePosition.BOTH) {
-          event.setSecondChat(true, true);
-        }
+    Matcher matcher = realnameRegex.matcher(event.getMessage().getPlainText());
+    if (matcher.find()) {
+      if (position == RealnamePosition.SECONDCHAT) {
+        event.setSecondChat(true);
+      } else if (position == RealnamePosition.BOTH) {
+        event.setSecondChat(true, true);
       }
     }
   }

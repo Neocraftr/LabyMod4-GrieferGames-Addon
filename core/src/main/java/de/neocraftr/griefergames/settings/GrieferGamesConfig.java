@@ -42,6 +42,12 @@ public class GrieferGamesConfig extends AddonConfig {
     OperatingSystem.getPlatform().openUrl("https://github.com/cosmohdx/LabyMod4-GrieferGames-Addon");
   }
 
+  @SpriteSlot(x = 7, y = 0)
+  @MethodOrder(after = "openGithub")
+  @ButtonSetting
+  public void openSupport() {
+    OperatingSystem.getPlatform().openUrl("https://discord.gg/EtgdTX9dKa");
+  }
 
   @Override
   public ConfigProperty<Boolean> enabled() {

@@ -52,26 +52,26 @@ public class PrivateMessage extends ChatModule {
       if (privateMessage.find()) {
         String playerName = privateMessage.group(2);
 
-        if (griefergames.configuration().chatConfig().clickToReply().get()) {
+        if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
           addReplyAction(event.getMessage().component(), "§6[", "§6 -> ", playerName);
         }
 
-        if (griefergames.configuration().chatConfig().privateChatRight().get()) {
+        if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
           event.setSecondChat(true);
         }
 
-        if (griefergames.configuration().chatConfig().privateChatSound().get() != Sounds.NONE) {
-          ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().privateChatSound().get().path());
+        if (griefergames.configuration().chatConfig().getPrivateChatSound() != Sounds.NONE) {
+          ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().getPrivateChatSound().path());
           Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
         }
       }
 
       if (privateMessageSent.find()) {
-        if (griefergames.configuration().chatConfig().clickToReply().get()) {
+        if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
           addReplyAction(event.getMessage().component(), "§6 -> ", "§6] ", privateMessageSent.group(2));
         }
 
-        if (griefergames.configuration().chatConfig().privateChatRight().get()) {
+        if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
           event.setSecondChat(true);
         }
       }

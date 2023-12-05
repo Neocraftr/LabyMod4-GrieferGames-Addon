@@ -2,7 +2,6 @@ package de.neocraftr.griefergames.settings;
 
 import de.neocraftr.griefergames.enums.RealnamePosition;
 import de.neocraftr.griefergames.enums.Sounds;
-import net.labymod.api.client.gui.screen.widget.widgets.input.SliderWidget.SliderSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerWidget.ColorPickerSetting;
@@ -18,6 +17,7 @@ public class GrieferGamesChatConfig extends Config {
   @ParentSwitch
   private final ConfigProperty<Boolean> enabled = new ConfigProperty<Boolean>(true);
 
+  // ONLY 1.8
   @SwitchSetting
   private final ConfigProperty<Boolean> clickToReply = new ConfigProperty<>(true);
 
@@ -27,6 +27,7 @@ public class GrieferGamesChatConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> correctCommandCapitalisation = new ConfigProperty<>(true);
 
+  // Only 1.8
   @SwitchSetting
   private final ConfigProperty<Boolean> betterIgnoreList = new ConfigProperty<>(true);
 
@@ -44,6 +45,7 @@ public class GrieferGamesChatConfig extends Config {
   @DropdownSetting
   private final ConfigProperty<Sounds> privateChatSound = new ConfigProperty<>(Sounds.POP);
 
+  // 1.8
   @DropdownSetting
   private final ConfigProperty<RealnamePosition> realnamePosition = new ConfigProperty<>(
       RealnamePosition.DEFAULT);
@@ -114,53 +116,55 @@ public class GrieferGamesChatConfig extends Config {
   @TextFieldSetting
   private final ConfigProperty<String> chatTimeFormat = new ConfigProperty<>(GrieferGamesConfig.DEFAULT_CHATTIME_FORMAT);
 
-
-  public ConfigProperty<Boolean> preventCommandFailure() {
-    return preventCommandFailure;
+  public boolean isPreventCommandFailure() {
+    return enabled.get() && preventCommandFailure.get();
   }
 
   public ConfigProperty<Boolean> correctCommandCapitalisation() {
     return correctCommandCapitalisation;
   }
 
-  public ConfigProperty<Boolean> betterIgnoreList() {
-    return betterIgnoreList;
+  public boolean isBetterIgnoreList() {
+    return enabled.get() && betterIgnoreList.get();
   }
 
-  public ConfigProperty<Boolean> showPrefixInDisplayName() {
-    return showPrefixInDisplayName;
+  public boolean isShowPrefixInDisplayName() {
+    return enabled.get() && showPrefixInDisplayName.get();
   }
 
-  public ConfigProperty<Boolean> plotChatRight() {
-    return plotChatRight;
+  public boolean isPlotChatRight() {
+    return enabled.get() && plotChatRight.get();
   }
 
-  public ConfigProperty<Boolean> clickToReply() {
-    return clickToReply;
+  public boolean isClickToReply() {
+    return enabled.get() && clickToReply.get();
   }
 
-  public ConfigProperty<Boolean> privateChatRight() {
-    return privateChatRight;
+  public boolean isPrivateChatRight() {
+    return enabled.get() && privateChatRight.get();
   }
 
-  public ConfigProperty<Sounds> privateChatSound() {
-    return privateChatSound;
+  public Sounds getPrivateChatSound() {
+    if(!enabled.get()) return Sounds.NONE;
+    return privateChatSound.get();
   }
 
-  public ConfigProperty<RealnamePosition> realnamePosition() {
-    return realnamePosition;
+  public RealnamePosition getRealnamePosition() {
+    if(!enabled.get()) return RealnamePosition.DEFAULT;
+    return realnamePosition.get();
   }
 
-  public ConfigProperty<Boolean> highlightMentions() {
-    return highlightMentions;
+  public boolean isHighlightMentions() {
+    return enabled.get() && highlightMentions.get();
   }
 
-  public ConfigProperty<Color> mentionColor() {
-    return mentionColor;
+  public Color getMentionColor() {
+    return mentionColor.get();
   }
 
-  public ConfigProperty<Sounds> mentionSound() {
-    return mentionSound;
+  public Sounds getMentionSound() {
+    if(!enabled.get()) return Sounds.NONE;
+    return mentionSound.get();
   }
 
   public ConfigProperty<Boolean> highlightTPA() {

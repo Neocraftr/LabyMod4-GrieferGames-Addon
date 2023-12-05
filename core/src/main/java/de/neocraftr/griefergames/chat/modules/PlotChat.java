@@ -16,7 +16,7 @@ public class PlotChat extends ChatModule {
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
     if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().plotChatRight().get()) return;
+      if (!griefergames.configuration().chatConfig().isPlotChatRight()) return;
 
       if (event.getMessage().getPlainText().startsWith("[Plot-Chat]")) {
         event.setSecondChat(true);

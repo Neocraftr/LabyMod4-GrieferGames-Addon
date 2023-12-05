@@ -18,7 +18,7 @@ public class GGNameTagListener {
 
   @Subscribe
   public void onRender(PlayerNameTagRenderEvent event) {
-    if (!griefergames.configuration().chatConfig().showPrefixInDisplayName().get()) return;
+    if (!griefergames.configuration().chatConfig().isShowPrefixInDisplayName()) return;
     NetworkPlayerInfo playerInfo = event.playerInfo();
     if (playerInfo == null) return;
     if (event.tagType() != TagType.MAIN_TAG) return;

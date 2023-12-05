@@ -250,8 +250,13 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   public SubServerType getSubServerType() {
     return subServerType;
   }
+
   public void setSubServerType(SubServerType subServerType) {
     this.subServerType = subServerType;
+  }
+
+  public boolean isSubServerType(SubServerType subServerType) {
+    return this.subServerType == subServerType;
   }
 
   public long getLastActivety() {

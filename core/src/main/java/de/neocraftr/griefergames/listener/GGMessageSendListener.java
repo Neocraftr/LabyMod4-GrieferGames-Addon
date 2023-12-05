@@ -27,17 +27,15 @@ public class GGMessageSendListener {
         }
         String msg = event.getMessage();
 
-        if (griefergames.getSubServerType() == SubServerType.REGULAR || griefergames.getSubServerType() == SubServerType.CLOUD) {
-            if (griefergames.configuration().chatConfig().preventCommandFailure().get()) {
-                if (msg.startsWith("7") && !msg.equalsIgnoreCase(lastMessage)) {
-                    griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace() + ".messages.commandFailure"), NamedTextColor.RED));
-                    lastMessage = msg;
-                    event.setCancelled(true);
-                } else {
-                    lastMessage = "";
-                }
-            }
-        }
+          if (griefergames.configuration().chatConfig().isPreventCommandFailure()) {
+              if (msg.startsWith("7") && !msg.equalsIgnoreCase(lastMessage)) {
+                  griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace() + ".messages.commandFailure"), NamedTextColor.RED));
+                  lastMessage = msg;
+                  event.setCancelled(true);
+              } else {
+                  lastMessage = "";
+              }
+          }
 
         if (griefergames.getSubServerType() == SubServerType.REGULAR) {
             if (griefergames.configuration().automations().autoColor().get() != ChatColor.NONE && !msg.startsWith("/") && !msg.startsWith(".") && !msg.startsWith("-")) {

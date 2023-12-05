@@ -21,22 +21,20 @@ public class Mention extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().highlightMentions().get() && griefergames.configuration().chatConfig().mentionSound().get() == Sounds.NONE)
-        return;
-      if (event.getMessage().getPlainText().isBlank()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    if (!griefergames.configuration().chatConfig().isHighlightMentions() && griefergames.configuration().chatConfig().getMentionSound() == Sounds.NONE) return;
+    if (event.getMessage().getPlainText().isBlank()) return;
 
-      Matcher matcher = globalChatregex.matcher(event.getMessage().getPlainText());
-      if (matcher.find() && !matcher.group(2).equalsIgnoreCase(Laby.labyAPI().getName())) {
-        if (matcher.group(3).toLowerCase().contains(Laby.labyAPI().getName().toLowerCase())) {
-          if (griefergames.configuration().chatConfig().highlightMentions().get()) {
-            event.getMessage().metadata().set("gg_custom_background", griefergames.configuration().chatConfig().mentionColor().get().get());
-          }
+    Matcher matcher = globalChatregex.matcher(event.getMessage().getPlainText());
+    if (matcher.find() && !matcher.group(2).equalsIgnoreCase(Laby.labyAPI().getName())) {
+      if (matcher.group(3).toLowerCase().contains(Laby.labyAPI().getName().toLowerCase())) {
+        if (griefergames.configuration().chatConfig().isHighlightMentions()) {
+          event.getMessage().metadata().set("gg_custom_background", griefergames.configuration().chatConfig().getMentionColor().get());
+        }
 
-          if (griefergames.configuration().chatConfig().mentionSound().get() != Sounds.NONE) {
-            ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().mentionSound().get().path());
-            Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
-          }
+        if (griefergames.configuration().chatConfig().getMentionSound() != Sounds.NONE) {
+          ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().getMentionSound().path());
+          Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
         }
       }
     }
