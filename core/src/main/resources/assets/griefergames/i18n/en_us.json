@@ -197,9 +197,17 @@
             "name": "AFK"
           }
         },
-        "hideBoosterMenu": {
-          "name": "Hide booster menu (1.8)",
-          "description": "Hide the manu of the /booster command. Only show overview in the chat."
+        "boosterConfig": {
+          "name": "Booster (1.8)",
+          "description": "Einstellungen für Booster-Automatisierung",
+          "loadBoostersOnJoin": {
+            "name": "Load booster on join",
+            "description": "Auto load boosters when you join the server."
+          },
+          "hideBoosterMenu": {
+            "name": "Hide booster menu ",
+            "description": "Hide the manu of the /booster command. Only show overview in the chat."
+          }
         },
         "autoPortal": {
           "name": "Auto portal (1.8)",
@@ -262,6 +270,10 @@
       "openGithub": {
         "name": "GitHub",
         "text": "Open"
+      },
+      "openSupport": {
+        "name": "Support-Discord",
+        "text": "Öffnen"
       }
     },
 

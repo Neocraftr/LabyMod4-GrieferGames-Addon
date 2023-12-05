@@ -26,9 +26,11 @@ public class GGTickListener {
         }
       }
       if(griefergames.getSubServerType() == SubServerType.REGULAR) {
-        if(griefergames.isHideBoosterMenu() || griefergames.configuration().automations().hideBoosterMenu().get()) {
-          if(griefergames.controller().hideBoosterMenu()) {
-            griefergames.setHideBoosterMenu(false);
+        if(griefergames.configuration().automations().boosterConfig().isEnabled()) {
+          if(griefergames.configuration().automations().boosterConfig().isHideBoosterMenu() || griefergames.isHideBoosterMenu()) {
+            if(griefergames.controller().hideBoosterMenu()) {
+              griefergames.setHideBoosterMenu(false);
+            }
           }
         }
       }

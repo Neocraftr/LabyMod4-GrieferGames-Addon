@@ -8,6 +8,7 @@ import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerW
 import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget.DropdownSetting;
 import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.annotation.ParentSwitch;
+import net.labymod.api.configuration.loader.annotation.SpriteSlot;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
 import java.awt.*;
@@ -17,8 +18,9 @@ public class GrieferGamesAutomationsConfig extends Config {
   @ParentSwitch
   private final ConfigProperty<Boolean> enabled = new ConfigProperty<Boolean>(true);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> hideBoosterMenu = new ConfigProperty<>(false);
+  // 1.8
+  @SpriteSlot(x = 2, y = 0)
+  private GrieferGamesBoosterToolsConfig boosterConfig = new GrieferGamesBoosterToolsConfig();
 
   @SwitchSetting
   private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(false);
@@ -53,8 +55,8 @@ public class GrieferGamesAutomationsConfig extends Config {
   @TextFieldSetting
   private final ConfigProperty<String> afkMsgText = new ConfigProperty<>("Ich bin momentan AFK ;)");
 
-  public ConfigProperty<Boolean> hideBoosterMenu() {
-    return hideBoosterMenu;
+  public GrieferGamesBoosterToolsConfig boosterConfig() {
+    return boosterConfig;
   }
 
   public ConfigProperty<Boolean> autoPortal() {

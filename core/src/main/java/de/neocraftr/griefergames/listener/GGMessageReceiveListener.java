@@ -32,8 +32,10 @@ public class GGMessageReceiveListener {
 
     if(griefergames.getSubServerType() == SubServerType.REGULAR) {
       if (event.chatMessage().getPlainText().equals("[Switcher] Daten heruntergeladen!")) {
-        griefergames.setHideBoosterMenu(true);
-        griefergames.sendMessage("/booster");
+        if(griefergames.configuration().automations().boosterConfig().loadBoostersOnJoin()) {
+          griefergames.setHideBoosterMenu(true);
+          griefergames.sendMessage("/booster");
+        }
       }
     }
   }
