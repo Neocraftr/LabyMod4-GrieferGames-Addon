@@ -34,11 +34,6 @@ public class GGServerJoinListener {
       griefergames.setHideBoosterMenu(false);
       griefergames.helper().findSecondChat(griefergames.configuration().chatConfig().getChatTabName());
 
-      Laby.labyAPI().notificationController().push(Notification.builder()
-          .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
-          .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.addonLoaded").replace("{version}", "v"+griefergames.addonInfo().getVersion())))
-          .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/icon.png"))).build());
-
       // Warn user when advanced chat is disabled.
       if(!Laby.labyAPI().config().ingame().advancedChat().enabled().get()) {
         griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace()+".messages.advancedChatWarning"),
