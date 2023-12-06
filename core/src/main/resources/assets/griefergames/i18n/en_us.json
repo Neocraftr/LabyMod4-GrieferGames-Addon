@@ -65,17 +65,21 @@
           "name": "Show realname",
           "description": "Show /realname in the 2nd or in both chats."
         },
-        "highlightMentions": {
+        "nameHighlightConfig": {
           "name": "Highlight mentions",
-          "description": "Highlight messages where your name is mentioned in color."
-        },
-        "mentionColor": {
-          "name": "Mention color",
-          "description": "Color in which messages where your name is mentioned are highlighted."
-        },
-        "mentionSound": {
-          "name": "Mention sound",
-          "description": "Sound which is played when somebody mentions your name in the chat."
+          "description": "Highlight messages where your name is mentioned in color.",
+          "mentionColor": {
+            "name": "Mention color",
+            "description": "Color in which messages where your name is mentioned are highlighted."
+          },
+          "mentionSound": {
+            "name": "Mention sound",
+            "description": "Sound which is played when somebody mentions your name in the chat."
+          },
+          "additionalHighlightText": {
+            "name": "Additional searchtext",
+            "description": "Additional text which should be searched in the messages. e.g. 'Abge' in addition to the name AbgegrieftHD"
+          }
         },
         "highlightTPA": {
           "name": "Highlight TPA messages",

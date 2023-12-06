@@ -54,14 +54,7 @@ public class GrieferGamesChatConfig extends Config {
   private final ConfigProperty<RealnamePosition> realnamePosition = new ConfigProperty<>(
       RealnamePosition.DEFAULT);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> highlightMentions = new ConfigProperty<>(true);
-
-  @ColorPickerSetting
-  private final ConfigProperty<Color> mentionColor = new ConfigProperty<>(Color.ofRGB(121, 178, 255));
-
-  @DropdownSetting
-  private final ConfigProperty<Sounds> mentionSound = new ConfigProperty<>(Sounds.NONE);
+  private final GrieferGamesNameHighlightConfig nameHighlightConfig = new GrieferGamesNameHighlightConfig();
 
   @SwitchSetting
   private final ConfigProperty<Boolean> highlightTPA = new ConfigProperty<>(true);
@@ -166,17 +159,8 @@ public class GrieferGamesChatConfig extends Config {
     return realnamePosition.get();
   }
 
-  public boolean isHighlightMentions() {
-    return enabled.get() && highlightMentions.get();
-  }
-
-  public Color getMentionColor() {
-    return mentionColor.get();
-  }
-
-  public Sounds getMentionSound() {
-    if(!enabled.get()) return Sounds.NONE;
-    return mentionSound.get();
+  public GrieferGamesNameHighlightConfig nameHighlightConfig() {
+    return nameHighlightConfig;
   }
 
   public boolean isHighlightTpa() {

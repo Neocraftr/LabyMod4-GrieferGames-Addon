@@ -64,17 +64,21 @@
           "name": "Realname anzeigen",
           "description": "/realname im 2. oder in beiden Chats anzeigen."
         },
-        "highlightMentions": {
+        "nameHighlightConfig": {
           "name": "Erwähnungen markieren",
-          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben."
-        },
-        "mentionColor": {
-          "name": "Erwähnungen Farbe",
-          "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
-        },
-        "mentionSound": {
-          "name": "Erwähnungen Sound",
-          "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben.",
+          "mentionColor": {
+            "name": "Erwähnungen Farbe",
+            "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
+          },
+          "mentionSound": {
+            "name": "Erwähnungen Sound",
+            "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          },
+          "additionalHighlightText": {
+            "name": "Zusätzlicher Suchtext",
+            "description": "Ein zusätzlicher Text, der in den Nachrichten gesucht werden soll. z.B. 'Abge' zusätzlich zum Namen AbgegrieftHD"
+          }
         },
         "highlightTPA": {
           "name": "TPA Nachrichten markieren",

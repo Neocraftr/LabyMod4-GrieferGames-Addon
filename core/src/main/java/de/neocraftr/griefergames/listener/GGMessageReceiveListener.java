@@ -4,10 +4,13 @@ import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
 import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.Laby;
+import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
 import net.labymod.api.event.client.chat.advanced.AdvancedChatTabMessageEvent;
+
+import static de.neocraftr.griefergames.Constants.CHAT_METADATA_CUSTOM_BACKGROUND;
 
 public class GGMessageReceiveListener {
   private final GrieferGames griefergames;
@@ -42,9 +45,12 @@ public class GGMessageReceiveListener {
 
   @Subscribe
   public void onTabMessage(AdvancedChatTabMessageEvent event) {
-    if(event.message().chatMessage().metadata().has("gg_custom_background")) {
-      event.message().metadata().set("custom_background",
-          (Integer)event.message().chatMessage().metadata().get("gg_custom_background"));
+    if(event.message().metadata().has(CHAT_METADATA_CUSTOM_BACKGROUND)) {
+      event.message().metadata().set(IngameChatTab.CUSTOM_BACKGROUND,
+          (Integer)event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND));
+    }else if(event.message().chatMessage().metadata().has(CHAT_METADATA_CUSTOM_BACKGROUND)) {
+      event.message().metadata().set(IngameChatTab.CUSTOM_BACKGROUND,
+          (Integer) event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND));
     }
   }
 }
