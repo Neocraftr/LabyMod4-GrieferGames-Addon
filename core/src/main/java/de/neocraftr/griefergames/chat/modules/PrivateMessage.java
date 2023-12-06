@@ -20,8 +20,9 @@ public class PrivateMessage extends ChatModule {
   private final GrieferGames griefergames;
   private final Pattern privateMessageRegex = Pattern.compile("\\[([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16}) -> mir\\] (.*)$");
   private final Pattern privateMessageRegexCloud = Pattern.compile("\\[([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16}) -> (mir|me)\\] (.*)$");
-  private final Pattern privateMessageSentRegex = Pattern.compile("\\[mir -> ([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16})\\] (.*)$");
+  private final Pattern privateMessageSentRegex = Pattern.compile("\\[(mir|me) -> ([A-Za-z\\-\\+]+) \\u2503 (~?\\!?\\w{1,16})\\] (.*)$");
   private long lastAfkMessage = 0;
+  private final String CHAT_MESSAGE_SEPERATOR = "»";
 
   public PrivateMessage(GrieferGames griefergames) {
     this.griefergames = griefergames;
@@ -30,55 +31,64 @@ public class PrivateMessage extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if (event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR || griefergames.getSubServerType() == SubServerType.CLOUD) {
-      Matcher privateMessage = privateMessageRegexCloud.matcher(event.getMessage().getPlainText());
+    if (event.getMessage().getPlainText().contains(CHAT_MESSAGE_SEPERATOR)) {
+      // Fake MSG message
+      return;
+    }
+    Matcher privateMessage = privateMessageRegexCloud.matcher(griefergames.helper().removeLeadingMiscCodes(event.getMessage().getPlainText()));
+    boolean isIncomingPrivateMessage = privateMessage.find();
 
-      if (privateMessage.find()) {
-        String playerName = privateMessage.group(2);
-
-        if (griefergames.configuration().automations().afkMsgReply().get() && griefergames.isAfk() && lastAfkMessage + 1000 <= System.currentTimeMillis()) {
-          String message = griefergames.configuration().automations().afkMsgText().get();
-          if (!message.isBlank()) {
-            griefergames.sendMessage("/msg " + playerName + " " + message);
-            lastAfkMessage = System.currentTimeMillis();
-          }
+    // Auto AFK message reply
+    if (isIncomingPrivateMessage) {
+      String playerName = privateMessage.group(2);
+      if (griefergames.configuration().automations().afkMsgReply().get() && griefergames.isAfk() && lastAfkMessage + 1000 <= System.currentTimeMillis()) {
+        String message = griefergames.configuration().automations().afkMsgText().get();
+        if (!message.isBlank()) {
+          griefergames.sendMessage("/msg " + playerName + " " + message);
+          lastAfkMessage = System.currentTimeMillis();
         }
       }
     }
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      Matcher privateMessage = privateMessageRegex.matcher(event.getMessage().getPlainText());
-      Matcher privateMessageSent = privateMessageSentRegex.matcher(event.getMessage().getPlainText());
 
-      if (privateMessage.find()) {
-        String playerName = privateMessage.group(2);
+    // Incoming private message
+    if (isIncomingPrivateMessage) {
+      String playerName = privateMessage.group(2);
 
-        if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
-          addReplyAction(event.getMessage().component(), "§6[", "§6 -> ", playerName);
-        }
-
-        if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
-          event.setSecondChat(true);
-        }
-
-        if (griefergames.configuration().chatConfig().getPrivateChatSound() != Sounds.NONE) {
-          ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().getPrivateChatSound().path());
-          Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
-        }
+      if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
+        addReplyAction(event.getMessage().component(), "§6[", "§6 -> ", playerName);
       }
 
-      if (privateMessageSent.find()) {
-        if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
-          addReplyAction(event.getMessage().component(), "§6 -> ", "§6] ", privateMessageSent.group(2));
-        }
+      if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
+        event.setSecondChat(true);
+      }
 
-        if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
-          event.setSecondChat(true);
-        }
+      if (griefergames.configuration().chatConfig().getPrivateChatSound() != Sounds.NONE) {
+        ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().getPrivateChatSound().path());
+        Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
+      }
+    }
+
+    // Outgoing private message
+    Matcher privateMessageSent = privateMessageSentRegex.matcher(griefergames.helper().removeLeadingMiscCodes(event.getMessage().getPlainText()));
+    if (privateMessageSent.find()) {
+      if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
+        addReplyAction(event.getMessage().component(), "§6 -> ", "§6] ", privateMessageSent.group(2));
+      }
+
+      if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
+        event.setSecondChat(true);
       }
     }
   }
 
-  public void addReplyAction(Component message, String startText, String endText, String name) {
+  /**
+   * Adds a reply action to the message sender
+   * @param message Message
+   * @param startText Start text
+   * @param endText End text
+   * @param name Name of the player
+   */
+  private void addReplyAction(Component message, String startText, String endText, String name) {
     int startIndex = -1, endIndex = -1;
     for (int i = 0; i < message.getChildren().size(); i++) {
       Component component = message.getChildren().get(i);
