@@ -32,7 +32,7 @@ public class GGServerJoinListener {
       griefergames.setCitybuildDelay(false);
       griefergames.setNickname(null);
       griefergames.setHideBoosterMenu(false);
-      griefergames.helper().findSecondChat("2nd Chat");
+      griefergames.helper().findSecondChat(griefergames.configuration().chatConfig().getChatTabName());
 
       Laby.labyAPI().notificationController().push(Notification.builder()
           .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))

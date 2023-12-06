@@ -61,7 +61,7 @@ public class GGSubServerChangeListener {
     } else if(event.subServerName().equals("skyblock")) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
     } else if(event.subServerName().equals("lobby")) {
-      if(griefergames.configuration().automations().autoPortal().get()) {
+      if(griefergames.configuration().automations().isAutoPortalEnabled()) {
         new Timer().schedule(new TimerTask() {
           @Override
           public void run() {

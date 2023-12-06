@@ -24,6 +24,10 @@
             "name": "Chatzeit"
           }
         },
+        "chatTabName": {
+          "name": "Name des Chat-Tabs",
+          "description": "Legt den Namen für den Chattab fest, welcher durch das Addon erstellt wird."
+        },
         "clickToReply": {
           "name": "Klicken zum antworten (1.8)",
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."

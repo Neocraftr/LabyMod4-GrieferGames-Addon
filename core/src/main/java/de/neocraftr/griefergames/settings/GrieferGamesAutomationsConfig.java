@@ -59,8 +59,8 @@ public class GrieferGamesAutomationsConfig extends Config {
     return boosterConfig;
   }
 
-  public ConfigProperty<Boolean> autoPortal() {
-    return autoPortal;
+  public boolean isAutoPortalEnabled() {
+    return enabled.get() && autoPortal.get();
   }
 
   public ConfigProperty<ChatColor> autoColor() {

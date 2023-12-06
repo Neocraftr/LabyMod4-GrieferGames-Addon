@@ -25,7 +25,10 @@
             "name": "Chat time"
           }
         },
-
+        "chatTabName": {
+          "name": "Name of Chat-Tabs",
+          "description": "Sets the name of the chat tab created by the addon."
+        },
         "clickToReply": {
           "name": "Click to reply (1.8)",
           "description": "Click on the name in any private message to quickly reply."

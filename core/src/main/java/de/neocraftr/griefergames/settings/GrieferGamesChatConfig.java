@@ -8,6 +8,7 @@ import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerW
 import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget.DropdownSetting;
 import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.annotation.ParentSwitch;
+import net.labymod.api.configuration.loader.annotation.SpriteSlot;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
 import net.labymod.api.util.Color;
@@ -35,6 +36,9 @@ public class GrieferGamesChatConfig extends Config {
   private final ConfigProperty<Boolean> showPrefixInDisplayName = new ConfigProperty<>(true);
 
   @SettingSection("highlightMessages")
+
+  @TextFieldSetting
+  private final ConfigProperty<String> chatTabName = new ConfigProperty<>("2nd Chat");
 
   @SwitchSetting
   private final ConfigProperty<Boolean> plotChatRight = new ConfigProperty<>(true);
@@ -116,6 +120,10 @@ public class GrieferGamesChatConfig extends Config {
   @TextFieldSetting
   private final ConfigProperty<String> chatTimeFormat = new ConfigProperty<>(GrieferGamesConfig.DEFAULT_CHATTIME_FORMAT);
 
+  public boolean isEnabled() {
+    return enabled.get();
+  }
+
   public boolean isPreventCommandFailure() {
     return enabled.get() && preventCommandFailure.get();
   }
@@ -130,6 +138,10 @@ public class GrieferGamesChatConfig extends Config {
 
   public boolean isShowPrefixInDisplayName() {
     return enabled.get() && showPrefixInDisplayName.get();
+  }
+
+  public String getChatTabName() {
+    return chatTabName.get();
   }
 
   public boolean isPlotChatRight() {
