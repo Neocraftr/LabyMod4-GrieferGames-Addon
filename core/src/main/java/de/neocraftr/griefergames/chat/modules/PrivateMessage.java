@@ -41,8 +41,8 @@ public class PrivateMessage extends ChatModule {
     // Auto AFK message reply
     if (isIncomingPrivateMessage) {
       String playerName = privateMessage.group(2);
-      if (griefergames.configuration().automations().afkMsgReply().get() && griefergames.isAfk() && lastAfkMessage + 1000 <= System.currentTimeMillis()) {
-        String message = griefergames.configuration().automations().afkMsgText().get();
+      if (griefergames.configuration().automations().afkConfig().afkMsgReply().get() && griefergames.isAfk() && lastAfkMessage + 1000 <= System.currentTimeMillis()) {
+        String message = griefergames.configuration().automations().afkConfig().afkMsgText().get();
         if (!message.isBlank()) {
           griefergames.sendMessage("/msg " + playerName + " " + message);
           lastAfkMessage = System.currentTimeMillis();

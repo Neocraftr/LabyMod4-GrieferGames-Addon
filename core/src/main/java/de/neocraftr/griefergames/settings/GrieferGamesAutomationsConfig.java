@@ -37,23 +37,8 @@ public class GrieferGamesAutomationsConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> colorGradiantCloud = new ConfigProperty<>(true);
 
-
-  @SettingSection("afk")
-
-  @SliderSetting(min = 1, max = 60)
-  private final ConfigProperty<Integer> afkTime = new ConfigProperty<>(15);
-
-  @SwitchSetting
-  private final ConfigProperty<Boolean> afkNick = new ConfigProperty<>(false);
-
-  @TextFieldSetting
-  private final ConfigProperty<String> afkNickname = new ConfigProperty<>(GrieferGamesConfig.DEFAULT_AFK_NICKNAME);
-
-  @SwitchSetting
-  private final ConfigProperty<Boolean> afkMsgReply = new ConfigProperty<>(true);
-
-  @TextFieldSetting
-  private final ConfigProperty<String> afkMsgText = new ConfigProperty<>("Ich bin momentan AFK ;)");
+  @SpriteSlot(x = 1, y = 1)
+  private GrieferGamesAFKConfig afkConfig = new GrieferGamesAFKConfig();
 
   public GrieferGamesBoosterToolsConfig boosterConfig() {
     return boosterConfig;
@@ -79,23 +64,7 @@ public class GrieferGamesAutomationsConfig extends Config {
     return colorGradiantCloud;
   }
 
-  public ConfigProperty<Integer> afkTime() {
-    return afkTime;
-  }
-
-  public ConfigProperty<Boolean> afkNick() {
-    return afkNick;
-  }
-
-  public ConfigProperty<String> afkNickname() {
-    return afkNickname;
-  }
-
-  public ConfigProperty<Boolean> afkMsgReply() {
-    return afkMsgReply;
-  }
-
-  public ConfigProperty<String> afkMsgText() {
-    return afkMsgText;
+  public GrieferGamesAFKConfig afkConfig() {
+    return afkConfig;
   }
 }

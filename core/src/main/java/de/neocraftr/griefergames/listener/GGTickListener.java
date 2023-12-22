@@ -20,7 +20,8 @@ public class GGTickListener {
     if(event.phase() == Phase.POST) {
       if (griefergames.getSubServerType() == SubServerType.REGULAR || griefergames.getSubServerType() == SubServerType.CLOUD) {
         long now = System.currentTimeMillis();
-        if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkTime().get() * 60000) < System.currentTimeMillis()) {
+        if(!griefergames.isAfk() && griefergames.getLastActivety() + (griefergames.configuration().automations().afkConfig().afkTime().get() * 60000) < System.currentTimeMillis()
+          && griefergames.configuration().automations().afkConfig().isEnabled()) {
           griefergames.setAfk(true);
           griefergames.helper().performAfkActions(true);
         }

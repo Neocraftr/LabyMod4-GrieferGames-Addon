@@ -195,11 +195,6 @@
       },
       "automations": {
         "name": "Automatisierungen",
-        "header": {
-          "afk": {
-            "name": "AFK"
-          }
-        },
         "boosterConfig": {
           "name": "Booster (1.8)",
           "description": "Einstellungen für Booster-Automatisierung",
@@ -232,25 +227,29 @@
           "name": "Chatfarbverlauf (Cloud)",
           "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
         },
-        "afkTime": {
-          "name": "AFK nach (in min) (1.8 + Cloud)",
-          "description": "Zeit, nach der dich das Addon als AFK erkennt."
-        },
-        "afkNick": {
-          "name": "Nicken wenn AFK (1.8 + Cloud)",
-          "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
-        },
-        "afkNickname": {
-          "name": "AFK Nickname (4-16 Zeichen) (1.8 + Cloud)",
-          "description": "Dein Nickname während du AFK bist."
-        },
-        "afkMsgReply": {
-          "name": "Private Nachrichten beantworten (1.8 + Cloud)",
-          "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
-        },
-        "afkMsgText": {
-          "name": "AFK Nachrichten Text (1.8 + Cloud)",
-          "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+        "afkConfig": {
+          "name": "AFK (1.8 + Cloud)",
+          "description": "Einstellungen für AFK-Automatisierung",
+          "afkTime": {
+            "name": "AFK nach (in min) (1.8 + Cloud)",
+            "description": "Zeit, nach der dich das Addon als AFK erkennt."
+          },
+          "afkNick": {
+            "name": "Nicken wenn AFK (1.8 + Cloud)",
+            "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+          },
+          "afkNickname": {
+            "name": "AFK Nickname (4-16 Zeichen) (1.8 + Cloud)",
+            "description": "Dein Nickname während du AFK bist."
+          },
+          "afkMsgReply": {
+            "name": "Private Nachrichten beantworten (1.8 + Cloud)",
+            "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
+          },
+          "afkMsgText": {
+            "name": "AFK Nachrichten Text (1.8 + Cloud)",
+            "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+          }
         }
       },
       "friends": {

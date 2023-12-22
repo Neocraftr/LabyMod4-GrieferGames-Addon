@@ -199,14 +199,9 @@
 
       "automations": {
         "name": "Automations",
-        "header": {
-          "afk": {
-            "name": "AFK"
-          }
-        },
         "boosterConfig": {
           "name": "Booster (1.8)",
-          "description": "Einstellungen für Booster-Automatisierung",
+          "description": "Settings for Booster-Automations",
           "loadBoostersOnJoin": {
             "name": "Load booster on join",
             "description": "Auto load boosters when you join the server."
@@ -236,25 +231,29 @@
           "name": "Chatcolorgradiant (Cloud)",
           "description": "Adds a color gradiant between to hexcolorcodes, like '##ff0000' and '##00ff00' in the message"
         },
-        "afkTime": {
-          "name": "AFK after (in min) (1.8 + Cloud)",
-          "description": "Timer after which you will be marked as AFK."
-        },
-        "afkNick": {
-          "name": "Nick when AFK (1.8 + Cloud)",
-          "description": "Automatically set a nickname, when you ware detected as AFK and remove after you are back."
-        },
-        "afkNickname": {
-          "name": "Nickname (4-16 characters) (1.8 + Cloud)",
-          "description": "Nickname while you are AFK."
-        },
-        "afkMsgReply": {
-          "name": "Reply to private messages (1.8 + Cloud)",
-          "description": "Automatically reply to private messages with a predefined text while you are AFK."
-        },
-        "afkMsgText": {
-          "name": "Reply text (1.8 + Cloud)",
-          "description": "Text that should be replied to private messages, while you are AFK."
+        "afkConfig": {
+          "name": "AFK (1.8 + Cloud)",
+          "description": "Settings for AFK-Automations",
+          "afkTime": {
+            "name": "AFK after (in min) (1.8 + Cloud)",
+            "description": "Timer after which you will be marked as AFK."
+          },
+          "afkNick": {
+            "name": "Nick when AFK (1.8 + Cloud)",
+            "description": "Automatically set a nickname, when you ware detected as AFK and remove after you are back."
+          },
+          "afkNickname": {
+            "name": "Nickname (4-16 characters) (1.8 + Cloud)",
+            "description": "Nickname while you are AFK."
+          },
+          "afkMsgReply": {
+            "name": "Reply to private messages (1.8 + Cloud)",
+            "description": "Automatically reply to private messages with a predefined text while you are AFK."
+          },
+          "afkMsgText": {
+            "name": "Reply text (1.8 + Cloud)",
+            "description": "Text that should be replied to private messages, while you are AFK."
+          }
         }
       },
 

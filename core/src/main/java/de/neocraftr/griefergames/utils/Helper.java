@@ -199,8 +199,8 @@ public class Helper {
       if (afk) {
           griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace() + ".messages.afkMessage"), NamedTextColor.GRAY));
 
-          if (griefergames.configuration().automations().afkNick().get() && isCityBuild(griefergames.getSubServer())) {
-              String nickname = griefergames.configuration().automations().afkNickname().get();
+          if (griefergames.configuration().automations().afkConfig().afkNick().get() && isCityBuild(griefergames.getSubServer())) {
+              String nickname = griefergames.configuration().automations().afkConfig().afkNickname().get();
               if (nickname.isBlank()) {
                   nickname = GrieferGamesConfig.DEFAULT_AFK_NICKNAME;
               }
@@ -213,7 +213,7 @@ public class Helper {
           }
       } else {
           griefergames.displayAddonMessage(Component.text(I18n.translate(griefergames.namespace() + ".messages.afkBackMessage"), NamedTextColor.GRAY));
-          if (griefergames.configuration().automations().afkNick().get() && isCityBuild(griefergames.getSubServer())) {
+          if (griefergames.configuration().automations().afkConfig().afkNick().get() && isCityBuild(griefergames.getSubServer())) {
               griefergames.sendMessage("/unnick");
           }
       }
