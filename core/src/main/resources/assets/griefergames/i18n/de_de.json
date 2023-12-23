@@ -195,6 +195,11 @@
       },
       "automations": {
         "name": "Automatisierungen",
+        "header": {
+          "chatcolor": {
+            "name": "Chatfarbe"
+          }
+        },
         "boosterConfig": {
           "name": "Booster (1.8)",
           "description": "Einstellungen für Booster-Automatisierung",

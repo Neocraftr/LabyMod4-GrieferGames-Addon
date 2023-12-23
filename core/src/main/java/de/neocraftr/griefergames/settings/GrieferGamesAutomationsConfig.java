@@ -22,9 +22,13 @@ public class GrieferGamesAutomationsConfig extends Config {
   @SpriteSlot(x = 0, y = 1)
   private GrieferGamesBoosterToolsConfig boosterConfig = new GrieferGamesBoosterToolsConfig();
 
+  @SpriteSlot(x = 1, y = 1)
+  private GrieferGamesAFKConfig afkConfig = new GrieferGamesAFKConfig();
+
   @SwitchSetting
   private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(false);
 
+  @SettingSection("chatcolor")
   @DropdownSetting
   private final ConfigProperty<ChatColor> autoColor = new ConfigProperty<>(ChatColor.NONE);
 
@@ -37,11 +41,13 @@ public class GrieferGamesAutomationsConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> colorGradiantCloud = new ConfigProperty<>(true);
 
-  @SpriteSlot(x = 1, y = 1)
-  private GrieferGamesAFKConfig afkConfig = new GrieferGamesAFKConfig();
 
   public GrieferGamesBoosterToolsConfig boosterConfig() {
     return boosterConfig;
+  }
+
+  public GrieferGamesAFKConfig afkConfig() {
+    return afkConfig;
   }
 
   public boolean isAutoPortalEnabled() {
@@ -62,9 +68,5 @@ public class GrieferGamesAutomationsConfig extends Config {
 
   public ConfigProperty<Boolean> colorGradiantCloud() {
     return colorGradiantCloud;
-  }
-
-  public GrieferGamesAFKConfig afkConfig() {
-    return afkConfig;
   }
 }

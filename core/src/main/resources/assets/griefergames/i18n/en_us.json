@@ -199,6 +199,11 @@
 
       "automations": {
         "name": "Automations",
+        "header": {
+          "chatcolor": {
+            "name": "Chat color"
+          }
+        },
         "boosterConfig": {
           "name": "Booster (1.8)",
           "description": "Settings for Booster-Automations",
