@@ -9,6 +9,7 @@ import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
 import net.labymod.api.event.client.chat.advanced.AdvancedChatTabMessageEvent;
+import net.labymod.api.util.Color;
 
 import static de.neocraftr.griefergames.Constants.CHAT_METADATA_CUSTOM_BACKGROUND;
 
@@ -47,10 +48,10 @@ public class GGMessageReceiveListener {
   public void onTabMessage(AdvancedChatTabMessageEvent event) {
     if(event.message().metadata().has(CHAT_METADATA_CUSTOM_BACKGROUND)) {
       event.message().metadata().set(IngameChatTab.CUSTOM_BACKGROUND,
-          (Integer)event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND));
+        ((Color) event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND)).get());
     }else if(event.message().chatMessage().metadata().has(CHAT_METADATA_CUSTOM_BACKGROUND)) {
       event.message().metadata().set(IngameChatTab.CUSTOM_BACKGROUND,
-          (Integer) event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND));
+        ((Color) event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND)).get());
     }
   }
 }
