@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.event.Subscribe;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,13 +17,15 @@ public class Nickname {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    if(event.getMessage().getPlainText().isBlank()) return;
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if (event.getMessage().getPlainText().isBlank()) return;
 
-    Matcher nicknameMsg = nicknameMsgRegex.matcher(event.getMessage().getPlainText());
-    if(nicknameMsg.find()) {
-      griefergames.setNickname(nicknameMsg.group(1));
-    } else if(event.getMessage().getPlainText().equalsIgnoreCase("[Nick] Dein Name wurde zurückgesetzt.")) {
-      griefergames.setNickname(null);
+      Matcher nicknameMsg = nicknameMsgRegex.matcher(event.getMessage().getPlainText());
+      if (nicknameMsg.find()) {
+        griefergames.setNickname(nicknameMsg.group(1));
+      } else if (event.getMessage().getPlainText().equalsIgnoreCase("[Nick] Dein Name wurde zurückgesetzt.")) {
+        griefergames.setNickname(null);
+      }
     }
   }
 }

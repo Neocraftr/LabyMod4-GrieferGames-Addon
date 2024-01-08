@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import de.neocraftr.griefergames.enums.TransactionType;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
@@ -31,87 +32,89 @@ public class Payment extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    if(event.getMessage().getPlainText().isBlank()) return;
-    String plain = event.getMessage().getPlainText();
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if (event.getMessage().getPlainText().isBlank()) return;
+      String plain = event.getMessage().getPlainText();
 
-    Matcher receiveMoneyMatcher = receiveMoneyRegex.matcher(plain);
-    if (receiveMoneyMatcher.find()) {
-      String rank = receiveMoneyMatcher.group(1);
-      String name = receiveMoneyMatcher.group(2);
-      double amount = getAmount(receiveMoneyMatcher.group(3));
+      Matcher receiveMoneyMatcher = receiveMoneyRegex.matcher(plain);
+      if (receiveMoneyMatcher.find()) {
+        String rank = receiveMoneyMatcher.group(1);
+        String name = receiveMoneyMatcher.group(2);
+        double amount = getAmount(receiveMoneyMatcher.group(3));
 
-      if(!event.getMessage().getFormattedText().contains("§f §ahat dir $")) {
-        griefergames.addIncome(amount);
+        if (!event.getMessage().getFormattedText().contains("§f §ahat dir $")) {
+          griefergames.addIncome(amount);
 
-        if(griefergames.configuration().payment().logTransactions().get()) {
-          griefergames.fileManager().logTransaction(rank+" ┃ "+name, amount, TransactionType.RECEIVE);
+          if (griefergames.configuration().payment().logTransactions().get()) {
+            griefergames.fileManager().logTransaction(rank + " ┃ " + name, amount, TransactionType.RECEIVE);
+          }
+
+          if (griefergames.configuration().payment().payChatRight().get()) {
+            event.setSecondChat(true);
+          }
+
+          if (griefergames.configuration().payment().payAchievement().get()) {
+            sendPaymentNotification(TransactionType.RECEIVE, rank, name, amount);
+          }
+
+          if (griefergames.configuration().payment().payHighlight().get()) {
+            event.getMessage().component().append(Component.text(" \u2714", Style.builder()
+              .color(NamedTextColor.GREEN)
+              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate(griefergames.namespace() + ".messages.verifiedPayment"), NamedTextColor.GREEN)))
+              .build()));
+          }
+        } else {
+          if (griefergames.configuration().payment().fakeMoneyWarning().get()) {
+            String warningMessage = "§e§l" + I18n.translate(griefergames.namespace() + ".messages.warning") + " §c"
+              + I18n.translate(griefergames.namespace() + ".messages.fakeMoney")
+              .replace("{player}", "§e" + rank + " ┃ " + name + "§c")
+              .replace("{amount}", "§e$" + receiveMoneyMatcher.group(3) + "§c");
+
+            griefergames.displayMessage("\n\n");
+            griefergames.displayAddonMessage(warningMessage);
+          }
         }
+      }
 
-        if(griefergames.configuration().payment().payChatRight().get()) {
+      Matcher payMoneyMatcher = payMoneyRegex.matcher(plain);
+      if (payMoneyMatcher.find()) {
+        String rank = payMoneyMatcher.group(1);
+        String name = payMoneyMatcher.group(2);
+        double amount = getAmount(payMoneyMatcher.group(3));
+
+        griefergames.addIncome(amount * -1);
+
+        if (griefergames.configuration().payment().logTransactions().get()) {
+          griefergames.fileManager().logTransaction(rank + " ┃ " + name, amount, TransactionType.PAY);
+        }
+        if (griefergames.configuration().payment().payChatRight().get()) {
           event.setSecondChat(true);
         }
-
-        if(griefergames.configuration().payment().payAchievement().get()) {
-          sendPaymentNotification(TransactionType.RECEIVE, rank, name, amount);
-        }
-
-        if(griefergames.configuration().payment().payHighlight().get()) {
-          event.getMessage().component().append(Component.text(" \u2714", Style.builder()
-              .color(NamedTextColor.GREEN)
-              .hoverEvent(HoverEvent.showText(Component.text(I18n.translate(griefergames.namespace()+".messages.verifiedPayment"), NamedTextColor.GREEN)))
-              .build()));
-        }
-      } else {
-        if(griefergames.configuration().payment().fakeMoneyWarning().get()) {
-          String warningMessage = "§e§l"+I18n.translate(griefergames.namespace()+".messages.warning")+" §c"
-              +I18n.translate(griefergames.namespace()+".messages.fakeMoney")
-              .replace("{player}", "§e"+rank+" ┃ "+name+"§c")
-              .replace("{amount}", "§e$"+receiveMoneyMatcher.group(3)+"§c");
-
-          griefergames.displayMessage("\n\n");
-          griefergames.displayAddonMessage(warningMessage);
+        if (griefergames.configuration().payment().payAchievement().get()) {
+          sendPaymentNotification(TransactionType.PAY, rank, name, amount);
         }
       }
-    }
 
-    Matcher payMoneyMatcher = payMoneyRegex.matcher(plain);
-    if(payMoneyMatcher.find()) {
-      String rank = payMoneyMatcher.group(1);
-      String name = payMoneyMatcher.group(2);
-      double amount = getAmount(payMoneyMatcher.group(3));
+      Matcher earnMoneyMatcher = earnMoneyRegex.matcher(plain);
+      if (earnMoneyMatcher.find()) {
+        double amount = getAmount(earnMoneyMatcher.group(1));
 
-      griefergames.addIncome(amount * -1);
+        griefergames.addIncome(amount);
 
-      if(griefergames.configuration().payment().logTransactions().get()) {
-        griefergames.fileManager().logTransaction(rank+" ┃ "+name, amount, TransactionType.PAY);
+        if (griefergames.configuration().payment().logTransactions().get()) {
+          griefergames.fileManager().logTransaction(null, amount, TransactionType.MONEYDROP);
+        }
+        if (griefergames.configuration().payment().payChatRight().get()) {
+          event.setSecondChat(true);
+        }
+        if (griefergames.configuration().payment().payAchievement().get()) {
+          sendPaymentNotification(TransactionType.MONEYDROP, amount);
+        }
       }
-      if(griefergames.configuration().payment().payChatRight().get()) {
+
+      if (plain.startsWith("Kontostand: ") && griefergames.configuration().payment().payChatRight().get()) {
         event.setSecondChat(true);
       }
-      if(griefergames.configuration().payment().payAchievement().get()) {
-        sendPaymentNotification(TransactionType.PAY, rank, name, amount);
-      }
-    }
-
-    Matcher earnMoneyMatcher = earnMoneyRegex.matcher(plain);
-    if(earnMoneyMatcher.find()) {
-      double amount = getAmount(earnMoneyMatcher.group(1));
-
-      griefergames.addIncome(amount);
-
-      if(griefergames.configuration().payment().logTransactions().get()) {
-        griefergames.fileManager().logTransaction(null, amount, TransactionType.MONEYDROP);
-      }
-      if(griefergames.configuration().payment().payChatRight().get()) {
-        event.setSecondChat(true);
-      }
-      if(griefergames.configuration().payment().payAchievement().get()) {
-        sendPaymentNotification(TransactionType.MONEYDROP, amount);
-      }
-    }
-
-    if(plain.startsWith("Kontostand: ") && griefergames.configuration().payment().payChatRight().get()) {
-      event.setSecondChat(true);
     }
   }
 

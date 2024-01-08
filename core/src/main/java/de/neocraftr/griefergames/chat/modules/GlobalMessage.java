@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.event.ClickEvent;
@@ -24,31 +25,32 @@ public class GlobalMessage extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    if(!griefergames.configuration().chatConfig().hideVoteMessages().get()) return;
     if(event.isCancelled()) return;
+    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
+    if (!griefergames.configuration().chatConfig().isHideVoteMessages()) return;
 
     Component message = null;
     String playername = null;
 
-    for(Component component : event.getMessage().component().getChildren()) {
+    for (Component component : event.getMessage().component().getChildren()) {
       Matcher globalChatMatcher = globalChatRegex.matcher(this.getPlainText(component));
-      if(globalChatMatcher.find()) {
+      if (globalChatMatcher.find()) {
         message = component;
         playername = globalChatMatcher.group(2);
         break;
       }
     }
 
-    if(message == null) return;
-    if(playername.startsWith("~")) playername = playername.replaceFirst("~", "");
+    if (message == null) return;
+    if (playername.startsWith("~")) playername = playername.replaceFirst("~", "");
 
-    if(!playername.equals(Laby.labyAPI().getName())) {
-      String command = "/msg "+playername+" ";
-      Component hoverText = Component.text(I18n.translate(griefergames.namespace()+".messages.globalMessageHoverText"), NamedTextColor.GREEN);
+    if (!playername.equals(Laby.labyAPI().getName())) {
+      String command = "/msg " + playername + " ";
+      Component hoverText = Component.text(I18n.translate(griefergames.namespace() + ".messages.globalMessageHoverText"), NamedTextColor.GREEN);
 
-      for(Component component : message.getChildren()) {
+      for (Component component : message.getChildren()) {
         String plain = this.getPlainText(component);
-        if(plain.equals("» ") || plain.equals(": ")) break;
+        if (plain.equals("» ") || plain.equals(": ")) break;
         component.style().hoverEvent(HoverEvent.showText(hoverText)).clickEvent(ClickEvent.suggestCommand(command));
       }
     }

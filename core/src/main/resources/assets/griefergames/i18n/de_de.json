@@ -8,7 +8,6 @@
       "autoUpdate": {
         "name": "Automatisch aktualisieren"
       },
-
       "chatConfig": {
         "name": "Chat & Tablist",
         "header": {
@@ -25,21 +24,28 @@
             "name": "Chatzeit"
           }
         },
-
+        "chatTabName": {
+          "name": "Name des Chat-Tabs",
+          "description": "Legt den Namen für den Chattab fest, welcher durch das Addon erstellt wird."
+        },
         "clickToReply": {
-          "name": "Klicken zum antworten",
+          "name": "Klicken zum antworten (1.8)",
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
         },
         "preventCommandFailure": {
-          "name": "Fehlerhafte Befehle blockieren",
+          "name": "Fehlerhafte Befehle blockieren (1.8 + Cloud)",
           "description": "z.B. 7p h oder 7msg"
         },
+        "correctCommandCapitalisation": {
+          "name": "Großschreibung bei Befehlen korrigieren (Cloud)",
+          "description": "z.B. '/P h' -> '/p h'"
+        },
         "betterIgnoreList": {
-          "name": "Verbesserte Ignorierliste",
+          "name": "Verbesserte Ignorierliste (1.8)",
           "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."
         },
         "showPrefixInDisplayName": {
-          "name": "Farbigen Prefix über Spielern anzeigen",
+          "name": "Farbigen Prefix über Spielern anzeigen (1.8 + Cloud)",
           "description": "Name über Spielern in korrekten Prefix Farben anzeigen."
         },
         "plotChatRight": {
@@ -58,17 +64,21 @@
           "name": "Realname anzeigen",
           "description": "/realname im 2. oder in beiden Chats anzeigen."
         },
-        "highlightMentions": {
+        "nameHighlightConfig": {
           "name": "Erwähnungen markieren",
-          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben."
-        },
-        "mentionColor": {
-          "name": "Erwähnungen Farbe",
-          "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
-        },
-        "mentionSound": {
-          "name": "Erwähnungen Sound",
-          "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben.",
+          "mentionColor": {
+            "name": "Erwähnungen Farbe",
+            "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
+          },
+          "mentionSound": {
+            "name": "Erwähnungen Sound",
+            "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          },
+          "additionalHighlightText": {
+            "name": "Zusätzlicher Suchtext",
+            "description": "Ein zusätzlicher Text, der in den Nachrichten gesucht werden soll. z.B. 'Abge' zusätzlich zum Namen AbgegrieftHD"
+          }
         },
         "highlightTPA": {
           "name": "TPA Nachrichten markieren",
@@ -139,7 +149,6 @@
           "description": "Format in welchem die Chatzeit angezeigt wird."
         }
       },
-
       "payment": {
         "name": "Bezahlungen",
         "header": {
@@ -150,7 +159,6 @@
             "name": "Bank"
           }
         },
-
         "logTransactions": {
           "name": "Transaktionen protokollieren",
           "description": "Alle Transaktionen in einer Log Datei protokollieren."
@@ -185,60 +193,81 @@
           "description": "Benachrichtigung für Bank Transaktionen anzeigen."
         }
       },
-
       "automations": {
         "name": "Automatisierungen",
         "header": {
-          "afk": {
-            "name": "AFK"
+          "chatcolor": {
+            "name": "Chatfarbe"
           }
         },
-        "hideBoosterMenu": {
-          "name": "Booster Menü ausblenden",
-          "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
+        "boosterConfig": {
+          "name": "Booster (1.8)",
+          "description": "Einstellungen für Booster-Automatisierung",
+          "loadBoostersOnJoin": {
+            "name": "Booster beim Beitreten laden",
+            "description": "Läd automatisch die Booster beim Betreten des Servers."
+          },
+          "hideBoosterMenu": {
+            "name": "Booster Menü ausblenden",
+            "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
+          }
         },
         "autoPortal": {
-          "name": "Auto Portal",
+          "name": "Auto Portal (1.8)",
           "description": "Direkt in den Portalraum joinen."
         },
         "autoColor": {
-          "name": "Automatische Chatfarbe",
+          "name": "Automatische Chatfarbe (1.8)",
           "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
-        "afkTime": {
-          "name": "AFK nach (in min)",
-          "description": "Zeit, nach der dich das Addon als AFK erkennt."
+        "autoColorCloud": {
+          "name": "Automatische Chatfarbe (Cloud)",
+          "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
-        "afkNick": {
-          "name": "Nicken wenn AFK",
-          "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+        "autoColorCloudColor": {
+          "name": "Chatfarbe (Cloud)",
+          "description": "Farbe, in welcher die Chatnachicht erscheinen wird."
         },
-        "afkNickname": {
-          "name": "AFK Nickname (4-16 Zeichen)",
-          "description": "Dein Nickname während du AFK bist."
+        "colorGradiantCloud": {
+          "name": "Chatfarbverlauf (Cloud)",
+          "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
         },
-        "afkMsgReply": {
-          "name": "Private Nachrichten beantworten",
-          "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
-        },
-        "afkMsgText": {
-          "name": "AFK Nachrichten Text",
-          "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+        "afkConfig": {
+          "name": "AFK (1.8 + Cloud)",
+          "description": "Einstellungen für AFK-Automatisierung",
+          "afkTime": {
+            "name": "AFK nach (in min) (1.8 + Cloud)",
+            "description": "Zeit, nach der dich das Addon als AFK erkennt."
+          },
+          "afkNick": {
+            "name": "Nicken wenn AFK (1.8 + Cloud)",
+            "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+          },
+          "afkNickname": {
+            "name": "AFK Nickname (4-16 Zeichen) (1.8 + Cloud)",
+            "description": "Dein Nickname während du AFK bist."
+          },
+          "afkMsgReply": {
+            "name": "Private Nachrichten beantworten (1.8 + Cloud)",
+            "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
+          },
+          "afkMsgText": {
+            "name": "AFK Nachrichten Text (1.8 + Cloud)",
+            "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+          }
         }
       },
-
       "friends": {
         "name": "Freunde",
         "labyChatShowSubServerEnabled": {
-          "name": "CityBuild im LabyChat anzeigen",
+          "name": "CityBuild im LabyChat anzeigen (1.8 + Cloud)",
           "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
         },
-        "discordShowSubServerEnabled":{
-          "name": "CityBuild in Discord anzeigen",
+        "discordShowSubServerEnabled": {
+          "name": "CityBuild in Discord anzeigen (1.8 + Cloud)",
           "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
         }
       },
-
       "openWebsite": {
         "name": "Website",
         "text": "Öffnen"
@@ -246,9 +275,12 @@
       "openGithub": {
         "name": "GitHub",
         "text": "Öffnen"
+      },
+      "openSupport": {
+        "name": "Support-Discord",
+        "text": "Öffnen"
       }
     },
-
     "messages": {
       "warning": "ACHTUNG!",
       "on": "AN",
@@ -263,7 +295,6 @@
       "afkBackMessage": "Du wurdest als wieder zurück erkannt.",
       "commandFailure": "Hast du dich vertippt? Wenn nicht, sende die Nachricht nochmal."
     },
-
     "notifications": {
       "generalError": "Ein Fehler ist aufgetreten, weitere Informationen im Chat.",
       "addonLoaded": "GrieferGames Addon {version} geladen.",
@@ -285,7 +316,6 @@
       "itemRemover": "in {time} Sekunden",
       "mobRemover": "in {time} Minuten"
     },
-
     "hudWidgetCategory": {
       "griefergames": {
         "name": "GrieferGames",
@@ -325,6 +355,20 @@
         "amplifierColor": {
           "name": "Anzahl Farber"
         }
+      }
+    },
+    "region_type": {
+      "citybuild": "Citybuild",
+      "farm": "Farmwelt",
+      "jail": "Gefängnis",
+      "event": "Event",
+      "minigame": "Minigames",
+      "with_name": {
+        "citybuild": "Citybuild %s",
+        "farm": "Farmwelt %s",
+        "jail": "Gefängnis %s",
+        "event": "Event %s",
+        "minigame": "Minigames"
       }
     }
   }

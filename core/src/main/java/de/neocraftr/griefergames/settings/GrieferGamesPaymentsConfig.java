@@ -4,12 +4,17 @@ import de.neocraftr.griefergames.GrieferGames;
 import net.labymod.api.client.gui.screen.widget.widgets.input.ButtonWidget.ButtonSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.configuration.loader.Config;
+import net.labymod.api.configuration.loader.annotation.ParentSwitch;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.Setting;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
 import net.labymod.api.util.MethodOrder;
 
 public class GrieferGamesPaymentsConfig extends Config {
+
+  @ParentSwitch
+  private final ConfigProperty<Boolean> enabled = new ConfigProperty<Boolean>(true);
+
   @SwitchSetting
   private final ConfigProperty<Boolean> logTransactions = new ConfigProperty<>(false);
 

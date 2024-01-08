@@ -3,11 +3,18 @@ package de.neocraftr.griefergames.chat.modules;
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
 import de.neocraftr.griefergames.enums.Sounds;
+import de.neocraftr.griefergames.enums.SubServerType;
+import de.neocraftr.griefergames.settings.GrieferGamesNameHighlightConfig;
 import net.labymod.api.Laby;
+import net.labymod.api.client.chat.ChatMessage;
+import net.labymod.api.client.component.Component;
+import net.labymod.api.client.options.ChatVisibility;
 import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.event.Subscribe;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static de.neocraftr.griefergames.Constants.CHAT_METADATA_CUSTOM_BACKGROUND;
 
 public class Mention extends ChatModule {
   private final GrieferGames griefergames;
@@ -20,21 +27,32 @@ public class Mention extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if(!griefergames.configuration().chatConfig().highlightMentions().get() && griefergames.configuration().chatConfig().mentionSound().get() == Sounds.NONE) return;
-    if(event.getMessage().getPlainText().isBlank()) return;
+    GrieferGamesNameHighlightConfig highlightConfig = griefergames.configuration().chatConfig().nameHighlightConfig();
+    if(!highlightConfig.isEnabled()) {
+      return;
+    }
+    if (event.getMessage().getPlainText().isBlank()) return;
 
-    Matcher matcher = globalChatregex.matcher(event.getMessage().getPlainText());
-    if(matcher.find() && !matcher.group(2).equalsIgnoreCase(Laby.labyAPI().getName())) {
-      if(matcher.group(3).toLowerCase().contains(Laby.labyAPI().getName().toLowerCase())) {
-        if(griefergames.configuration().chatConfig().highlightMentions().get()) {
-          event.getMessage().metadata().set("gg_custom_background", griefergames.configuration().chatConfig().mentionColor().get().get());
-        }
+    Matcher matcher = globalChatregex.matcher(griefergames.helper().removeLeadingMiscCodes(event.getMessage().getPlainText()));
+    if(!matcher.find()) {
+      return;
+    }
+    if(matcher.group(2).equalsIgnoreCase(Laby.labyAPI().getName())) {
+      // Own message
+      return;
+    }
+    String messageString = matcher.group(3).toLowerCase();
+    if(!messageString.contains(Laby.labyAPI().getName().toLowerCase()) &&
+        (highlightConfig.getAdditionalHighlightText().isBlank() || !messageString.contains(highlightConfig.getAdditionalHighlightText().toLowerCase()))) {
+      // Does not contain the name or the additional text
+      return;
+    }
 
-        if(griefergames.configuration().chatConfig().mentionSound().get() != Sounds.NONE) {
-          ResourceLocation resource = ResourceLocation.create("minecraft", griefergames.configuration().chatConfig().mentionSound().get().path());
-          Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
-        }
-      }
+    event.getMessage().metadata().set(CHAT_METADATA_CUSTOM_BACKGROUND, highlightConfig.getMentionColor());
+
+    if (highlightConfig.getMentionSound() != Sounds.NONE) {
+      ResourceLocation resource = ResourceLocation.create("minecraft", highlightConfig.getMentionSound().path());
+      Laby.labyAPI().minecraft().sounds().playSound(resource, 1f, 1f);
     }
   }
 }

@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.event.HoverEvent;
@@ -11,6 +12,7 @@ import net.labymod.api.client.resources.ResourceLocation;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.notification.Notification;
 import net.labymod.api.util.I18n;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -28,31 +30,33 @@ public class ItemRemover extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    if(event.isCancelled()) return;
-    String plain = event.getMessage().getPlainText();
-    if(plain.isBlank()) return;
+    if (event.isCancelled()) return;
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      String plain = event.getMessage().getPlainText();
+      if (plain.isBlank()) return;
 
-    Matcher itemRemoverMessage = itemRemoverMessageRegex.matcher(plain);
-    Matcher itemRemoverDoneMessage = itemRemoverDoneMessageRegex.matcher(plain);
+      Matcher itemRemoverMessage = itemRemoverMessageRegex.matcher(plain);
+      Matcher itemRemoverDoneMessage = itemRemoverDoneMessageRegex.matcher(plain);
 
-    boolean done;
-    if((done = itemRemoverDoneMessage.find()) || itemRemoverMessage.find()) {
-      if(griefergames.configuration().chatConfig().itemRemoverLastTimeHover().get() && done) {
-        String dateNowStr = LocalDateTime.now().format(formatter);
-        Component hoverText = Component.text(dateNowStr);
-        event.getMessage().component().style(event.getMessage().component().style().hoverEvent(HoverEvent.showText(hoverText)));
-      }
+      boolean done;
+      if ((done = itemRemoverDoneMessage.find()) || itemRemoverMessage.find()) {
+        if (griefergames.configuration().chatConfig().isRemoverLastTimeHover() && done) {
+          String dateNowStr = LocalDateTime.now().format(formatter);
+          Component hoverText = Component.text(dateNowStr);
+          event.getMessage().component().style(event.getMessage().component().style().hoverEvent(HoverEvent.showText(hoverText)));
+        }
 
-      if(griefergames.configuration().chatConfig().itemRemoverChatRight().get()) {
-        event.setSecondChat(true);
-      }
+        if (griefergames.configuration().chatConfig().isRemoverChatRight()) {
+          event.setSecondChat(true);
+        }
 
-      if(griefergames.configuration().chatConfig().itemRemoverNotification().get() && !done) {
-        Laby.labyAPI().notificationController().push(Notification.builder()
-          .title(Component.text("ItemRemover", NamedTextColor.RED))
-          .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))
-          .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/itemremover.png")))
-          .build());
+        if (griefergames.configuration().chatConfig().isRemoverNotification() && !done) {
+          Laby.labyAPI().notificationController().push(Notification.builder()
+            .title(Component.text("ItemRemover", NamedTextColor.RED))
+            .text(Component.text(I18n.translate(griefergames.namespace() + ".notifications.itemRemover").replace("{time}", itemRemoverMessage.group(1))))
+            .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/itemremover.png")))
+            .build());
+        }
       }
     }
   }
