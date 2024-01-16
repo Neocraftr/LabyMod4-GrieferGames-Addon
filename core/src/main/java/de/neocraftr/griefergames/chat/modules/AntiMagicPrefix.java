@@ -25,47 +25,45 @@ public class AntiMagicPrefix extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if (event.isCancelled()) return;
-    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
-      if (!griefergames.configuration().chatConfig().isAmpEnabled()) return;
+    if (!griefergames.configuration().chatConfig().isAmpEnabled()) return;
 
-      if (event.getMessage().getFormattedText().contains("§k")) {
-        // Check if player message
-        Matcher matcher = antiMagicPrefixRegex.matcher(event.getMessage().getPlainText());
-        if (matcher.find()) {
-          Component msg = null;
+    if (event.getMessage().getFormattedText().contains("§k")) {
+      // Check if player message
+      Matcher matcher = antiMagicPrefixRegex.matcher(event.getMessage().getPlainText());
+      if (matcher.find()) {
+        Component msg = null;
 
-          // Find message component in global chat
-          for (Component component : event.getMessage().component().getChildren()) {
-            String plain = this.getPlainText(component);
-            Matcher m = globalChatRegex.matcher(plain);
-            if (m.find()) {
-              msg = component;
-              break;
-            }
+        // Find message component in global chat
+        for (Component component : event.getMessage().component().getChildren()) {
+          String plain = this.getPlainText(component);
+          Matcher m = globalChatRegex.matcher(plain);
+          if (m.find()) {
+            msg = component;
+            break;
           }
-          if (msg == null) return;
-
-          String ampReplacement = griefergames.configuration().chatConfig().getAmpReplacement();
-          if (ampReplacement.isBlank()) {
-            ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
-          }
-
-          List<Component> msgChildren = new ArrayList<>(msg.getChildren());
-          for (int i = 0; i < msgChildren.size(); i++) {
-            Component component = msgChildren.get(i);
-            String plain = this.getPlainText(component);
-            if (plain.equalsIgnoreCase(matcher.group(1))) {
-              component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
-              Component ampPrefix = Component.text(ampReplacement + " ", component.style());
-              msgChildren.add(i, ampPrefix);
-              i++;
-            } else if (plain.equalsIgnoreCase(matcher.group(2))) {
-              component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
-              break;
-            }
-          }
-          msg.setChildren(msgChildren);
         }
+        if (msg == null) return;
+
+        String ampReplacement = griefergames.configuration().chatConfig().getAmpReplacement();
+        if (ampReplacement.isBlank()) {
+          ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
+        }
+
+        List<Component> msgChildren = new ArrayList<>(msg.getChildren());
+        for (int i = 0; i < msgChildren.size(); i++) {
+          Component component = msgChildren.get(i);
+          String plain = this.getPlainText(component);
+          if (plain.equalsIgnoreCase(matcher.group(1))) {
+            component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
+            Component ampPrefix = Component.text(ampReplacement + " ", component.style());
+            msgChildren.add(i, ampPrefix);
+            i++;
+          } else if (plain.equalsIgnoreCase(matcher.group(2))) {
+            component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
+            break;
+          }
+        }
+        msg.setChildren(msgChildren);
       }
     }
   }

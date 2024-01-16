@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated(since = "1.1.1", forRemoval = true)
 public class ChatTime extends ChatModule {
   private final GrieferGames griefergames;
   private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
