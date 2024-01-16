@@ -33,7 +33,7 @@
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
         },
         "preventCommandFailure": {
-          "name": "Fehlerhafte Befehle blockieren (1.8 + Cloud)",
+          "name": "Fehlerhafte Befehle blockieren",
           "description": "z.B. 7p h oder 7msg"
         },
         "correctCommandCapitalisation": {
@@ -45,7 +45,7 @@
           "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."
         },
         "showPrefixInDisplayName": {
-          "name": "Farbigen Prefix über Spielern anzeigen (1.8 + Cloud)",
+          "name": "Farbigen Prefix über Spielern anzeigen",
           "description": "Name über Spielern in korrekten Prefix Farben anzeigen."
         },
         "plotChatRight": {
@@ -85,27 +85,27 @@
           "description": "TPA und TPAHERE nachrichten in unterschiedlichen Farben markieren."
         },
         "itemRemoverChatRight": {
-          "name": "ItemRemover rechts",
+          "name": "ItemRemover rechts (1.8)",
           "description": "ItemRemover Nachrichten im 2. Chat anzeigen."
         },
         "itemRemoverLastTimeHover": {
-          "name": "ItemRemover Zeitstempel",
+          "name": "ItemRemover Zeitstempel (1.8)",
           "description": "Zeitstempel beim darüberfahren bei ItemRemover Nachrichten anzeigen."
         },
         "itemRemoverNotification": {
-          "name": "ItemRemover Benachrichtigung",
+          "name": "ItemRemover Benachrichtigung (1.8)",
           "description": "Benachrichtigung für ItemRemover am oberen rechten Bildschirmrand anzeigen."
         },
         "mobRemoverChatRight": {
-          "name": "MobRemover rechts",
+          "name": "MobRemover rechts (1.8)",
           "description": "MobRemover Nachrichten im 2. Chat anzeigen."
         },
         "mobRemoverLastTimeHover": {
-          "name": "MobRemover Zeitstempel",
+          "name": "MobRemover Zeitstempel (1.8)",
           "description": "Zeitstempel beim darüberfahren bei MobRemover Nachrichten anzeigen."
         },
         "mobRemoverNotification": {
-          "name": "MobRemover Benachrichtigung",
+          "name": "MobRemover Benachrichtigung (1.8)",
           "description": "Benachrichtigung für MobRemover am oberen rechten Bildschirmrand anzeigen."
         },
         "hideVoteMessages": {
@@ -233,26 +233,26 @@
           "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
         },
         "afkConfig": {
-          "name": "AFK (1.8 + Cloud)",
+          "name": "AFK",
           "description": "Einstellungen für AFK-Automatisierung",
           "afkTime": {
-            "name": "AFK nach (in min) (1.8 + Cloud)",
+            "name": "AFK nach (in min)",
             "description": "Zeit, nach der dich das Addon als AFK erkennt."
           },
           "afkNick": {
-            "name": "Nicken wenn AFK (1.8 + Cloud)",
+            "name": "Nicken wenn AFK",
             "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
           },
           "afkNickname": {
-            "name": "AFK Nickname (4-16 Zeichen) (1.8 + Cloud)",
+            "name": "AFK Nickname (4-16 Zeichen)",
             "description": "Dein Nickname während du AFK bist."
           },
           "afkMsgReply": {
-            "name": "Private Nachrichten beantworten (1.8 + Cloud)",
+            "name": "Private Nachrichten beantworten",
             "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
           },
           "afkMsgText": {
-            "name": "AFK Nachrichten Text (1.8 + Cloud)",
+            "name": "AFK Nachrichten Text",
             "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
           }
         }
@@ -260,11 +260,11 @@
       "friends": {
         "name": "Freunde",
         "labyChatShowSubServerEnabled": {
-          "name": "CityBuild im LabyChat anzeigen (1.8 + Cloud)",
+          "name": "CityBuild im LabyChat anzeigen",
           "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
         },
         "discordShowSubServerEnabled": {
-          "name": "CityBuild in Discord anzeigen (1.8 + Cloud)",
+          "name": "CityBuild in Discord anzeigen",
           "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
         }
       },

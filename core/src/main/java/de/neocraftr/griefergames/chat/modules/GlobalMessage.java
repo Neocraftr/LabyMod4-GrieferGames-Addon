@@ -13,6 +13,7 @@ import net.labymod.api.util.I18n;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Deprecated(since = "1.1.1", forRemoval = true)
 public class GlobalMessage extends ChatModule {
   // Not in use, already implemented by GrieferGames
 
