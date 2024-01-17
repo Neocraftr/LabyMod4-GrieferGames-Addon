@@ -359,6 +359,9 @@
         "amplifierColor": {
           "name": "Anzahl Farber"
         }
+      },
+      "gg_subserver": {
+        "name": "Unterserver"
       }
     },
     "region_type": {
