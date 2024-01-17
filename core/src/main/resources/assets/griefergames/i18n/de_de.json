@@ -216,6 +216,10 @@
           "name": "Auto Portal (1.8)",
           "description": "Direkt in den Portalraum joinen."
         },
+        "sendSubServer": {
+          "name": "Unterserver Wechselnachricht",
+          "description": "Sendet eine Nachricht, sobald man den Unterserver wechselt (z.B. CB oder Cloud Region)."
+        },
         "autoColor": {
           "name": "Automatische Chatfarbe (1.8)",
           "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"

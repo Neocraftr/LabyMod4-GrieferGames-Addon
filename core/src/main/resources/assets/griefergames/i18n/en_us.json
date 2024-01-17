@@ -220,6 +220,10 @@
           "name": "Auto portal (1.8)",
           "description": "Directly join to the portal room."
         },
+        "sendSubServer": {
+          "name": "Subserver change message",
+          "description": "Sends a message if you change the subserver (e.g. CB or Cloud region)."
+        },
         "autoColor": {
           "name": "Auto chatcolor (1.8)",
           "description": "Automatically adds the set colorcode before every message that you send. (Can cause problems with commands of other addons or mods.)"
