@@ -16,7 +16,6 @@ public class News extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    if(!griefergames.isSubServerType(SubServerType.REGULAR)) return;
     if (!griefergames.configuration().chatConfig().isHideNewsMessages()) return;
 
     String plain = event.getMessage().getPlainText();
