@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class AntiMagicPrefix extends ChatModule {
   private final GrieferGames griefergames;
   private final Pattern antiMagicPrefixRegex = Pattern.compile("([A-Za-z\\-\\+]+) \\u2503 (~?!?\\w{1,16})");
-  private final Pattern globalChatRegex = Pattern.compile("[A-Za-z\\-]+\\+? \\u2503 (\\!?\\w{1,16}) \\u00BB");
+  private final Pattern globalChatRegex = Pattern.compile("[A-Za-z\\-]+\\+? \\u2503 (~?!?\\w{1,16}) \\u00BB");
 
   public AntiMagicPrefix(GrieferGames griefergames) {
     this.griefergames = griefergames;
