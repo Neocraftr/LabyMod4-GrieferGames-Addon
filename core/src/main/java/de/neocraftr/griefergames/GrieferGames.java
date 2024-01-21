@@ -22,12 +22,7 @@ import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
 import de.neocraftr.griefergames.core.generated.DefaultReferenceStorage;
 import de.neocraftr.griefergames.enums.SubServerType;
-import de.neocraftr.griefergames.hud.BoosterHudWidget;
-import de.neocraftr.griefergames.hud.DelayHudWidget;
-import de.neocraftr.griefergames.hud.FlyHudWidget;
-import de.neocraftr.griefergames.hud.IncomeHudWidget;
-import de.neocraftr.griefergames.hud.NicknameHudWidget;
-import de.neocraftr.griefergames.hud.RedstoneHudWidget;
+import de.neocraftr.griefergames.hud.*;
 import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
 import de.neocraftr.griefergames.listener.GGMessageSendListener;
@@ -131,6 +126,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     labyAPI().hudWidgetRegistry().register(new DelayHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new FlyHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new BoosterHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new SubServerHUDWidget(this));
 
     if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
       registerCommand(new GGMessageCommand(this));

@@ -28,6 +28,9 @@ public class GrieferGamesAutomationsConfig extends Config {
   @SwitchSetting
   private final ConfigProperty<Boolean> autoPortal = new ConfigProperty<>(false);
 
+  @SwitchSetting
+  private final ConfigProperty<Boolean> sendSubServer = new ConfigProperty<>(false);
+
   @SettingSection("chatcolor")
   @DropdownSetting
   private final ConfigProperty<ChatColor> autoColor = new ConfigProperty<>(ChatColor.NONE);
@@ -52,6 +55,10 @@ public class GrieferGamesAutomationsConfig extends Config {
 
   public boolean isAutoPortalEnabled() {
     return enabled.get() && autoPortal.get();
+  }
+
+  public ConfigProperty<Boolean> sendSubServer() {
+    return sendSubServer;
   }
 
   public ConfigProperty<ChatColor> autoColor() {

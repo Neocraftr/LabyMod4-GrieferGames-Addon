@@ -51,11 +51,12 @@ public class GGSubServerChangeListener {
     if(griefergames.helper().isCityBuild(event.subServerName())) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(15));
       griefergames.setCitybuildDelay(false);
-
-      griefergames.displayAddonMessage(Component.text(
-              I18n.translate(griefergames.namespace()+".messages.citybuildJoin").replace("{citybuild}", formattedServerName),
-              NamedTextColor.GRAY
-          ));
+      if (griefergames.configuration().automations().sendSubServer().get()) {
+        griefergames.displayAddonMessage(Component.text(
+          I18n.translate(griefergames.namespace() + ".messages.citybuildJoin").replace("{citybuild}", formattedServerName),
+          NamedTextColor.GRAY
+        ));
+      }
     } else if(event.subServerName().equals("portal")) {
       if(!griefergames.isCitybuildDelay()) griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(12));
     } else if(event.subServerName().equals("skyblock")) {
