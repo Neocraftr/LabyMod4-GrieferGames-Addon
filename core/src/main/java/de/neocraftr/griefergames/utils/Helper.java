@@ -105,11 +105,7 @@ public class Helper {
     if(griefergames.getSecondChat() == null) {
       return;
     }
-    int limit = griefergames.getSecondChat().config().chatLimit().get();
-    for (int i = griefergames.getSecondChat().getMessages().size(); i >= limit; --i) {
-        griefergames.getSecondChat().getMessages().remove(i - 1);
-    }
-    griefergames.getSecondChat().getMessages().add(0, message);
+    griefergames.getSecondChat().handleInput(message);
   }
 
   /**
