@@ -66,6 +66,12 @@ public class Helper {
       if (secondChat == null) {
           secondChat = createNewSecondChat(name);
       }
+
+      if (!secondChat.config().filters().get().isEmpty()) {
+          // Remove all filters
+          secondChat.config().filters().get().removeIf(it -> true);
+      }
+
       griefergames.setSecondChat(secondChat);
     }
 
