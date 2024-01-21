@@ -54,4 +54,11 @@ public class GGMessageReceiveListener {
         ((Color) event.message().chatMessage().metadata().get(CHAT_METADATA_CUSTOM_BACKGROUND)).get());
     }
   }
+
+  @Subscribe
+  public void onMessageCheckChat(AdvancedChatTabMessageEvent event) {
+    if(event.tab().equals(GrieferGames.get().getSecondChat()) && !event.message().metadata().has(griefergames.namespace())) {
+      event.setCancelled(true);
+    }
+  }
 }

@@ -24,6 +24,7 @@ import net.labymod.api.configuration.labymod.chat.category.GeneralChatTabConfig;
 import net.labymod.api.configuration.labymod.chat.config.ChatWindowConfig;
 import net.labymod.api.configuration.labymod.chat.config.RootChatTabConfig;
 import net.labymod.api.configuration.labymod.chat.config.RootChatTabConfig.Type;
+import net.labymod.api.metadata.Metadata;
 import net.labymod.api.util.I18n;
 import net.labymod.api.util.bounds.DefaultRectangle;
 import net.labymod.api.util.bounds.MutableRectangle;
@@ -65,15 +66,6 @@ public class Helper {
       if (secondChat == null) {
           secondChat = createNewSecondChat(name);
       }
-
-      if (secondChat.config().filters().get().isEmpty()) {
-          // Create dummy filter to prevent LabyMod from sending alle messages to the second chat
-          ChatFilter defaultChatFilter = new ChatFilter();
-          defaultChatFilter.name().set("GrieferGames-Addon");
-          defaultChatFilter.getIncludedTags().add("§chzgwefegsdrutjugiuteghuzazghwu");
-          secondChat.config().filters().get().add(defaultChatFilter);
-      }
-
       griefergames.setSecondChat(secondChat);
     }
 
@@ -105,6 +97,7 @@ public class Helper {
     if(griefergames.getSecondChat() == null) {
       return;
     }
+    message.metadata().computeIfAbsent(griefergames.namespace(), k -> true);
     griefergames.getSecondChat().handleInput(message);
   }
 
