@@ -51,7 +51,7 @@ public class Helper {
    * @param name Name of the second chat tab
    */
   public void findSecondChat(String name) {
-      if(!griefergames.configuration().chatConfig().isEnabled()) {
+      if(!griefergames.configuration().chatConfig().isEnabled() || !griefergames.configuration().chatConfig().tabConfig().isEnabled()) {
         return;
       }
       IngameChatTab secondChat = null;

@@ -41,7 +41,7 @@
           },
           "useChatIndicators": {
             "name": "Chat-Indikatoren verwenden",
-            "description": "Gibt an, ob das Addon die Chat-Indikatoren (ungelesene Nachrichten)für den Chat-Tab verwenden soll. Achtung: Wenn Filter im Tab gesetzt sind, sind diese dann aktiv für die verschobenen Nachrichten des Addons."
+            "description": "Gibt an, ob das Addon die Chat-Indikatoren (ungelesene Nachrichten) für den Chat-Tab verwenden soll. Achtung: Wenn Filter im Tab gesetzt sind, sind diese dann aktiv für die verschobenen Nachrichten des Addons."
           }
         },
         "clickToReply": {
