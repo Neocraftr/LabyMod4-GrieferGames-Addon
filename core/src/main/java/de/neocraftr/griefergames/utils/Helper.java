@@ -15,6 +15,7 @@ import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.client.chat.filter.ChatFilter;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
+import net.labymod.api.client.gui.screen.widget.attributes.Filter;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.Bounds;
 import net.labymod.api.client.gui.screen.widget.attributes.bounds.PositionedBounds;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
@@ -63,13 +64,36 @@ public class Helper {
           }
       }
 
-      if (secondChat == null) {
+      if (secondChat == null && griefergames.configuration().chatConfig().tabConfig().isCreate()) {
           secondChat = createNewSecondChat(name);
       }
 
-      if (!secondChat.config().filters().get().isEmpty()) {
-          // Remove all filters
-          secondChat.config().filters().get().removeIf(it -> true);
+      if(secondChat != null) {
+        if(griefergames.configuration().chatConfig().tabConfig().isUseChatIndicators()) {
+          if(!secondChat.config().filters().get().isEmpty()) {
+            if (griefergames.configuration().chatConfig().tabConfig().isManageFilters()) {
+              // Remove all filters
+              secondChat.config().filters().get().removeIf(it -> true);
+            } else {
+              // Remove only old chat filter of the addon
+              ChatFilter toRemoveFilter = secondChat.config().filters().get().stream().filter(
+                      it -> it.getIncludedTags().getTags().stream()
+                          .anyMatch(ti -> ti.getContent().equals("§chzgwefegsdrutjugiuteghuzazghwu")))
+                  .findFirst().orElse(null);
+              if (toRemoveFilter != null) {
+                secondChat.config().filters().get().remove(toRemoveFilter);
+              }
+            }
+          }
+        }else if(griefergames.configuration().chatConfig().tabConfig().isManageFilters()){
+          if (secondChat.config().filters().get().isEmpty()) {
+            // Create dummy filter to prevent LabyMod from sending alle messages to the second chat
+            ChatFilter defaultChatFilter = new ChatFilter();
+            defaultChatFilter.name().set("GrieferGames-Addon");
+            defaultChatFilter.getIncludedTags().add("§chzgwefegsdrutjugiuteghuzazghwu");
+            secondChat.config().filters().get().add(defaultChatFilter);
+          }
+        }
       }
 
       griefergames.setSecondChat(secondChat);
@@ -104,7 +128,11 @@ public class Helper {
       return;
     }
     message.metadata().computeIfAbsent(griefergames.namespace(), k -> true);
-    griefergames.getSecondChat().handleInput(message);
+    if(griefergames.configuration().chatConfig().tabConfig().isUseChatIndicators()) {
+      griefergames.getSecondChat().handleInput(message);
+    }else{
+      griefergames.getSecondChat().getMessages().add(0, message);
+    }
   }
 
   /**

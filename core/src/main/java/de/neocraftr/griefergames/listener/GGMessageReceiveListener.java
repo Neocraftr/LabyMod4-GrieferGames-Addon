@@ -57,8 +57,16 @@ public class GGMessageReceiveListener {
 
   @Subscribe
   public void onMessageCheckChat(AdvancedChatTabMessageEvent event) {
-    if(event.tab().equals(GrieferGames.get().getSecondChat()) && !event.message().metadata().has(griefergames.namespace())) {
+    if(GrieferGames.get().getSecondChat() == null || !event.tab().equals(GrieferGames.get().getSecondChat())) {
+      return;
+    }
+    if(!griefergames.configuration().chatConfig().tabConfig().isUseChatIndicators()) {
+      return;
+    }
+    if(!event.message().metadata().has(griefergames.namespace())) {
       event.setCancelled(true);
+    }else{
+      event.setCancelled(false);
     }
   }
 }

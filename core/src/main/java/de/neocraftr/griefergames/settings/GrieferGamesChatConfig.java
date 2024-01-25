@@ -4,14 +4,11 @@ import de.neocraftr.griefergames.enums.RealnamePosition;
 import de.neocraftr.griefergames.enums.Sounds;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
-import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerWidget.ColorPickerSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget.DropdownSetting;
 import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.annotation.ParentSwitch;
-import net.labymod.api.configuration.loader.annotation.SpriteSlot;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
-import net.labymod.api.util.Color;
 
 public class GrieferGamesChatConfig extends Config {
 
@@ -37,8 +34,7 @@ public class GrieferGamesChatConfig extends Config {
 
   @SettingSection("highlightMessages")
 
-  @TextFieldSetting
-  private final ConfigProperty<String> chatTabName = new ConfigProperty<>("2nd Chat");
+  private GrieferGamesChatTabConfig tabConfig = new GrieferGamesChatTabConfig();
 
   @SwitchSetting
   private final ConfigProperty<Boolean> plotChatRight = new ConfigProperty<>(true);
@@ -133,8 +129,12 @@ public class GrieferGamesChatConfig extends Config {
     return enabled.get() && showPrefixInDisplayName.get();
   }
 
+  public GrieferGamesChatTabConfig tabConfig() {
+    return tabConfig;
+  }
+
   public String getChatTabName() {
-    return chatTabName.get();
+    return tabConfig.getChatTabName();
   }
 
   public boolean isPlotChatRight() {

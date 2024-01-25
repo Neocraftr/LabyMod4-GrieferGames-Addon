@@ -46,6 +46,7 @@ import net.labymod.api.client.gui.hud.binding.category.HudWidgetCategory;
 import net.labymod.api.client.options.ChatVisibility;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.models.addon.annotation.AddonMain;
+import org.jetbrains.annotations.Nullable;
 
 @AddonMain
 public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
@@ -187,10 +188,11 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     this.onGrieferGames = onGrieferGames;
   }
 
+  @Nullable
   public IngameChatTab getSecondChat() {
     return secondChat;
   }
-  public void setSecondChat(IngameChatTab secondChat) {
+  public void setSecondChat(@Nullable IngameChatTab secondChat) {
     this.secondChat = secondChat;
   }
 
