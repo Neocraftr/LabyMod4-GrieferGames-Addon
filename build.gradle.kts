@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.neocraftr.griefergames"
-version = "1.1.3"
+version = "1.1.4"
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
