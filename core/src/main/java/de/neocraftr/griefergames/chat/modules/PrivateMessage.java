@@ -72,7 +72,7 @@ public class PrivateMessage extends ChatModule {
     Matcher privateMessageSent = privateMessageSentRegex.matcher(griefergames.helper().removeLeadingMiscCodes(event.getMessage().getPlainText()));
     if (privateMessageSent.find()) {
       if (griefergames.configuration().chatConfig().isClickToReply() && griefergames.isSubServerType(SubServerType.REGULAR)) {
-        addReplyAction(event.getMessage().component(), "§6 -> ", "§6] ", privateMessageSent.group(2));
+        addReplyAction(event.getMessage().component(), "§6 -> ", "§6] ", privateMessageSent.group(3));
       }
 
       if (griefergames.configuration().chatConfig().isPrivateChatRight()) {
