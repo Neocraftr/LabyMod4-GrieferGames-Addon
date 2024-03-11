@@ -40,7 +40,7 @@ public class GGMessageSendListener {
         if (griefergames.getSubServerType() == SubServerType.REGULAR) {
             if (griefergames.configuration().automations().autoColor().get() != ChatColor.NONE && !msg.startsWith("/") && !msg.startsWith(".") && !msg.startsWith("-")) {
                 if (!msg.startsWith("&" + griefergames.configuration().automations().autoColor().get().getColorCode()))
-                    event.changeMessage("&" + griefergames.configuration().automations().autoColor().get().getColorCode() + msg, msg);
+                    event.changeMessage("&" + griefergames.configuration().automations().autoColor().get().getColorCode() + msg);
             }
         }
 
@@ -49,7 +49,7 @@ public class GGMessageSendListener {
                 if (msg.startsWith("/")) {
                     String[] parts = msg.split(" ");
                     String newMsg = parts[0].toLowerCase() + msg.replace(parts[0], "");
-                    event.changeMessage(newMsg, newMsg);
+                    event.changeMessage(newMsg);
                 }
             }
             if (griefergames.configuration().automations().autoColorCloud().get()) {
@@ -62,7 +62,7 @@ public class GGMessageSendListener {
             if (griefergames.configuration().automations().colorGradiantCloud().get()) {
                 String colorized = griefergames.helper().addGradiant(msg, "#");
                 if (!colorized.equals(msg)) {
-                    event.changeMessage(colorized, msg);
+                    event.changeMessage(colorized);
                 }
             }
         }
