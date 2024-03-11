@@ -2,18 +2,20 @@ package de.neocraftr.griefergames.settings;
 
 import de.neocraftr.griefergames.enums.RealnamePosition;
 import de.neocraftr.griefergames.enums.Sounds;
-import net.labymod.api.client.gui.screen.widget.widgets.input.SliderWidget.SliderSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
-import net.labymod.api.client.gui.screen.widget.widgets.input.color.ColorPickerWidget.ColorPickerSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.dropdown.DropdownWidget.DropdownSetting;
 import net.labymod.api.configuration.loader.Config;
+import net.labymod.api.configuration.loader.annotation.ParentSwitch;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 import net.labymod.api.configuration.settings.annotation.SettingSection;
-import net.labymod.api.util.Color;
 
 public class GrieferGamesChatConfig extends Config {
 
+  @ParentSwitch
+  private final ConfigProperty<Boolean> enabled = new ConfigProperty<Boolean>(true);
+
+  // ONLY 1.8
   @SwitchSetting
   private final ConfigProperty<Boolean> clickToReply = new ConfigProperty<>(true);
 
@@ -21,12 +23,18 @@ public class GrieferGamesChatConfig extends Config {
   private final ConfigProperty<Boolean> preventCommandFailure = new ConfigProperty<>(true);
 
   @SwitchSetting
+  private final ConfigProperty<Boolean> correctCommandCapitalisation = new ConfigProperty<>(true);
+
+  // Only 1.8
+  @SwitchSetting
   private final ConfigProperty<Boolean> betterIgnoreList = new ConfigProperty<>(true);
 
   @SwitchSetting
   private final ConfigProperty<Boolean> showPrefixInDisplayName = new ConfigProperty<>(true);
 
   @SettingSection("highlightMessages")
+
+  private GrieferGamesChatTabConfig tabConfig = new GrieferGamesChatTabConfig();
 
   @SwitchSetting
   private final ConfigProperty<Boolean> plotChatRight = new ConfigProperty<>(true);
@@ -37,18 +45,12 @@ public class GrieferGamesChatConfig extends Config {
   @DropdownSetting
   private final ConfigProperty<Sounds> privateChatSound = new ConfigProperty<>(Sounds.POP);
 
+  // 1.8
   @DropdownSetting
   private final ConfigProperty<RealnamePosition> realnamePosition = new ConfigProperty<>(
       RealnamePosition.DEFAULT);
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> highlightMentions = new ConfigProperty<>(true);
-
-  @ColorPickerSetting
-  private final ConfigProperty<Color> mentionColor = new ConfigProperty<>(Color.ofRGB(121, 178, 255));
-
-  @DropdownSetting
-  private final ConfigProperty<Sounds> mentionSound = new ConfigProperty<>(Sounds.NONE);
+  private final GrieferGamesNameHighlightConfig nameHighlightConfig = new GrieferGamesNameHighlightConfig();
 
   @SwitchSetting
   private final ConfigProperty<Boolean> highlightTPA = new ConfigProperty<>(true);
@@ -107,109 +109,119 @@ public class GrieferGamesChatConfig extends Config {
   @TextFieldSetting
   private final ConfigProperty<String> chatTimeFormat = new ConfigProperty<>(GrieferGamesConfig.DEFAULT_CHATTIME_FORMAT);
 
-
-  public ConfigProperty<Boolean> preventCommandFailure() {
-    return preventCommandFailure;
+  public boolean isEnabled() {
+    return enabled.get();
   }
 
-  public ConfigProperty<Boolean> betterIgnoreList() {
-    return betterIgnoreList;
+  public boolean isPreventCommandFailure() {
+    return enabled.get() && preventCommandFailure.get();
   }
 
-  public ConfigProperty<Boolean> showPrefixInDisplayName() {
-    return showPrefixInDisplayName;
+  public ConfigProperty<Boolean> correctCommandCapitalisation() {
+    return correctCommandCapitalisation;
   }
 
-  public ConfigProperty<Boolean> plotChatRight() {
-    return plotChatRight;
+  public boolean isBetterIgnoreList() {
+    return enabled.get() && betterIgnoreList.get();
   }
 
-  public ConfigProperty<Boolean> clickToReply() {
-    return clickToReply;
+  public boolean isShowPrefixInDisplayName() {
+    return enabled.get() && showPrefixInDisplayName.get();
   }
 
-  public ConfigProperty<Boolean> privateChatRight() {
-    return privateChatRight;
+  public GrieferGamesChatTabConfig tabConfig() {
+    return tabConfig;
   }
 
-  public ConfigProperty<Sounds> privateChatSound() {
-    return privateChatSound;
+  public String getChatTabName() {
+    return tabConfig.getChatTabName();
   }
 
-  public ConfigProperty<RealnamePosition> realnamePosition() {
-    return realnamePosition;
+  public boolean isPlotChatRight() {
+    return enabled.get() && plotChatRight.get();
   }
 
-  public ConfigProperty<Boolean> highlightMentions() {
-    return highlightMentions;
+  public boolean isClickToReply() {
+    return enabled.get() && clickToReply.get();
   }
 
-  public ConfigProperty<Color> mentionColor() {
-    return mentionColor;
+  public boolean isPrivateChatRight() {
+    return enabled.get() && privateChatRight.get();
   }
 
-  public ConfigProperty<Sounds> mentionSound() {
-    return mentionSound;
+  public Sounds getPrivateChatSound() {
+    if(!enabled.get()) return Sounds.NONE;
+    return privateChatSound.get();
   }
 
-  public ConfigProperty<Boolean> highlightTPA() {
-    return highlightTPA;
+  public RealnamePosition getRealnamePosition() {
+    if(!enabled.get()) return RealnamePosition.DEFAULT;
+    return realnamePosition.get();
   }
 
-  public ConfigProperty<Boolean> itemRemoverChatRight() {
-    return itemRemoverChatRight;
+  public GrieferGamesNameHighlightConfig nameHighlightConfig() {
+    return nameHighlightConfig;
   }
 
-  public ConfigProperty<Boolean> itemRemoverLastTimeHover() {
-    return itemRemoverLastTimeHover;
+  public boolean isHighlightTpa() {
+    return enabled.get() && highlightTPA.get();
   }
 
-  public ConfigProperty<Boolean> itemRemoverNotification() {
-    return itemRemoverNotification;
+  public boolean isRemoverChatRight() {
+    return enabled.get() && itemRemoverChatRight.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverChatRight() {
-    return mobRemoverChatRight;
+  public boolean isRemoverLastTimeHover() {
+    return enabled.get() && itemRemoverLastTimeHover.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverLastTimeHover() {
-    return mobRemoverLastTimeHover;
+  public boolean isRemoverNotification() {
+    return enabled.get() && itemRemoverNotification.get();
   }
 
-  public ConfigProperty<Boolean> mobRemoverNotification() {
-    return mobRemoverNotification;
+  public boolean isMobRemoverChatRight() {
+    return enabled.get() && mobRemoverChatRight.get();
   }
 
-  public ConfigProperty<Boolean> hideVoteMessages() {
-    return hideVoteMessages;
+  public boolean isMobRemoverLastTimeHover() {
+    return enabled.get() && mobRemoverLastTimeHover.get();
   }
 
-  public ConfigProperty<Boolean> hideNewsMessages() {
-    return hideNewsMessages;
+  public boolean isMobRemoverNotification() {
+    return enabled.get() && mobRemoverNotification.get();
   }
 
-  public ConfigProperty<Boolean> hideBlankLines() {
-    return hideBlankLines;
+  public boolean isHideVoteMessages() {
+    return enabled.get() && hideVoteMessages.get();
   }
 
-  public ConfigProperty<Boolean> hideSupremeBlankLines() {
-    return hideSupremeBlankLines;
+  public boolean isHideNewsMessages() {
+    return enabled.get() && hideNewsMessages.get();
   }
 
-  public ConfigProperty<Boolean> ampClantagEnabled() {
-    return ampClantagEnabled;
+  public boolean isHideBlankLines() {
+    return enabled.get() && hideBlankLines.get();
   }
 
-  public ConfigProperty<Boolean> ampEnabled() {
-    return ampEnabled;
+  public boolean isHideSupremeBlankLines() {
+    return enabled.get() && hideSupremeBlankLines.get();
   }
 
-  public ConfigProperty<String> ampReplacement() {
-    return ampReplacement;
+  public boolean isAmpClantagEnabled() {
+    return enabled.get() && ampClantagEnabled.get();
   }
 
-  public ConfigProperty<Boolean> showChatTime() {
-    return showChatTime;
+  public boolean isAmpEnabled() {
+    return enabled.get() && ampEnabled.get();
+  }
+
+  public String getAmpReplacement() {
+    if(!enabled.get()) return "";
+    return ampReplacement.get();
+  }
+
+  public boolean isShowChatTime() {
+    return enabled.get() && showChatTime.get();
   }
 
   public ConfigProperty<Boolean> chatTimeAfterMessage() {

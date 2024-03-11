@@ -22,8 +22,9 @@ public class GGServerJoinListener {
 
   @Subscribe
   public void onServerJoin(ServerJoinEvent event) {
-    if(event.serverData().address().getHost().endsWith("griefergames.net") ||
-        event.serverData().address().getHost().endsWith("griefergames.de")) {
+    if(event.serverData().address().getHost().toLowerCase().endsWith("griefergames.net") ||
+        event.serverData().address().getHost().toLowerCase().endsWith("griefergames.de") ||
+        event.serverData().address().getHost().toLowerCase().endsWith("griefergames.live")) {
       griefergames.setOnGrieferGames(true);
       griefergames.setLastActivety(System.currentTimeMillis());
       griefergames.setAfk(false);
@@ -31,12 +32,7 @@ public class GGServerJoinListener {
       griefergames.setCitybuildDelay(false);
       griefergames.setNickname(null);
       griefergames.setHideBoosterMenu(false);
-      griefergames.helper().findSecondChat("2nd Chat");
-
-      Laby.labyAPI().notificationController().push(Notification.builder()
-          .title(Component.text("GrieferGames-Addon", NamedTextColor.GOLD))
-          .text(Component.text(I18n.translate(griefergames.namespace()+".notifications.addonLoaded").replace("{version}", "v"+griefergames.addonInfo().getVersion())))
-          .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/icon.png"))).build());
+      griefergames.helper().findSecondChat(griefergames.configuration().chatConfig().getChatTabName());
 
       // Warn user when advanced chat is disabled.
       if(!Laby.labyAPI().config().ingame().advancedChat().enabled().get()) {

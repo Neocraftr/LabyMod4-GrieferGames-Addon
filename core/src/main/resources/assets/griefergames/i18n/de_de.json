@@ -8,7 +8,6 @@
       "autoUpdate": {
         "name": "Automatisch aktualisieren"
       },
-
       "chatConfig": {
         "name": "Chat & Tablist",
         "header": {
@@ -25,17 +24,40 @@
             "name": "Chatzeit"
           }
         },
-
+        "tabConfig": {
+          "name": "Chat-Tab",
+          "description": "Einstellungen für den Chat-Tab",
+          "chatTabName": {
+            "name": "Name des Chat-Tabs",
+            "description": "Legt den Namen für den Chattab fest, welcher durch das Addon verwendet wird."
+          },
+          "create": {
+            "name": "Chat-Tab erstellen",
+            "description": "Erstellt einen neuen Chat-Tab mit dem Namen aus dem Feld 'Name des Chat-Tabs'."
+          },
+          "manageFilters": {
+            "name": "Filter verwalten",
+            "description": "Gibt an, ob das Addon die Filter für den Chat-Tab verwalten soll."
+          },
+          "useChatIndicators": {
+            "name": "Chat-Indikatoren verwenden",
+            "description": "Gibt an, ob das Addon die Chat-Indikatoren (ungelesene Nachrichten) für den Chat-Tab verwenden soll. Achtung: Wenn Filter im Tab gesetzt sind, sind diese dann aktiv für die verschobenen Nachrichten des Addons."
+          }
+        },
         "clickToReply": {
-          "name": "Klicken zum antworten",
+          "name": "Klicken zum antworten (1.8)",
           "description": "Klicke auf den Namen in einer privaten Nachricht um schnell zu antworten."
         },
         "preventCommandFailure": {
           "name": "Fehlerhafte Befehle blockieren",
           "description": "z.B. 7p h oder 7msg"
         },
+        "correctCommandCapitalisation": {
+          "name": "Großschreibung bei Befehlen korrigieren (Cloud)",
+          "description": "z.B. '/P h' -> '/p h'"
+        },
         "betterIgnoreList": {
-          "name": "Verbesserte Ignorierliste",
+          "name": "Verbesserte Ignorierliste (1.8)",
           "description": "Ignorierliste wird übersichtlicher in mehreren Zeilen dargestellt."
         },
         "showPrefixInDisplayName": {
@@ -58,44 +80,48 @@
           "name": "Realname anzeigen",
           "description": "/realname im 2. oder in beiden Chats anzeigen."
         },
-        "highlightMentions": {
+        "nameHighlightConfig": {
           "name": "Erwähnungen markieren",
-          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben."
-        },
-        "mentionColor": {
-          "name": "Erwähnungen Farbe",
-          "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
-        },
-        "mentionSound": {
-          "name": "Erwähnungen Sound",
-          "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          "description": "Chatnachrichten in denen dein Name erwähnt wird farbig hervorheben.",
+          "mentionColor": {
+            "name": "Erwähnungen Farbe",
+            "description": "Hintergrund Farbe mit welcher Erwähnungen hervorgehoben werden."
+          },
+          "mentionSound": {
+            "name": "Erwähnungen Sound",
+            "description": "Sound abspielen wenn jemand deinen Namen im Chat erwähnt."
+          },
+          "additionalHighlightText": {
+            "name": "Zusätzlicher Suchtext",
+            "description": "Ein zusätzlicher Text, der in den Nachrichten gesucht werden soll. z.B. 'Abge' zusätzlich zum Namen AbgegrieftHD"
+          }
         },
         "highlightTPA": {
           "name": "TPA Nachrichten markieren",
           "description": "TPA und TPAHERE nachrichten in unterschiedlichen Farben markieren."
         },
         "itemRemoverChatRight": {
-          "name": "ItemRemover rechts",
+          "name": "ItemRemover rechts (1.8)",
           "description": "ItemRemover Nachrichten im 2. Chat anzeigen."
         },
         "itemRemoverLastTimeHover": {
-          "name": "ItemRemover Zeitstempel",
+          "name": "ItemRemover Zeitstempel (1.8)",
           "description": "Zeitstempel beim darüberfahren bei ItemRemover Nachrichten anzeigen."
         },
         "itemRemoverNotification": {
-          "name": "ItemRemover Benachrichtigung",
+          "name": "ItemRemover Benachrichtigung (1.8)",
           "description": "Benachrichtigung für ItemRemover am oberen rechten Bildschirmrand anzeigen."
         },
         "mobRemoverChatRight": {
-          "name": "MobRemover rechts",
+          "name": "MobRemover rechts (1.8)",
           "description": "MobRemover Nachrichten im 2. Chat anzeigen."
         },
         "mobRemoverLastTimeHover": {
-          "name": "MobRemover Zeitstempel",
+          "name": "MobRemover Zeitstempel (1.8)",
           "description": "Zeitstempel beim darüberfahren bei MobRemover Nachrichten anzeigen."
         },
         "mobRemoverNotification": {
-          "name": "MobRemover Benachrichtigung",
+          "name": "MobRemover Benachrichtigung (1.8)",
           "description": "Benachrichtigung für MobRemover am oberen rechten Bildschirmrand anzeigen."
         },
         "hideVoteMessages": {
@@ -139,7 +165,6 @@
           "description": "Format in welchem die Chatzeit angezeigt wird."
         }
       },
-
       "payment": {
         "name": "Bezahlungen",
         "header": {
@@ -150,7 +175,6 @@
             "name": "Bank"
           }
         },
-
         "logTransactions": {
           "name": "Transaktionen protokollieren",
           "description": "Alle Transaktionen in einer Log Datei protokollieren."
@@ -185,60 +209,85 @@
           "description": "Benachrichtigung für Bank Transaktionen anzeigen."
         }
       },
-
       "automations": {
         "name": "Automatisierungen",
         "header": {
-          "afk": {
-            "name": "AFK"
+          "chatcolor": {
+            "name": "Chatfarbe"
           }
         },
-        "hideBoosterMenu": {
-          "name": "Booster Menü ausblenden",
-          "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
+        "boosterConfig": {
+          "name": "Booster (1.8)",
+          "description": "Einstellungen für Booster-Automatisierung",
+          "loadBoostersOnJoin": {
+            "name": "Booster beim Beitreten laden",
+            "description": "Läd automatisch die Booster beim Betreten des Servers."
+          },
+          "hideBoosterMenu": {
+            "name": "Booster Menü ausblenden",
+            "description": "Menü des /booster Commands blockieren. Nur Übersicht im Chat."
+          }
         },
         "autoPortal": {
-          "name": "Auto Portal",
+          "name": "Auto Portal (1.8)",
           "description": "Direkt in den Portalraum joinen."
         },
+        "sendSubServer": {
+          "name": "Unterserver Wechselnachricht",
+          "description": "Sendet eine Nachricht, sobald man den Unterserver wechselt (z.B. CB oder Cloud Region)."
+        },
         "autoColor": {
-          "name": "Automatische Chatfarbe",
+          "name": "Automatische Chatfarbe (1.8)",
           "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
-        "afkTime": {
-          "name": "AFK nach (in min)",
-          "description": "Zeit, nach der dich das Addon als AFK erkennt."
+        "autoColorCloud": {
+          "name": "Automatische Chatfarbe (Cloud)",
+          "description": "Fügt automatisch den eingestellten Farbcode vor jede gesendete Nachricht. (Kann Probleme mit Befehlen bestimmter Addons oder Mods verursachen.)"
         },
-        "afkNick": {
-          "name": "Nicken wenn AFK",
-          "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+        "autoColorCloudColor": {
+          "name": "Chatfarbe (Cloud)",
+          "description": "Farbe, in welcher die Chatnachicht erscheinen wird."
         },
-        "afkNickname": {
-          "name": "AFK Nickname (4-16 Zeichen)",
-          "description": "Dein Nickname während du AFK bist."
+        "colorGradiantCloud": {
+          "name": "Chatfarbverlauf (Cloud)",
+          "description": "Fügt zwischen zwei Hexcolorcodes, wie z.B. '##ff0000' und '##00ff00' einen Farbverlauf in die Nachicht ein."
         },
-        "afkMsgReply": {
-          "name": "Private Nachrichten beantworten",
-          "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
-        },
-        "afkMsgText": {
-          "name": "AFK Nachrichten Text",
-          "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+        "afkConfig": {
+          "name": "AFK",
+          "description": "Einstellungen für AFK-Automatisierung",
+          "afkTime": {
+            "name": "AFK nach (in min)",
+            "description": "Zeit, nach der dich das Addon als AFK erkennt."
+          },
+          "afkNick": {
+            "name": "Nicken wenn AFK",
+            "description": "Automatisch Nicknamen setzen, nachdem du als AFK erkannt wurdest und entfernen, sobald su wieder da bist."
+          },
+          "afkNickname": {
+            "name": "AFK Nickname (4-16 Zeichen)",
+            "description": "Dein Nickname während du AFK bist."
+          },
+          "afkMsgReply": {
+            "name": "Private Nachrichten beantworten",
+            "description": "Automatisch mit einem Vordefinierten Text auf Private Nachrichten antworten, während du AFK bist."
+          },
+          "afkMsgText": {
+            "name": "AFK Nachrichten Text",
+            "description": "Text für automatisch beantworten von Privaten Nachrichten, während du AFK bist."
+          }
         }
       },
-
       "friends": {
         "name": "Freunde",
         "labyChatShowSubServerEnabled": {
           "name": "CityBuild im LabyChat anzeigen",
           "description": "Zeigt all deinen Freunden im LabyChat an, auf welchem CityBuild Server du dich grade befindest."
         },
-        "discordShowSubServerEnabled":{
+        "discordShowSubServerEnabled": {
           "name": "CityBuild in Discord anzeigen",
           "description": "Zeigt all deinen Freunden auf Discord an, auf welchem CityBuild Server du dich grade befindest."
         }
       },
-
       "openWebsite": {
         "name": "Website",
         "text": "Öffnen"
@@ -246,9 +295,12 @@
       "openGithub": {
         "name": "GitHub",
         "text": "Öffnen"
+      },
+      "openSupport": {
+        "name": "Support-Discord",
+        "text": "Öffnen"
       }
     },
-
     "messages": {
       "warning": "ACHTUNG!",
       "on": "AN",
@@ -263,7 +315,6 @@
       "afkBackMessage": "Du wurdest als wieder zurück erkannt.",
       "commandFailure": "Hast du dich vertippt? Wenn nicht, sende die Nachricht nochmal."
     },
-
     "notifications": {
       "generalError": "Ein Fehler ist aufgetreten, weitere Informationen im Chat.",
       "addonLoaded": "GrieferGames Addon {version} geladen.",
@@ -285,7 +336,6 @@
       "itemRemover": "in {time} Sekunden",
       "mobRemover": "in {time} Minuten"
     },
-
     "hudWidgetCategory": {
       "griefergames": {
         "name": "GrieferGames",
@@ -325,6 +375,23 @@
         "amplifierColor": {
           "name": "Anzahl Farber"
         }
+      },
+      "gg_subserver": {
+        "name": "Unterserver"
+      }
+    },
+    "region_type": {
+      "citybuild": "Citybuild",
+      "farm": "Farmwelt",
+      "jail": "Gefängnis",
+      "event": "Event",
+      "minigame": "Minigames",
+      "with_name": {
+        "citybuild": "Citybuild %s",
+        "farm": "Farmwelt %s",
+        "jail": "Gefängnis %s",
+        "event": "Event %s",
+        "minigame": "Minigames"
       }
     }
   }

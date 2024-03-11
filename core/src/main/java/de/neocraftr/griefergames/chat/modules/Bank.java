@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.Laby;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
@@ -27,23 +28,25 @@ public class Bank extends ChatModule {
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
     if(event.isCancelled()) return;
-    String plain = event.getMessage().getPlainText();
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      String plain = event.getMessage().getPlainText();
 
-    if(plain.startsWith("[Bank] ")) {
-      if(griefergames.configuration().payment().bankChatRight().get()) {
-        event.setSecondChat(true);
-      }
+      if (plain.startsWith("[Bank] ")) {
+        if (griefergames.configuration().payment().bankChatRight().get()) {
+          event.setSecondChat(true);
+        }
 
-      boolean deposit;
-      if((deposit = plain.endsWith("auf dein Bankkonto eingezahlt.")) || plain.endsWith("von deinem Bankkonto abgehoben.")) {
-        if(griefergames.configuration().payment().bankAchievement().get()) {
-          String message = I18n.translate(griefergames.namespace()+".notifications.bank."+(deposit ? "deposit" : "withdraw"));
-          message = message.replace("{amount}", "$"+moneyFormat.format(getMoneyBank(plain)));
+        boolean deposit;
+        if ((deposit = plain.endsWith("auf dein Bankkonto eingezahlt.")) || plain.endsWith("von deinem Bankkonto abgehoben.")) {
+          if (griefergames.configuration().payment().bankAchievement().get()) {
+            String message = I18n.translate(griefergames.namespace() + ".notifications.bank." + (deposit ? "deposit" : "withdraw"));
+            message = message.replace("{amount}", "$" + moneyFormat.format(getMoneyBank(plain)));
 
-          Laby.labyAPI().notificationController().push(Notification.builder()
-              .title(Component.text(I18n.translate(griefergames.namespace()+".notifications.bank.title"), NamedTextColor.DARK_GREEN))
-              .text(Component.text(message))
-              .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/bank.png"))).build());
+            Laby.labyAPI().notificationController().push(Notification.builder()
+                    .title(Component.text(I18n.translate(griefergames.namespace() + ".notifications.bank.title"), NamedTextColor.DARK_GREEN))
+                    .text(Component.text(message))
+                    .icon(Icon.texture(ResourceLocation.create(griefergames.namespace(), "textures/bank.png"))).build());
+          }
         }
       }
     }

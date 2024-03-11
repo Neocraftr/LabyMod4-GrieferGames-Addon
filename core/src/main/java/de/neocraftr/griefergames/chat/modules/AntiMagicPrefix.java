@@ -2,10 +2,12 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.TextDecoration;
 import net.labymod.api.event.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,7 +16,7 @@ import java.util.regex.Pattern;
 public class AntiMagicPrefix extends ChatModule {
   private final GrieferGames griefergames;
   private final Pattern antiMagicPrefixRegex = Pattern.compile("([A-Za-z\\-\\+]+) \\u2503 (~?!?\\w{1,16})");
-  private final Pattern globalChatRegex = Pattern.compile("[A-Za-z\\-]+\\+? \\u2503 (\\!?\\w{1,16}) \\u00BB");
+  private final Pattern globalChatRegex = Pattern.compile("[A-Za-z\\-]+\\+? \\u2503 (~?!?\\w{1,16}) \\u00BB");
 
   public AntiMagicPrefix(GrieferGames griefergames) {
     this.griefergames = griefergames;
@@ -22,41 +24,41 @@ public class AntiMagicPrefix extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    if(event.isCancelled()) return;
-    if (!griefergames.configuration().chatConfig().ampEnabled().get()) return;
+    if (event.isCancelled()) return;
+    if (!griefergames.configuration().chatConfig().isAmpEnabled()) return;
 
-    if(event.getMessage().getFormattedText().contains("§k")) {
+    if (event.getMessage().getFormattedText().contains("§k")) {
       // Check if player message
       Matcher matcher = antiMagicPrefixRegex.matcher(event.getMessage().getPlainText());
-      if(matcher.find()) {
+      if (matcher.find()) {
         Component msg = null;
 
         // Find message component in global chat
-        for(Component component : event.getMessage().component().getChildren()) {
+        for (Component component : event.getMessage().component().getChildren()) {
           String plain = this.getPlainText(component);
           Matcher m = globalChatRegex.matcher(plain);
-          if(m.find()) {
+          if (m.find()) {
             msg = component;
             break;
           }
         }
-        if(msg == null) return;
+        if (msg == null) return;
 
-        String ampReplacement = griefergames.configuration().chatConfig().ampReplacement().get();
-        if(ampReplacement.isBlank()) {
+        String ampReplacement = griefergames.configuration().chatConfig().getAmpReplacement();
+        if (ampReplacement.isBlank()) {
           ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
         }
 
         List<Component> msgChildren = new ArrayList<>(msg.getChildren());
-        for(int i=0; i<msgChildren.size(); i++) {
+        for (int i = 0; i < msgChildren.size(); i++) {
           Component component = msgChildren.get(i);
           String plain = this.getPlainText(component);
-          if(plain.equalsIgnoreCase(matcher.group(1))) {
+          if (plain.equalsIgnoreCase(matcher.group(1))) {
             component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
-            Component ampPrefix = Component.text(ampReplacement+" ", component.style());
+            Component ampPrefix = Component.text(ampReplacement + " ", component.style());
             msgChildren.add(i, ampPrefix);
             i++;
-          } else if(plain.equalsIgnoreCase(matcher.group(2))) {
+          } else if (plain.equalsIgnoreCase(matcher.group(2))) {
             component.style(component.style().undecorate(TextDecoration.OBFUSCATED));
             break;
           }

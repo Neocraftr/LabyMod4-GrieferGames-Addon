@@ -27,15 +27,19 @@ public class GGKeyListener {
   public void onKeyInput(KeyEvent event) {
     if(!griefergames.isOnGrieferGames()) return;
 
-    if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+    if (griefergames.getSubServerType() == SubServerType.CLOUD || griefergames.getSubServerType() == SubServerType.REGULAR) {
       if(event.state() == State.PRESS) {
         griefergames.setLastActivety(System.currentTimeMillis());
         if(griefergames.isAfk()) {
           griefergames.setAfk(false);
           griefergames.helper().performAfkActions(false);
         }
+      }
+    }
 
-        if(griefergames.configuration().chatConfig().ampEnabled().get() &&
+    if(griefergames.getSubServerType() == SubServerType.REGULAR) {
+      if(event.state() == State.PRESS) {
+        if(griefergames.configuration().chatConfig().isAmpEnabled() &&
             event.key().getId() == Laby.labyAPI().minecraft().options().getInputMapping("key.playerlist").getKeyCode()) {
 
           for(NetworkPlayerInfo playerInfo : Laby.labyAPI().minecraft().getClientPacketListener().getNetworkPlayerInfos()) {
@@ -45,7 +49,7 @@ public class GGKeyListener {
             Matcher matcher = antiMagicPrefixRegex.matcher(griefergames.helper().componentToPlainText(playerInfo.displayName()));
             if(!matcher.find()) continue;
 
-            String ampReplacement = griefergames.configuration().chatConfig().ampReplacement().get();
+            String ampReplacement = griefergames.configuration().chatConfig().getAmpReplacement();
             if(ampReplacement.isBlank()) {
               ampReplacement = GrieferGamesConfig.DEFAULT_AMP_REPLACEMENT;
             }

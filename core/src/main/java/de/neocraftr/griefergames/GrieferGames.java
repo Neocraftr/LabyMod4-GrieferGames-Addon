@@ -22,21 +22,16 @@ import de.neocraftr.griefergames.chat.modules.Vote;
 import de.neocraftr.griefergames.commands.GGMessageCommand;
 import de.neocraftr.griefergames.core.generated.DefaultReferenceStorage;
 import de.neocraftr.griefergames.enums.SubServerType;
-import de.neocraftr.griefergames.hud.BoosterHudWidget;
-import de.neocraftr.griefergames.hud.DelayHudWidget;
-import de.neocraftr.griefergames.hud.FlyHudWidget;
-import de.neocraftr.griefergames.hud.IncomeHudWidget;
-import de.neocraftr.griefergames.hud.NicknameHudWidget;
-import de.neocraftr.griefergames.hud.RedstoneHudWidget;
+import de.neocraftr.griefergames.hud.*;
 import de.neocraftr.griefergames.listener.GGKeyListener;
 import de.neocraftr.griefergames.listener.GGMessageReceiveListener;
 import de.neocraftr.griefergames.listener.GGMessageSendListener;
+import de.neocraftr.griefergames.listener.GGNameTagListener;
 import de.neocraftr.griefergames.listener.GGScoreboardListener;
 import de.neocraftr.griefergames.listener.GGServerJoinListener;
 import de.neocraftr.griefergames.listener.GGServerMessageListener;
 import de.neocraftr.griefergames.listener.GGServerQuitListener;
 import de.neocraftr.griefergames.listener.GGSubServerChangeListener;
-import de.neocraftr.griefergames.listener.GGTablistListener;
 import de.neocraftr.griefergames.listener.GGTickListener;
 import de.neocraftr.griefergames.settings.GrieferGamesConfig;
 import de.neocraftr.griefergames.utils.FileManager;
@@ -44,13 +39,14 @@ import de.neocraftr.griefergames.utils.GrieferGamesController;
 import de.neocraftr.griefergames.utils.Helper;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.client.chat.ChatMessage;
+import net.labymod.api.client.chat.advanced.IngameChatTab;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.client.gui.hud.binding.category.HudWidgetCategory;
 import net.labymod.api.client.options.ChatVisibility;
 import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
 import net.labymod.api.models.addon.annotation.AddonMain;
-import net.labymod.core.configuration.labymod.chat.IngameChatTab;
+import org.jetbrains.annotations.Nullable;
 
 @AddonMain
 public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
@@ -98,9 +94,9 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     registerListener(new GGKeyListener(this));
     registerListener(new GGServerMessageListener(this));
     registerListener(new GGScoreboardListener(this));
-    registerListener(new GGTablistListener(this));
     registerListener(new GGSubServerChangeListener(this));
     registerListener(new GGTickListener(this));
+    registerListener(new GGNameTagListener(this));
 
     // Chat modules
     registerListener(new Blanks(this));
@@ -131,6 +127,7 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     labyAPI().hudWidgetRegistry().register(new DelayHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new FlyHudWidget(this));
     labyAPI().hudWidgetRegistry().register(new BoosterHudWidget(this));
+    labyAPI().hudWidgetRegistry().register(new SubServerHUDWidget(this));
 
     if(labyAPI().labyModLoader().isAddonDevelopmentEnvironment()) {
       registerCommand(new GGMessageCommand(this));
@@ -191,10 +188,11 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
     this.onGrieferGames = onGrieferGames;
   }
 
+  @Nullable
   public IngameChatTab getSecondChat() {
     return secondChat;
   }
-  public void setSecondChat(IngameChatTab secondChat) {
+  public void setSecondChat(@Nullable IngameChatTab secondChat) {
     this.secondChat = secondChat;
   }
 
@@ -250,8 +248,13 @@ public class GrieferGames extends LabyAddon<GrieferGamesConfig> {
   public SubServerType getSubServerType() {
     return subServerType;
   }
+
   public void setSubServerType(SubServerType subServerType) {
     this.subServerType = subServerType;
+  }
+
+  public boolean isSubServerType(SubServerType subServerType) {
+    return this.subServerType == subServerType;
   }
 
   public long getLastActivety() {

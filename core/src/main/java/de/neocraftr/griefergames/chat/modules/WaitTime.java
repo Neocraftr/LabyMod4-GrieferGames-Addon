@@ -2,6 +2,7 @@ package de.neocraftr.griefergames.chat.modules;
 
 import de.neocraftr.griefergames.GrieferGames;
 import de.neocraftr.griefergames.chat.events.GGChatProcessEvent;
+import de.neocraftr.griefergames.enums.SubServerType;
 import net.labymod.api.event.Subscribe;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -17,22 +18,25 @@ public class WaitTime extends ChatModule {
 
   @Subscribe
   public void messageProcessEvent(GGChatProcessEvent event) {
-    String plain = event.getMessage().getPlainText();
-    if(plain.isBlank()) return;
+    if (griefergames.getSubServerType() == SubServerType.REGULAR) {
+      String plain = event.getMessage().getPlainText();
+      if (plain.isBlank()) return;
 
-    if(plain.startsWith("Der Server ist voll.") || plain.equalsIgnoreCase("Der Server ist gerade im Wartungsmodus.")) {
-      if(!griefergames.isCitybuildDelay()) {
-        griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(12));
+      if (plain.startsWith("Der Server ist voll.") || plain.equalsIgnoreCase("Der Server ist gerade im Wartungsmodus.")) {
+        if (!griefergames.isCitybuildDelay()) {
+          griefergames.setWaitTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(12));
+        }
       }
-    }
 
-    Matcher matcher = cityBuildDelayRegex.matcher(plain);
-    if(matcher.find()) {
-      try {
-        long delay = TimeUnit.MINUTES.toMillis(Integer.parseInt(matcher.group(1)));
-        griefergames.setWaitTime(System.currentTimeMillis() + delay);
-        griefergames.setCitybuildDelay(true);
-      } catch(NumberFormatException e) {}
+      Matcher matcher = cityBuildDelayRegex.matcher(plain);
+      if (matcher.find()) {
+        try {
+          long delay = TimeUnit.MINUTES.toMillis(Integer.parseInt(matcher.group(1)));
+          griefergames.setWaitTime(System.currentTimeMillis() + delay);
+          griefergames.setCitybuildDelay(true);
+        } catch (NumberFormatException e) {
+        }
+      }
     }
   }
 }

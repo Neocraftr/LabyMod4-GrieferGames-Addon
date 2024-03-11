@@ -35,20 +35,19 @@ public class GrieferGamesConfig extends AddonConfig {
   @SpriteSlot(x = 5, y = 0)
   private GrieferGamesFriendsConfig friends = new GrieferGamesFriendsConfig();
 
-  @SpriteSlot(x = 6, y = 0)
+  @SpriteSlot(x = 7, y = 0)
   @MethodOrder(after = "friends")
   @ButtonSetting
-  public void openWebsite() {
-    OperatingSystem.getPlatform().openUrl("https://mc.im1random.org/?addon=GrieferGames");
-  }
-
-  @SpriteSlot(x = 7, y = 0)
-  @MethodOrder(after = "openWebsite")
-  @ButtonSetting
   public void openGithub() {
-    OperatingSystem.getPlatform().openUrl("https://github.com/Neocraftr/LabyMod4-GrieferGames-Addon");
+    OperatingSystem.getPlatform().openUrl("https://github.com/cosmohdx/LabyMod4-GrieferGames-Addon");
   }
 
+  @SpriteSlot(x = 6, y = 0)
+  @MethodOrder(after = "openGithub")
+  @ButtonSetting
+  public void openSupport() {
+    OperatingSystem.getPlatform().openUrl("https://discord.gg/EtgdTX9dKa");
+  }
 
   @Override
   public ConfigProperty<Boolean> enabled() {
